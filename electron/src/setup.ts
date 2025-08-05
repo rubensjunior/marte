@@ -110,6 +110,8 @@ export class ElectronCapacitorApp {
     this.MainWindow = new BrowserWindow({
       icon,
       show: false,
+      titleBarStyle: 'hiddenInset',
+      backgroundColor: '#ffffff',
       x: this.mainWindowState.x,
       y: this.mainWindowState.y,
       width: this.mainWindowState.width,
@@ -163,7 +165,8 @@ export class ElectronCapacitorApp {
     }
 
     // Setup the main manu bar at the top of our window.
-    Menu.setApplicationMenu(Menu.buildFromTemplate(this.AppMenuBarMenuTemplate));
+    // Oculta o menu da aplicação (File, View, etc.)
+    Menu.setApplicationMenu(null);
 
     // If the splashscreen is enabled, show it first while the main window loads then switch it out for the main window, or just load the main window from the start.
     if (this.CapacitorFileConfig.electron?.splashScreenEnabled) {
