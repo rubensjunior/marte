@@ -1,0 +1,6 @@
+{
+  "appId": "com.spacefeed.marte",
+  "appName": "Spacefeed - Marte",
+  "webDir": "www",
+  "bundledWebRuntime": true
+}

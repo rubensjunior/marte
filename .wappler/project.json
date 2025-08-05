@@ -26,7 +26,8 @@
     "capacitor": {
       "checked": true
     },
-    "platform": "web"
+    "platform": "electron",
+    "target": ""
   },
   "appFile": "/js/app.js",
   "extensions": []
