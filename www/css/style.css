@@ -1,6 +1,7 @@
 .bg-login {
-    background-image: url('../assets/images/bg-front.jpeg')!important;
+    background-image: url('../assets/images/bg-3.png')!important;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-color: #F8F7FC;
 }
