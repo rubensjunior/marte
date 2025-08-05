@@ -10,7 +10,10 @@
     "app/**/*"
   ],
   "publish": {
-    "provider": "github"
+    "provider": "github",
+    "owner": "rubensjunior",
+    "repo": "marte",
+    "releaseType": "release"
   },
   "nsis": {
     "allowElevation": true,
