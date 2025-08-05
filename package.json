@@ -2,11 +2,11 @@
   "name": "wappler_desktop_app",
   "version": "1.0.0",
   "dependencies": {
-    "@capacitor/core": "^5.7.8",
-    "@capacitor-community/electron": "*"
+    "@capacitor-community/electron": "*",
+    "@capacitor/core": "^7.0.1"
   },
   "devDependencies": {
-    "@capacitor/cli": "^7.4.2"
+    "@capacitor/cli": "^7.0.0"
   },
   "author": "Rubens Bentes <contato@spacefeed.app>"
 }
