@@ -73,6 +73,13 @@ textarea.form-control {
     font-size: 13px;
 }
 
+/* Classe customizada para padding um pouco menor em desktop */
+@media (min-width: 992px) {
+    .p-lg-6 {
+        padding: 3rem !important;
+    }
+}
+
 /* Melhorias para acessibilidade e responsividade */
 .glass-background-solid {
     transition: transform 0.2s ease, box-shadow 0.2s ease;
