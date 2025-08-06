@@ -1,7 +1,54 @@
 .bg-login {
-    background-image: url('../assets/images/bg-3.png')!important;
+    background-image: url('../assets/images/bg17-dark.jpg')!important;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: whitesmoke;
+    background-color: white;
+}
+
+#containerform {
+    -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05), 
+                0 4px 15px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05), 
+                0 4px 15px rgba(0, 0, 0, 0.05);
+    -webkit-transition: -webkit-box-shadow 0.3s ease;
+    transition: -webkit-box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease;
+    transition: box-shadow 0.3s ease, -webkit-box-shadow 0.3s ease;
+}
+
+/* Altura padrão de 48px para inputs e botões Bootstrap */
+.form-control,
+.form-select,
+.btn {
+    height: 48px;
+    min-height: 48px;
+}
+
+/* Textarea mantém altura automática baseada em rows */
+textarea.form-control {
+    height: auto;
+    min-height: 48px;
+}
+
+/* Input groups também seguem a altura padrão */
+.input-group .form-control,
+.input-group .form-select,
+.input-group .btn {
+    height: 48px;
+}
+
+/* Garantir que os elementos dentro de input-group se alinhem */
+.input-group {
+    height: 48px;
+}
+
+.input-group-text {
+    height: 48px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
 }
