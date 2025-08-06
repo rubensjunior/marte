@@ -1,37 +1,59 @@
-<!-- Wappler include head-page="index.html" is="dmx-app" id="home" appConnect="local" bootstrap5="local" capacitor="local" components="{dmxAnimateCSS:{}}" -->
-<div class="container-fluid vh-100">
+<!-- Wappler include head-page="index.html" is="dmx-app" id="home" appConnect="local" bootstrap5="local" capacitor="local" components="{dmxAnimateCSS:{},dmxValidator:{}}" -->
+<div class="container-fluid vh-100 p-5 bg-login">
     <div class="row h-100">
-        <div class="col-7 bg-login">
-            <div class="row h-100 justify-content-center align-items-center">
-                <div class="col-8 text-center">
-                    <h2 class="mb-3 text-white">Organize leads. Simplifique processos. Converta mais.</h2>
-                    <p class="text-secondary fs-5 text-white-50">Nosso CRM foi criado especialmente para os polos da Cruzeiro do Sul Virtual que precisam acompanhar cada oportunidade com agilidade e clareza. Com ele, você gerencia leads, agenda contatos e acompanha suas conversões — tudo em um só lugar, de forma simples e eficiente.</p>
+        <!-- Coluna Esquerda (oculta em tablets e móveis) -->
+        <div class="col-lg-7 d-none d-lg-block">
+            <div class="d-flex h-100 justify-content-center align-items-center">
+                <div class="col-8">
+                    <!-- Conteúdo da coluna esquerda (vazio por enquanto) -->
                 </div>
             </div>
         </div>
-        <div class="col">
-            <div class="row h-100 align-items-center justify-content-center">
-                <div class="col-10">
-                    <div class="d-flex flex-column p-3">
-                        <h2 class="text-center">Bem-vindo(a)</h2>
-                        <h6 class="text-center mb-5 text-secondary">Acesse o seu CRM de atendimento e prospecção de alunos</h6>
-                        <form id="form1" class="mb-3">
+
+        <!-- Coluna Direita (formulário) -->
+        <div class="col-12 col-lg-5">
+            <div class="d-flex flex-column h-100 justify-content-center align-items-center">
+                <!-- Logo -->
+                <header class="mb-4">
+                    <img src="assets/images/spacefeed-black.png" class="img-fluid" width="240" alt="Spacefeed Logo">
+                </header>
+
+                <!-- Container do Formulário -->
+                <main class="w-100 d-flex justify-content-center mb-4">
+                    <div class="col-12 col-sm-10 col-md-8 col-lg-9 col-xl-8 p-4 p-md-5 glass-background-solid">
+                        <div class="text-center mb-4">
+                            <h1 class="h3 mb-2">Bem-vindo(a)</h1>
+                            <p class="h6 text-muted mb-0">Acesse o seu CRM de atendimento e prospecção de alunos</p>
+                        </div>
+
+                        <form is="dmx-serverconnect-form" id="login_form" method="post" action="/api/auth/login">
                             <div class="form-group mb-3">
-                                <input type="text" class="form-control" id="input1" name="input1" aria-describedby="input1_help" placeholder="Seu e-mail cadastrado">
+                                <label for="email" class="visually-hidden">E-mail</label>
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Seu e-mail cadastrado" required data-msg-required="Por favor, digite seu e-mail">
                             </div>
+
                             <div class="form-group mb-3">
-                                <input type="password" class="form-control" id="input2" name="input1" aria-describedby="input1_help1" placeholder="Senha">
+                                <label for="password" class="visually-hidden">Senha</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Senha" required data-msg-required="Por favor, digite sua senha">
                             </div>
+
                             <div class="form-group mb-3 text-end">
-                                <small id="input1_help2" class="form-text text-danger">Recuperar senha.</small>
+                                <small class="form-text text-muted">
+                                    <a href="#" class="text-decoration-none">Esqueceu sua senha? Clique aqui!</a>
+                                </small>
                             </div>
-                            <div class="form-group"> <button id="btn1" class="btn w-100 py-2 btn-primary">Fazer login</button>
+
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-warning w-100">Fazer login</button>
                             </div>
                         </form>
-                        <p class="text-center m-0 mini-titulo">© Spacefeed. Todos os direitos reservados.</p>
                     </div>
-                </div>
+                </main>
 
+                <!-- Copyright -->
+                <footer class="text-center px-3">
+                    <p class="mini-titulo mb-0">© Spacefeed. Todos os direitos reservados.</p>
+                </footer>
             </div>
         </div>
     </div>

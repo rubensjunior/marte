@@ -1,9 +1,9 @@
 .bg-login {
-    background-image: url('../assets/images/bg17-dark.jpg')!important;
+    background-image: url('../assets/images/bg-inicial.jpg')!important;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    background-color: white;
+    background-color: #F3F3F3;
 }
 
 #containerform {
@@ -23,6 +23,11 @@
 .btn {
     height: 48px;
     min-height: 48px;
+}
+
+/* Font-weight 600 para todos os botões */
+.btn {
+    font-weight: 600;
 }
 
 /* Textarea mantém altura automática baseada em rows */
@@ -51,4 +56,172 @@ textarea.form-control {
     -webkit-box-align: center;
         -ms-flex-align: center;
             align-items: center;
+}
+
+/* Variação mais opaca */
+.glass-background-solid {
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.75);
+    border-radius: 12px;
+    -webkit-box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+}
+
+.mini-titulo {
+    font-size: 13px;
+}
+
+/* Melhorias para acessibilidade e responsividade */
+.glass-background-solid {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.glass-background-solid:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.16);
+}
+
+/* Links dentro do formulário */
+.glass-background-solid a {
+    color: #6c757d;
+    transition: color 0.2s ease;
+}
+
+.glass-background-solid a:hover {
+    color: #495057;
+}
+
+/* Responsividade completa */
+
+/* Tablets em landscape e desktops pequenos */
+@media (max-width: 1199.98px) {
+    .bg-login {
+        padding: 3rem !important;
+    }
+}
+
+/* Tablets em portrait */
+@media (max-width: 991.98px) {
+    .bg-login {
+        padding: 2rem !important;
+    }
+    
+    .glass-background-solid {
+        padding: 3rem !important;
+    }
+    
+    /* Ajustar largura do container do formulário */
+    .glass-background-solid {
+        width: 100% !important;
+        max-width: 400px;
+    }
+}
+
+/* Smartphones em landscape */
+@media (max-width: 767.98px) {
+    .bg-login {
+        padding: 1rem !important;
+    }
+    
+    .glass-background-solid {
+        padding: 2rem !important;
+        width: 100% !important;
+        max-width: none;
+    }
+    
+    /* Logo menor em telas pequenas */
+    .glass-background-solid + * img {
+        width: 180px !important;
+    }
+    
+    /* Ajustar espaçamentos */
+    .mb-4 {
+        margin-bottom: 1.5rem !important;
+    }
+}
+
+/* Smartphones em portrait */
+@media (max-width: 575.98px) {
+    .bg-login {
+        padding: 0.5rem !important;
+    }
+    
+    .glass-background-solid {
+        padding: 1.5rem !important;
+        border-radius: 8px;
+    }
+    
+    /* Logo ainda menor */
+    header img {
+        width: 150px !important;
+    }
+    
+    /* Ajustar títulos */
+    .glass-background-solid h1 {
+        font-size: 1.3rem !important;
+    }
+    
+    .glass-background-solid .h6 {
+        font-size: 0.9rem !important;
+    }
+    
+    .mini-titulo {
+        font-size: 11px !important;
+    }
+    
+    /* Reduzir espaçamentos */
+    .mb-4 {
+        margin-bottom: 1rem !important;
+    }
+    
+    .mb-3 {
+        margin-bottom: 0.75rem !important;
+    }
+}
+
+/* Muito pequenas (iPhones antigos, etc) */
+@media (max-width: 374.98px) {
+    .glass-background-solid {
+        padding: 1rem !important;
+    }
+    
+    header img {
+        width: 120px !important;
+    }
+    
+    .glass-background-solid h1 {
+        font-size: 1.2rem !important;
+    }
+    
+    .glass-background-solid .h6 {
+        font-size: 0.8rem !important;
+    }
+}
+
+/* Garantir que o flexbox funcione corretamente em navegadores antigos */
+.d-flex {
+    display: -webkit-box !important;
+    display: -ms-flexbox !important;
+    display: flex !important;
+}
+
+.flex-column {
+    -webkit-box-orient: vertical !important;
+    -webkit-box-direction: normal !important;
+    -ms-flex-direction: column !important;
+    flex-direction: column !important;
+}
+
+.justify-content-center {
+    -webkit-box-pack: center !important;
+    -ms-flex-pack: center !important;
+    justify-content: center !important;
+}
+
+.align-items-center {
+    -webkit-box-align: center !important;
+    -ms-flex-align: center !important;
+    align-items: center !important;
 }
