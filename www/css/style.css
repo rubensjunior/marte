@@ -58,15 +58,15 @@ textarea.form-control {
             align-items: center;
 }
 
-/* Variação mais opaca */
+/* Variação mais opaca com sombra mais escura */
 .glass-background-solid {
     background: rgba(255, 255, 255, 0.75);
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.75);
     border-radius: 12px;
-    -webkit-box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
-            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.12);
+    -webkit-box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
 }
 
 .mini-titulo {
@@ -78,16 +78,6 @@ textarea.form-control {
     .p-lg-6 {
         padding: 3rem !important;
     }
-}
-
-/* Melhorias para acessibilidade e responsividade */
-.glass-background-solid {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.glass-background-solid:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.16);
 }
 
 /* Links dentro do formulário */
