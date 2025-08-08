@@ -5,43 +5,57 @@ dmx.databases['offline'] = {
     {
       "toVersion": 1,
       "statements": [
-        "create table `teste` (`id` integer not null primary key autoincrement)"
+        "SELECT 1",
+        "create table `papeis` (`id` char(36) default null, `nome` varchar(255), `descricao` varchar(255), primary key (`id`))",
+        "SELECT 1",
+        "create table `permissoes` (`id` char(36) default null, primary key (`id`))"
       ]
     },
     {
       "toVersion": 2,
       "statements": [
-        "drop table `teste`"
+        "drop table `departamento`",
+        "alter table `papeis` rename `id` to `id_`"
       ]
     },
     {
       "toVersion": 3,
       "statements": [
-        "SELECT 1",
-        "create table `empresas` (`id_empresa` char(36) default null, `razao_social` varchar(255), `nome_fantasia` varchar(255), `nome_polo` varchar(255), `endereco` varchar(255), `cep` varchar(255), `bairro` varchar(255), `cidade` varchar(255), `estado` varchar(255), `cnpj` varchar(255), primary key (`id_empresa`))"
+        "drop table `papeis`",
+        "drop table `empresas`"
       ]
     },
     {
       "toVersion": 4,
       "statements": [
-        "alter table `empresas` add column `complemento` varchar(255)",
-        "alter table `empresas` add column `whatsapp` varchar(255)",
-        "alter table `empresas` add column `empresa_matriz` varchar(255)",
-        "alter table `empresas` add column `numero` varchar(255)"
+        "drop table `permissoes`"
       ]
     },
     {
       "toVersion": 5,
       "statements": [
-        "SELECT 1",
-        "create table `usuarios` (`id_usuario` char(36) default null, `nome_completo` varchar(255), `email` varchar(255), `nome_tratamento` varchar(255), `empresa_atual` varchar(255), `senha` varchar(255), foreign key(`empresa_atual`) references `empresas`(`id_empresa`) on delete CASCADE on update CASCADE, primary key (`id_usuario`))"
+        "drop table `usuarios`"
       ]
     },
     {
       "toVersion": 6,
       "statements": [
         "SELECT 1",
-        "create table `departamento` (`id_departamento` char(36) default null, `nome_departamento` varchar(255), primary key (`id_departamento`))"
+        "create table `usuarios` (`id_usuarios` char(36) default null, primary key (`id_usuarios`))",
+        "SELECT 1",
+        "create table `empresas` (`id_empresa` char(36) default null, primary key (`id_empresa`))",
+        "SELECT 1",
+        "create table `departamentos` (`id_departamentos` char(36) default null, primary key (`id_departamentos`))",
+        "SELECT 1",
+        "create table `papeis` (`id_papeis` char(36) default null, primary key (`id_papeis`))",
+        "SELECT 1",
+        "create table `permissoes` (`id_permissoes` char(36) default null, primary key (`id_permissoes`))",
+        "SELECT 1",
+        "create table `papeis_permissoes` (`id_papeis_permissoes` char(36) default null, primary key (`id_papeis_permissoes`))",
+        "SELECT 1",
+        "create table `usuarios_empresas` (`id_usuarios_empresas` char(36) default null, primary key (`id_usuarios_empresas`))",
+        "SELECT 1",
+        "create table `usuarios_empresas_departamentos` (`id_usuarios_empresas_departamentos` char(36) default null, primary key (`id_usuarios_empresas_departamentos`))"
       ]
     }
   ]

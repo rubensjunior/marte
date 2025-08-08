@@ -6,6 +6,21 @@
   "direct": true,
   "schema": {
     "tables": {
+      "usuarios": {
+        "columns": {
+          "id_usuarios": {
+            "db": {
+              "type": "string",
+              "default": "null",
+              "maxLength": 36,
+              "primary": true,
+              "unique": true,
+              "nullable": true
+            }
+          }
+        },
+        "db": {}
+      },
       "empresas": {
         "columns": {
           "id_empresa": {
@@ -17,198 +32,28 @@
               "unique": true,
               "nullable": true
             }
-          },
-          "razao_social": {
-            "db": {
-              "type": "string",
-              "maxLength": 255,
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "nome_fantasia": {
-            "db": {
-              "type": "string",
-              "maxLength": 255,
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "nome_polo": {
-            "db": {
-              "type": "string",
-              "maxLength": 255,
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "endereco": {
-            "db": {
-              "type": "string",
-              "maxLength": 255,
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "cep": {
-            "db": {
-              "type": "string",
-              "maxLength": 255,
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "bairro": {
-            "db": {
-              "type": "string",
-              "maxLength": 255,
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "cidade": {
-            "db": {
-              "type": "string",
-              "maxLength": 255,
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "estado": {
-            "db": {
-              "type": "string",
-              "maxLength": 255,
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "cnpj": {
-            "db": {
-              "type": "string",
-              "maxLength": 255,
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "complemento": {
-            "db": {
-              "type": "string",
-              "maxLength": 255,
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "whatsapp": {
-            "db": {
-              "type": "string",
-              "maxLength": 255,
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "empresa_matriz": {
-            "db": {
-              "type": "string",
-              "maxLength": 255,
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "numero": {
-            "db": {
-              "type": "string",
-              "maxLength": 255,
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
           }
         },
-        "db": {},
-        "refs": {
-          "usuarios": "empresa_atual"
-        }
+        "db": {}
       },
-      "usuarios": {
+      "departamentos": {
         "columns": {
-          "id_usuario": {
+          "id_departamentos": {
             "db": {
               "type": "string",
               "default": "null",
               "maxLength": 36,
               "primary": true,
               "unique": true,
-              "nullable": true
-            }
-          },
-          "nome_completo": {
-            "db": {
-              "type": "string",
-              "maxLength": 255,
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "email": {
-            "db": {
-              "type": "string",
-              "maxLength": 255,
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "nome_tratamento": {
-            "db": {
-              "type": "string",
-              "maxLength": 255,
-              "primary": false,
-              "unique": false,
-              "nullable": true
-            }
-          },
-          "empresa_atual": {
-            "db": {
-              "type": "reference",
-              "maxLength": 255,
-              "primary": false,
-              "unique": false,
-              "nullable": true,
-              "references": "id_empresa",
-              "inTable": "empresas",
-              "referenceType": "string",
-              "onUpdate": "CASCADE",
-              "onDelete": "CASCADE"
-            }
-          },
-          "senha": {
-            "db": {
-              "type": "string",
-              "maxLength": 255,
-              "primary": false,
-              "unique": false,
               "nullable": true
             }
           }
         },
         "db": {}
       },
-      "departamento": {
+      "papeis": {
         "columns": {
-          "id_departamento": {
+          "id_papeis": {
             "db": {
               "type": "string",
               "default": "null",
@@ -217,13 +62,64 @@
               "unique": true,
               "nullable": true
             }
-          },
-          "nome_departamento": {
+          }
+        },
+        "db": {}
+      },
+      "permissoes": {
+        "columns": {
+          "id_permissoes": {
             "db": {
               "type": "string",
-              "maxLength": 255,
-              "primary": false,
-              "unique": false,
+              "default": "null",
+              "maxLength": 36,
+              "primary": true,
+              "unique": true,
+              "nullable": true
+            }
+          }
+        },
+        "db": {}
+      },
+      "papeis_permissoes": {
+        "columns": {
+          "id_papeis_permissoes": {
+            "db": {
+              "type": "string",
+              "default": "null",
+              "maxLength": 36,
+              "primary": true,
+              "unique": true,
+              "nullable": true
+            }
+          }
+        },
+        "db": {}
+      },
+      "usuarios_empresas": {
+        "columns": {
+          "id_usuarios_empresas": {
+            "db": {
+              "type": "string",
+              "default": "null",
+              "maxLength": 36,
+              "primary": true,
+              "unique": true,
+              "nullable": true
+            }
+          }
+        },
+        "db": {}
+      },
+      "usuarios_empresas_departamentos": {
+        "columns": {
+          "id_usuarios_empresas_departamentos": {
+            "db": {
+              "type": "string",
+              "default": "null",
+              "maxLength": 36,
+              "primary": true,
+              "unique": true,
               "nullable": true
             }
           }
