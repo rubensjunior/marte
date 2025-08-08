@@ -6,9 +6,9 @@
   "direct": true,
   "schema": {
     "tables": {
-      "usuarios": {
+      "boards": {
         "columns": {
-          "id_usuarios": {
+          "id_boards": {
             "db": {
               "type": "string",
               "default": "null",
@@ -21,9 +21,69 @@
         },
         "db": {}
       },
-      "empresas": {
+      "boards_acessos": {
         "columns": {
-          "id_empresa": {
+          "id_boards_acessos": {
+            "db": {
+              "type": "string",
+              "default": "null",
+              "maxLength": 36,
+              "primary": true,
+              "unique": true,
+              "nullable": true
+            }
+          }
+        },
+        "db": {}
+      },
+      "cards": {
+        "columns": {
+          "id_cards": {
+            "db": {
+              "type": "string",
+              "default": "null",
+              "maxLength": 36,
+              "primary": true,
+              "unique": true,
+              "nullable": true
+            }
+          }
+        },
+        "db": {}
+      },
+      "cards_notas": {
+        "columns": {
+          "id_cards_notas": {
+            "db": {
+              "type": "string",
+              "default": "null",
+              "maxLength": 36,
+              "primary": true,
+              "unique": true,
+              "nullable": true
+            }
+          }
+        },
+        "db": {}
+      },
+      "cards_responsaveis": {
+        "db": {},
+        "columns": {
+          "id_cards_responsaveis": {
+            "db": {
+              "type": "string",
+              "default": "null",
+              "maxLength": 36,
+              "primary": true,
+              "unique": true,
+              "nullable": true
+            }
+          }
+        }
+      },
+      "cards_tarefas": {
+        "columns": {
+          "id_cards_tarefas": {
             "db": {
               "type": "string",
               "default": "null",
@@ -51,9 +111,54 @@
         },
         "db": {}
       },
+      "empresas": {
+        "columns": {
+          "id_empresa": {
+            "db": {
+              "type": "string",
+              "default": "null",
+              "maxLength": 36,
+              "primary": true,
+              "unique": true,
+              "nullable": true
+            }
+          }
+        },
+        "db": {}
+      },
+      "etapas": {
+        "columns": {
+          "id_etapas": {
+            "db": {
+              "type": "string",
+              "default": "null",
+              "maxLength": 36,
+              "primary": true,
+              "unique": true,
+              "nullable": true
+            }
+          }
+        },
+        "db": {}
+      },
       "papeis": {
         "columns": {
           "id_papeis": {
+            "db": {
+              "type": "string",
+              "default": "null",
+              "maxLength": 36,
+              "primary": true,
+              "unique": true,
+              "nullable": true
+            }
+          }
+        },
+        "db": {}
+      },
+      "papeis_permissoes": {
+        "columns": {
+          "id_papeis_permissoes": {
             "db": {
               "type": "string",
               "default": "null",
@@ -81,9 +186,9 @@
         },
         "db": {}
       },
-      "papeis_permissoes": {
+      "usuarios": {
         "columns": {
-          "id_papeis_permissoes": {
+          "id_usuarios": {
             "db": {
               "type": "string",
               "default": "null",

@@ -1,61 +1,67 @@
 dmx.databases = dmx.databases || {};
 dmx.databases['offline'] = {
-  "version": 6,
+  "version": 4,
   "upgrade": [
     {
       "toVersion": 1,
       "statements": [
         "SELECT 1",
-        "create table `papeis` (`id` char(36) default null, `nome` varchar(255), `descricao` varchar(255), primary key (`id`))",
+        "create table `boards` (`id_boards` char(36) default null, primary key (`id_boards`))",
         "SELECT 1",
-        "create table `permissoes` (`id` char(36) default null, primary key (`id`))"
+        "create table `etapas` (`id_etapas` char(36) default null, primary key (`id_etapas`))",
+        "SELECT 1",
+        "create table `cards` (`id_cards` char(36) default null, primary key (`id_cards`))",
+        "SELECT 1",
+        "create table `cards_responsaveis` (`id` char(36) default null, primary key (`id`))"
       ]
     },
     {
       "toVersion": 2,
       "statements": [
-        "drop table `departamento`",
-        "alter table `papeis` rename `id` to `id_`"
+        "PRAGMA table_info(`boards`)",
+        "PRAGMA table_info(`cards`)",
+        "PRAGMA table_info(`cards_responsaveis`)",
+        "alter table `cards_responsaveis` rename `id` to `id_cards_responsaveis`",
+        "PRAGMA table_info(`departamentos`)",
+        "PRAGMA table_info(`empresas`)",
+        "PRAGMA table_info(`etapas`)",
+        "PRAGMA table_info(`papeis`)",
+        "PRAGMA table_info(`papeis_permissoes`)",
+        "PRAGMA table_info(`permissoes`)",
+        "PRAGMA table_info(`usuarios`)",
+        "PRAGMA table_info(`usuarios_empresas`)",
+        "PRAGMA table_info(`usuarios_empresas_departamentos`)"
       ]
     },
     {
       "toVersion": 3,
       "statements": [
-        "drop table `papeis`",
-        "drop table `empresas`"
+        "SELECT 1",
+        "create table `cards_notas` (`id_cards_notas` char(36) default null, primary key (`id_cards_notas`))",
+        "SELECT 1",
+        "create table `cards_tarefas` (`id_cards_tarefas` char(36) default null, primary key (`id_cards_tarefas`))",
+        "SELECT 1",
+        "create table `boards_acessos` (`id_boards_acessos` char(36) default null, primary key (`id_boards_acessos`))"
       ]
     },
     {
       "toVersion": 4,
       "statements": [
-        "drop table `permissoes`"
-      ]
-    },
-    {
-      "toVersion": 5,
-      "statements": [
-        "drop table `usuarios`"
-      ]
-    },
-    {
-      "toVersion": 6,
-      "statements": [
-        "SELECT 1",
-        "create table `usuarios` (`id_usuarios` char(36) default null, primary key (`id_usuarios`))",
-        "SELECT 1",
-        "create table `empresas` (`id_empresa` char(36) default null, primary key (`id_empresa`))",
-        "SELECT 1",
-        "create table `departamentos` (`id_departamentos` char(36) default null, primary key (`id_departamentos`))",
-        "SELECT 1",
-        "create table `papeis` (`id_papeis` char(36) default null, primary key (`id_papeis`))",
-        "SELECT 1",
-        "create table `permissoes` (`id_permissoes` char(36) default null, primary key (`id_permissoes`))",
-        "SELECT 1",
-        "create table `papeis_permissoes` (`id_papeis_permissoes` char(36) default null, primary key (`id_papeis_permissoes`))",
-        "SELECT 1",
-        "create table `usuarios_empresas` (`id_usuarios_empresas` char(36) default null, primary key (`id_usuarios_empresas`))",
-        "SELECT 1",
-        "create table `usuarios_empresas_departamentos` (`id_usuarios_empresas_departamentos` char(36) default null, primary key (`id_usuarios_empresas_departamentos`))"
+        "PRAGMA table_info(`boards`)",
+        "PRAGMA table_info(`boards_acessos`)",
+        "PRAGMA table_info(`cards`)",
+        "PRAGMA table_info(`cards_notas`)",
+        "PRAGMA table_info(`cards_responsaveis`)",
+        "PRAGMA table_info(`cards_tarefas`)",
+        "PRAGMA table_info(`departamentos`)",
+        "PRAGMA table_info(`empresas`)",
+        "PRAGMA table_info(`etapas`)",
+        "PRAGMA table_info(`papeis`)",
+        "PRAGMA table_info(`papeis_permissoes`)",
+        "PRAGMA table_info(`permissoes`)",
+        "PRAGMA table_info(`usuarios`)",
+        "PRAGMA table_info(`usuarios_empresas`)",
+        "PRAGMA table_info(`usuarios_empresas_departamentos`)"
       ]
     }
   ]
