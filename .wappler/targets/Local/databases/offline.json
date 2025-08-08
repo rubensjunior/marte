@@ -1,0 +1,237 @@
+{
+  "type": "sqlite3",
+  "connection": {
+    "filename": "/offiline.sqlite3"
+  },
+  "direct": true,
+  "schema": {
+    "tables": {
+      "empresas": {
+        "columns": {
+          "id_empresa": {
+            "db": {
+              "type": "string",
+              "default": "null",
+              "maxLength": 36,
+              "primary": true,
+              "unique": true,
+              "nullable": true
+            }
+          },
+          "razao_social": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "nome_fantasia": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "nome_polo": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "endereco": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "cep": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "bairro": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "cidade": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "estado": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "cnpj": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "complemento": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "whatsapp": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "empresa_matriz": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "numero": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          }
+        },
+        "db": {},
+        "refs": {
+          "usuarios": "empresa_atual"
+        }
+      },
+      "usuarios": {
+        "columns": {
+          "id_usuario": {
+            "db": {
+              "type": "string",
+              "default": "null",
+              "maxLength": 36,
+              "primary": true,
+              "unique": true,
+              "nullable": true
+            }
+          },
+          "nome_completo": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "email": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "nome_tratamento": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          },
+          "empresa_atual": {
+            "db": {
+              "type": "reference",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true,
+              "references": "id_empresa",
+              "inTable": "empresas",
+              "referenceType": "string",
+              "onUpdate": "CASCADE",
+              "onDelete": "CASCADE"
+            }
+          },
+          "senha": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          }
+        },
+        "db": {}
+      },
+      "departamento": {
+        "columns": {
+          "id_departamento": {
+            "db": {
+              "type": "string",
+              "default": "null",
+              "maxLength": 36,
+              "primary": true,
+              "unique": true,
+              "nullable": true
+            }
+          },
+          "nome_departamento": {
+            "db": {
+              "type": "string",
+              "maxLength": 255,
+              "primary": false,
+              "unique": false,
+              "nullable": true
+            }
+          }
+        },
+        "db": {}
+      }
+    },
+    "views": {}
+  },
+  "primaryKeyType": "uuid"
+}
