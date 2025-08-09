@@ -3,7 +3,9 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    background-attachment: fixed;
     background-color: #F3F3F3;
+    min-height: 100vh;
 }
 
 #containerform {
@@ -71,6 +73,7 @@ textarea.form-control {
 
 .mini-titulo {
     font-size: 13px;
+    background-color: rgba(255, 255, 255, 0.65);
 }
 
 /* Classe customizada para padding um pouco menor em desktop */
@@ -83,6 +86,7 @@ textarea.form-control {
 /* Links dentro do formulário */
 .glass-background-solid a {
     color: #6c757d;
+    -webkit-transition: color 0.2s ease;
     transition: color 0.2s ease;
 }
 
@@ -94,14 +98,14 @@ textarea.form-control {
 
 /* Tablets em landscape e desktops pequenos */
 @media (max-width: 1199.98px) {
-    .bg-login {
+    .container-fluid {
         padding: 3rem !important;
     }
 }
 
 /* Tablets em portrait */
 @media (max-width: 991.98px) {
-    .bg-login {
+    .container-fluid {
         padding: 2rem !important;
     }
     
@@ -118,7 +122,7 @@ textarea.form-control {
 
 /* Smartphones em landscape */
 @media (max-width: 767.98px) {
-    .bg-login {
+    .container-fluid {
         padding: 1rem !important;
     }
     
@@ -137,11 +141,16 @@ textarea.form-control {
     .mb-4 {
         margin-bottom: 1.5rem !important;
     }
+    
+    /* Desativar background-attachment: fixed em dispositivos móveis para melhor performance */
+    .bg-login {
+        background-attachment: scroll;
+    }
 }
 
 /* Smartphones em portrait */
 @media (max-width: 575.98px) {
-    .bg-login {
+    .container-fluid {
         padding: 0.5rem !important;
     }
     
