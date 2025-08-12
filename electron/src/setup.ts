@@ -21,7 +21,7 @@ const reloadWatcher = {
 export function setupReloadWatcher(electronCapacitorApp: ElectronCapacitorApp): void {
   reloadWatcher.watcher = chokidar
     .watch(join(app.getAppPath(), 'app'), {
-      ignored: /[/\\]\./,
+      ignored: /[/\\]\\./,
       persistent: true,
     })
     .on('ready', () => {
@@ -226,9 +226,17 @@ export function setupContentSecurityPolicy(customScheme: string): void {
       responseHeaders: {
         ...details.responseHeaders,
         'Content-Security-Policy': [
-          electronIsDev
-            ? `default-src ${customScheme}://* 'unsafe-inline' devtools://* 'unsafe-eval' data:`
-            : `default-src ${customScheme}://* 'unsafe-inline' data:`,
+          `default-src 'self' ${customScheme}://* http://localhost:3000/*; 
+script-src 'self' ${customScheme}://* http://localhost:3000/* 'unsafe-inline' 'unsafe-eval'; 
+style-src 'self' ${customScheme}://* http://localhost:3000/* 'unsafe-inline'; 
+connect-src 'self' ${customScheme}://* http://localhost:* http://127.0.0.1:* http://* https://* ws://* wss://*; 
+img-src 'self' data: ${customScheme}://* http://* https://*; 
+frame-src 'self' ${customScheme}://* http://* https://*; 
+font-src 'self' data: ${customScheme}://* http://* https://*;
+media-src 'self' ${customScheme}://* http://* https://*;
+object-src 'none';
+form-action 'self' ${customScheme}://* http://* https://*;
+worker-src 'self' ${customScheme}://* blob:;`,
         ],
       },
     });

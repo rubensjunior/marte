@@ -19,7 +19,7 @@
                             <p class="h6 text-muted mb-0">Preencha o formulário abaixo para criar sua conta.</p>
                         </div>
 
-                        <form is="dmx-serverconnect-form" id="registration_form" method="post" action="/api/register">
+                        <form id="criar_conta_form">
                             <div class="wizard-content">
                                 <!-- Step 1: Dados da Empresa -->
                                 <div class="wizard-step-content active" id="step-1">
@@ -110,8 +110,8 @@
                                         </div>
                                         <div class="col-12">
                                             <div class="form-group mb-2">
-                                                <label for="estado" class="form-label">Estado</label>
-                                                <select class="form-select" id="estado" name="estado">
+                                                <label for="uf" class="form-label">Estado</label>
+                                                <select class="form-select" id="uf" name="uf">
                                                     <option value="" selected disabled>Selecione o estado...</option>
                                                     <option value="AC">Acre</option>
                                                     <option value="AL">Alagoas</option>
@@ -222,7 +222,7 @@
                                     <button type="button" class="btn btn-primary" id="nextBtn" onclick="changeStep(1)">
                                         Próximo<i class="bi bi-arrow-right ms-1"></i>
                                     </button>
-                                    <button type="submit" class="btn btn-success" id="submitBtn" style="display: none;">
+                                    <button class="btn btn-success" id="submitBtn" style="display: none;" dmx-on:click="api_criar_conta.load({razao_social: razao_social.value, nome_fantasia: nome_fantasia.value, nome_polo: nome_polo.value, cnpj: cnpj.value, whatsapp: whatsapp.value, endereco: endereco.value, numero: numero.value, cep: cep.value, complemento: complemento.value, bairro: bairro.value, cidade: cidade.value, uf: uf.selectedText, nome_completo: nome_completo.value, nome_tratamento: nome_tratamento.value, email: email.value, senha: senha.value})">
                                         Criar Conta
                                     </button>
                                 </div>
@@ -271,7 +271,7 @@ function showStep(step) {
 function validateRequiredFields(step) {
     const requiredFields = {
         1: ['razao_social', 'nome_fantasia', 'nome_polo', 'cnpj', 'whatsapp'],
-        2: ['endereco', 'numero', 'cep', 'bairro', 'cidade', 'estado'],
+        2: ['endereco', 'numero', 'cep', 'bairro', 'cidade', 'uf'],
         3: ['nome_completo', 'nome_tratamento', 'email', 'senha', 'confirmar_senha'],
         4: ['aceitar_termos']
     };
