@@ -25,7 +25,7 @@
                             <p class="h6 text-muted mb-0">Preencha o formulário abaixo para criar sua conta.</p>
                         </div>
 
-                        <form id="criar_conta_form" is="dmx-serverconnect-form" method="post" action="http://localhost:3000/api/nova-conta" site="backendMarte" dmx-on:success="run([{run:{outputType:'text',action:`notificacoes.success(\'Conta criada com sucesso!\')`}},{wait:{delay:4000}},{run:{outputType:'text',action:`navegacao.goto(\'/\',true)`}}])" dmx-on:error="notificacoes.error('Erro ao criar a conta. Tente novamente.')">
+                        <form id="criar_conta_form" is="dmx-serverconnect-form" method="post" action="http://localhost:3000/api/nova-conta" site="backendMarte" dmx-on:success="run([{run:{outputType:'text',action:`notificacoes.success(\'Cadastro realizado com sucesso!\')`}},{wait:{delay:4000}},{run:{outputType:'text',action:`navegacao.goto(\'/\',true)`}}])" dmx-on:error="notificacoes.error('Erro ao criar a conta. Tente novamente.')">
 
                             <!-- Step 1: Dados da Empresa -->
                             <div class="wizard-step-content" id="step-1" dmx-show="etapas.value == 0">
@@ -149,32 +149,32 @@
                                     <div class="col-md-6">
                                         <div class="form-group mb-2">
                                             <label for="nome_completo" class="form-label">Nome Completo</label>
-                                            <input type="text" class="form-control" id="nome_completo" name="nome_completo" required data-msg-required="Por favor, informe o nome completo." dmx-on:input="pode_avancar.setValue(nome_completo.value && nome_tratamento.value && email.value && senha.value && confirmar_senha.value && senha.value == confirmar_senha.value)">
+                                            <input type="text" class="form-control" id="nome_completo" name="nome_completo" required data-msg-required="Por favor, informe o nome completo." dmx-on:input="pode_avancar.setValue(nome_completo.value && nome_tratamento.value && email.value && senha.value && confirmar_senha.value)">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mb-2">
                                             <label for="nome_tratamento" class="form-label">Nome de Tratamento</label>
-                                            <input type="text" class="form-control" id="nome_tratamento" name="nome_tratamento" placeholder="Como você gostaria de ser chamado(a)" required data-msg-required="Por favor, informe o nome de tratamento." dmx-on:input="pode_avancar.setValue(nome_completo.value && nome_tratamento.value && email.value && senha.value && confirmar_senha.value && senha.value == confirmar_senha.value)">
+                                            <input type="text" class="form-control" id="nome_tratamento" name="nome_tratamento" placeholder="Como você gostaria de ser chamado(a)" required data-msg-required="Por favor, informe o nome de tratamento." dmx-on:input="pode_avancar.setValue(nome_completo.value && nome_tratamento.value && email.value && senha.value && confirmar_senha.value)">
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group mb-2">
                                             <label for="email" class="form-label">Email</label>
-                                            <input type="email" class="form-control" id="email" name="email" required data-msg-required="Por favor, informe um email válido." data-rule-email="true" data-msg-email="Por favor, informe um email válido." dmx-on:input="pode_avancar.setValue(nome_completo.value && nome_tratamento.value && email.value && senha.value && confirmar_senha.value && senha.value == confirmar_senha.value)">
+                                            <input type="email" class="form-control" id="email" name="email" required data-msg-required="Por favor, informe um email válido." data-rule-email="true" data-msg-email="Por favor, informe um email válido." dmx-on:input="pode_avancar.setValue(nome_completo.value && nome_tratamento.value && email.value && senha.value && confirmar_senha.value)">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mb-2">
                                             <label for="senha" class="form-label">Senha</label>
-                                            <input type="password" class="form-control" id="senha" name="senha" required minlength="8" data-msg-required="A senha é obrigatória." data-msg-minlength="A senha deve ter pelo menos 8 caracteres." dmx-on:input="pode_avancar.setValue(nome_completo.value && nome_tratamento.value && email.value && senha.value && confirmar_senha.value && senha.value == confirmar_senha.value)">
+                                            <input type="password" class="form-control" id="senha" name="senha" required minlength="8" data-msg-required="A senha é obrigatória." data-msg-minlength="A senha deve ter pelo menos 8 caracteres." dmx-on:input="pode_avancar.setValue(nome_completo.value && nome_tratamento.value && email.value && senha.value && confirmar_senha.value)">
                                             <div class="form-text">Mínimo 8 caracteres com pelo menos 1 minúscula, 1 maiúscula e 1 número.</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mb-2">
                                             <label for="confirmar_senha" class="form-label">Confirmar Senha</label>
-                                            <input type="password" class="form-control" id="confirmar_senha" name="confirmar_senha" required data-rule-equalto="#senha" data-msg-required="Por favor, confirme a senha." data-msg-equalto="As senhas não coincidem." dmx-on:input="pode_avancar.setValue(nome_completo.value && nome_tratamento.value && email.value && senha.value && confirmar_senha.value && senha.value == confirmar_senha.value)">
+                                            <input type="password" class="form-control" id="confirmar_senha" name="confirmar_senha" required data-rule-equalto="#senha" data-msg-required="Por favor, confirme a senha." data-msg-equalto="As senhas não coincidem." dmx-on:input="pode_avancar.setValue(nome_completo.value && nome_tratamento.value && email.value && senha.value && confirmar_senha.value)">
                                         </div>
                                     </div>
                                 </div>
