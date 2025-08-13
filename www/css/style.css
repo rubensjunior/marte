@@ -254,8 +254,10 @@ textarea.form-control {
     min-height: 250px;
 }
 
+/* CORRIGIDO: Mostra todas as seções do wizard por padrão */
 .wizard-step-content {
-    display: none;
+    display: block;
+    margin-bottom: 2rem;
 }
 
 .wizard-step-content.active {
