@@ -1,4 +1,4 @@
-<!-- Wappler include head-page="index.html" is="dmx-app" id="criarconta" appConnect="local" bootstrap5="local" capacitor="local" components="{dmxBootstrap5Alert:{},dmxBrowser:{}}" -->
+<!-- Wappler include head-page="index.html" is="dmx-app" id="criarconta" appConnect="local" bootstrap5="local" capacitor="local" components="{dmxBootstrap5Alert:{},dmxBrowser:{},dmxFormatter:{}}" -->
 <dmx-value id="etapas" dmx-bind:value="0"></dmx-value>
 <dmx-value id="total_etapas" dmx-bind:value="3"></dmx-value>
 <dmx-value id="pode_avancar" dmx-bind:value="false"></dmx-value>
@@ -25,7 +25,7 @@
                             <p class="h6 text-muted mb-0">Preencha o formulário abaixo para criar sua conta.</p>
                         </div>
 
-                        <form id="criar_conta_form" is="dmx-serverconnect-form" method="post" action="http://localhost:3000/api/nova-conta" site="backendMarte" dmx-on:success="run([{run:{outputType:'text',action:`notificacoes.success(\'Cadastro realizado com sucesso!\')`}},{wait:{delay:4000}},{run:{outputType:'text',action:`navegacao.goto(\'/\',true)`}}])" dmx-on:error="notificacoes.error('Erro ao criar a conta. Tente novamente.')">
+                        <form id="criar_conta_form" is="dmx-serverconnect-form" method="post" action="http://localhost:3000/api/nova-conta" site="backendMarte" dmx-on:success="run([{run:{outputType:'text',action:`notificacoes.success(\'Cadastro realizado com sucesso!\')`}},{wait:{delay:4000}},{run:{outputType:'text',action:`navegacao.goto(\'/\',true)`}}])" dmx-on:error="notificacoes.error('Erro ao criar a conta. Tente novamente.')" dmx-on:invalid="notificacoes.warning('Seu CNPJ ou e-mail já estão cadastrados. Entre em contato com o suporte: suporte@spacefeed.app')">
 
                             <!-- Step 1: Dados da Empresa -->
                             <div class="wizard-step-content" id="step-1" dmx-show="etapas.value == 0">
