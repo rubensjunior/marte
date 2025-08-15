@@ -20,7 +20,7 @@
     <script src="../dmxAppConnect/dmxBootstrap5Navigation/dmxBootstrap5Navigation.js" defer></script>
 </head>
 
-<body is="dmx-app" id="backoffice">
+<body is="dmx-app" id="backoffice" class="bg-backoffice">
 
     <div is="dmx-browser" id="navegacao"></div>
     <dmx-notifications id="notificacoes"></dmx-notifications>
@@ -47,8 +47,8 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="d-flex justify-content-end">
-                        <button id="btn1" class="btn text-white" dmx-on:click="idUsuario.removeAll();redirect_deslogado.run()">Sair</button>
+                    <div class="d-flex justify-content-end align-items-center">
+                        <button id="btn1" class="btn btn-warning btn-sm" dmx-on:click="idUsuario.removeAll();redirect_deslogado.run()">Sair</button>
                     </div>
                 </div>
             </div>

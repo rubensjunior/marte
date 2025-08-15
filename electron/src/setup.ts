@@ -101,7 +101,10 @@ export class ElectronCapacitorApp {
     // Configuração da title bar baseada na plataforma
     const titleBarConfig = process.platform === 'darwin'
       ? { titleBarStyle: 'hiddenInset' as const }
-      : { titleBarStyle: 'hidden' as const, titleBarOverlay: { color: '#000000', symbolColor: '#ffffff' } };
+      : {
+        titleBarStyle: 'hidden' as const,
+        titleBarOverlay: { color: '#000000', symbolColor: '#ffffff', height: 30 }
+      };
 
     const icon = nativeImage.createFromPath(
       join(app.getAppPath(), 'assets', process.platform === 'win32' ? 'appIcon.ico' : 'appIcon.png')
@@ -118,6 +121,7 @@ export class ElectronCapacitorApp {
       ...titleBarConfig,
       backgroundColor: '#000000',
       x: this.mainWindowState.x,
+      title: 'Marte', // Define título explícito
       y: this.mainWindowState.y,
       width: this.mainWindowState.width,
       height: this.mainWindowState.height,
@@ -129,6 +133,7 @@ export class ElectronCapacitorApp {
         preload: preloadPath,
       },
     });
+
     this.mainWindowState.manage(this.MainWindow);
 
     if (this.CapacitorFileConfig.backgroundColor) {
@@ -215,16 +220,48 @@ export class ElectronCapacitorApp {
         this.MainWindow.show();
       }
 
-      // Injeta CSS para garantir que a title bar seja preta
+      // Adiciona título customizado na barra de título
       this.MainWindow.webContents.insertCSS(`
-        body { 
-          -webkit-app-region: no-drag; 
+        /* Compensa a altura da title bar overlay */
+        html { 
+          margin: 0 !important;
+          padding: 0 !important;
         }
-        /* Força cor preta na área da title bar */
-        html, body { background-color: #000000 !important; }
-        .title-bar, .titlebar, [data-title-bar] { 
-          background-color: #000000 !important; 
-          color: #ffffff !important;
+        
+        body { 
+          margin: 0 !important;
+          padding: 0 !important;
+          padding-top: 30px !important;
+          box-sizing: border-box !important;
+        }
+        
+        /* Cria área do título customizada */
+        body::before {
+          content: '';
+          position: fixed;
+          top: 0;
+          left: 0;
+          right: 0;
+          height: 30px;
+          background-color: #000000;
+          z-index: 10000;
+          -webkit-app-region: drag;
+        }
+        
+        /* Título do texto */
+        body::after {
+          content: 'Spacefeed Marte';
+          position: fixed;
+          top: 0;
+          left: 15px; /* Posição à esquerda */
+          z-index: 10001;
+          color: #ffffff;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+          font-size: 14px;
+          font-weight: 400;
+          line-height: 30px;
+          height: 30px;
+          pointer-events: none;
         }
       `);
 

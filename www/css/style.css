@@ -7,6 +7,10 @@
     background-color: #F3F3F3;
     min-height: 100vh;
 }
+.bg-backoffice {
+    background-color: #F3F6F9;
+}
+
 
 /* Definição da fonte customizada Poppins */
 @font-face {
@@ -34,15 +38,9 @@
 
 /* Altura padrão de 48px para inputs e botões Bootstrap */
 .form-control,
-.form-select,
-.btn {
+.form-select {
     height: 48px;
     min-height: 48px;
-}
-
-/* Font-weight 600 para todos os botões */
-.btn {
-    font-weight: 600;
 }
 
 /* Textarea mantém altura automática baseada em rows */
@@ -53,8 +51,7 @@ textarea.form-control {
 
 /* Input groups também seguem a altura padrão */
 .input-group .form-control,
-.input-group .form-select,
-.input-group .btn {
+.input-group .form-select {
     height: 48px;
 }
 
@@ -75,13 +72,22 @@ textarea.form-control {
 
 /* Variação mais opaca com sombra mais escura */
 .glass-background-solid {
-    background: rgba(255, 255, 255, 0.75);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    border: 1px solid rgba(255, 255, 255, 0.75);
+    /* Fallback para Electron sem backdrop-filter */
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid rgba(255, 255, 255, 0.9);
     border-radius: 12px;
     -webkit-box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
             box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+}
+
+/* Glassmorphism para navegadores que suportam backdrop-filter */
+@supports ((-webkit-backdrop-filter: blur(8px)) or (backdrop-filter: blur(8px))) {
+    .glass-background-solid {
+        background: rgba(255, 255, 255, 0.75);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.75);
+    }
 }
 
 .mini-titulo {
@@ -528,4 +534,5 @@ textarea.form-control {
     font-size: 14px;
     font-weight: 600;
     color: #99a1b7;
+    text-transform: uppercase;
 }
