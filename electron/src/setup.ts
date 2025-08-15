@@ -98,6 +98,11 @@ export class ElectronCapacitorApp {
   }
 
   async init(): Promise<void> {
+    // Configuração da title bar baseada na plataforma
+    const titleBarConfig = process.platform === 'darwin'
+      ? { titleBarStyle: 'hiddenInset' as const }
+      : { titleBarStyle: 'hidden' as const, titleBarOverlay: { color: '#000000', symbolColor: '#ffffff' } };
+
     const icon = nativeImage.createFromPath(
       join(app.getAppPath(), 'assets', process.platform === 'win32' ? 'appIcon.ico' : 'appIcon.png')
     );
@@ -110,8 +115,8 @@ export class ElectronCapacitorApp {
     this.MainWindow = new BrowserWindow({
       icon,
       show: false,
-      titleBarStyle: 'hiddenInset',
-      backgroundColor: '#ffffff',
+      ...titleBarConfig,
+      backgroundColor: '#000000',
       x: this.mainWindowState.x,
       y: this.mainWindowState.y,
       width: this.mainWindowState.width,
@@ -209,6 +214,20 @@ export class ElectronCapacitorApp {
       if (!this.CapacitorFileConfig.electron?.hideMainWindowOnLaunch) {
         this.MainWindow.show();
       }
+
+      // Injeta CSS para garantir que a title bar seja preta
+      this.MainWindow.webContents.insertCSS(`
+        body { 
+          -webkit-app-region: no-drag; 
+        }
+        /* Força cor preta na área da title bar */
+        html, body { background-color: #000000 !important; }
+        .title-bar, .titlebar, [data-title-bar] { 
+          background-color: #000000 !important; 
+          color: #ffffff !important;
+        }
+      `);
+
       setTimeout(() => {
         if (electronIsDev) {
           this.MainWindow.webContents.openDevTools();
