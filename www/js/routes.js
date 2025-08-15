@@ -8,5 +8,13 @@ dmx.routing.routes = [
   {
     "path": "front/f/criar-conta",
     "url": "./criar-conta.html"
+  },
+  {
+    "path": "/interno/backoffice",
+    "url": "./interno/backoffice.html"
+  },
+  {
+    "path": "/interno/home",
+    "url": "./interno/home.html"
   }
 ]

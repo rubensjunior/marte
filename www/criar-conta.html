@@ -1,7 +1,6 @@
 <!-- Wappler include head-page="index.html" is="dmx-app" id="criarconta" appConnect="local" bootstrap5="local" capacitor="local" components="{dmxBootstrap5Alert:{},dmxBrowser:{},dmxFormatter:{}}" -->
 <dmx-value id="etapas" dmx-bind:value="0"></dmx-value>
 <dmx-value id="total_etapas" dmx-bind:value="3"></dmx-value>
-<dmx-value id="pode_avancar" dmx-bind:value="false"></dmx-value>
 <dmx-bootstrap5-alert id="notificacoes">
 </dmx-bootstrap5-alert>
 <script src="js/masks.js"></script>
@@ -25,7 +24,7 @@
                             <p class="h6 text-muted mb-0">Preencha o formulário abaixo para criar sua conta.</p>
                         </div>
 
-                        <form id="criar_conta_form" is="dmx-serverconnect-form" method="post" action="http://localhost:3000/api/nova-conta" site="backendMarte" dmx-on:success="run([{run:{outputType:'text',action:`notificacoes.success(\'Cadastro realizado com sucesso!\')`}},{wait:{delay:4000}},{run:{outputType:'text',action:`navegacao.goto(\'/\',true)`}}])" dmx-on:error="notificacoes.error('Erro ao criar a conta. Tente novamente.')" dmx-on:invalid="notificacoes.warning('Seu CNPJ ou e-mail já estão cadastrados. Entre em contato com o suporte: suporte@spacefeed.app')">
+                        <form id="criar_conta_form" is="dmx-serverconnect-form" method="post" action="http://localhost:3000/api/nova-conta" site="backendMarte" dmx-on:error="notificacoes.error('Erro ao criar a conta. Tente novamente.')">
 
                             <!-- Step 1: Dados da Empresa -->
                             <div class="wizard-step-content" id="step-1" dmx-show="etapas.value == 0">
@@ -34,31 +33,32 @@
                                     <div class="col-md-6">
                                         <div class="form-group mb-2">
                                             <label for="razao_social" class="form-label">Razão Social</label>
-                                            <input type="text" class="form-control" id="razao_social" name="razao_social" required data-msg-required="Por favor, informe a razão social." dmx-on:input="pode_avancar.setValue(razao_social.value && nome_fantasia.value && nome_polo.value && cnpj.value && whatsapp.value)">
+                                            <input type="text" class="form-control" id="razao_social" name="razao_social" required data-msg-required="Por favor, informe a razão social.">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mb-2">
                                             <label for="nome_fantasia" class="form-label">Nome Fantasia</label>
-                                            <input type="text" class="form-control" id="nome_fantasia" name="nome_fantasia" required data-msg-required="Por favor, informe o nome fantasia." dmx-on:input="pode_avancar.setValue(razao_social.value && nome_fantasia.value && nome_polo.value && cnpj.value && whatsapp.value)">
+                                            <input type="text" class="form-control" id="nome_fantasia" name="nome_fantasia" required data-msg-required="Por favor, informe o nome fantasia.">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mb-2">
                                             <label for="nome_polo" class="form-label">Nome do Polo</label>
-                                            <input type="text" class="form-control" id="nome_polo" name="nome_polo" required data-msg-required="Por favor, informe o nome do polo." dmx-on:input="pode_avancar.setValue(razao_social.value && nome_fantasia.value && nome_polo.value && cnpj.value && whatsapp.value)">
+                                            <input type="text" class="form-control" id="nome_polo" name="nome_polo" required data-msg-required="Por favor, informe o nome do polo.">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mb-2">
                                             <label for="cnpj" class="form-label">CNPJ</label>
-                                            <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="XX.XXX.XXX/XXXX-XX" required data-msg-required="Por favor, informe um CNPJ válido." dmx-on:input="pode_avancar.setValue(razao_social.value && nome_fantasia.value && nome_polo.value && cnpj.value && whatsapp.value)">
+                                            <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="XX.XXX.XXX/XXXX-XX" required data-msg-required="Por favor, informe um CNPJ válido.">
+                                            <small id="bs5-form-group-help1" class="form-text text-danger" dmx-show="criar_conta_form.data.resposta=='Este CNPJ já esta cadastrado!'">{{criar_conta_form.data.resposta}}</small>
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group mb-2">
                                             <label for="whatsapp" class="form-label">WhatsApp</label>
-                                            <input type="text" class="form-control" id="whatsapp" name="whatsapp" placeholder="(XX) XXXXX-XXXX" required data-msg-required="Por favor, informe um WhatsApp válido." dmx-on:input="pode_avancar.setValue(razao_social.value && nome_fantasia.value && nome_polo.value && cnpj.value && whatsapp.value)">
+                                            <input type="text" class="form-control" id="whatsapp" name="whatsapp" placeholder="(XX) XXXXX-XXXX" required data-msg-required="Por favor, informe um WhatsApp válido.">
                                         </div>
                                     </div>
                                 </div>
@@ -71,19 +71,19 @@
                                     <div class="col-12">
                                         <div class="form-group mb-2">
                                             <label for="endereco" class="form-label">Endereço (Logradouro)</label>
-                                            <input type="text" class="form-control" id="endereco" name="endereco" required data-msg-required="Por favor, informe o endereço." dmx-on:input="pode_avancar.setValue(endereco.value && numero.value && cep.value && bairro.value && cidade.value && uf.value)">
+                                            <input type="text" class="form-control" id="endereco" name="endereco" required data-msg-required="Por favor, informe o endereço.">
                                         </div>
                                     </div>
                                     <div class="col-md-4">
                                         <div class="form-group mb-2">
                                             <label for="numero" class="form-label">Número</label>
-                                            <input type="text" class="form-control" id="numero" name="numero" required data-msg-required="Por favor, informe o número." dmx-on:input="pode_avancar.setValue(endereco.value && numero.value && cep.value && bairro.value && cidade.value && uf.value)">
+                                            <input type="text" class="form-control" id="numero" name="numero" required data-msg-required="Por favor, informe o número.">
                                         </div>
                                     </div>
                                     <div class="col-md-8">
                                         <div class="form-group mb-2">
                                             <label for="cep" class="form-label">CEP</label>
-                                            <input type="text" class="form-control" id="cep" name="cep" placeholder="XXXXX-XXX" required data-msg-required="Por favor, informe um CEP válido." dmx-on:input="pode_avancar.setValue(endereco.value && numero.value && cep.value && bairro.value && cidade.value && uf.value)">
+                                            <input type="text" class="form-control" id="cep" name="cep" placeholder="XXXXX-XXX" required data-msg-required="Por favor, informe um CEP válido.">
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -95,19 +95,19 @@
                                     <div class="col-md-6">
                                         <div class="form-group mb-2">
                                             <label for="bairro" class="form-label">Bairro</label>
-                                            <input type="text" class="form-control" id="bairro" name="bairro" required data-msg-required="Por favor, informe o bairro." dmx-on:input="pode_avancar.setValue(endereco.value && numero.value && cep.value && bairro.value && cidade.value && uf.value)">
+                                            <input type="text" class="form-control" id="bairro" name="bairro" required data-msg-required="Por favor, informe o bairro.">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mb-2">
                                             <label for="cidade" class="form-label">Cidade</label>
-                                            <input type="text" class="form-control" id="cidade" name="cidade" required data-msg-required="Por favor, informe a cidade." dmx-on:input="pode_avancar.setValue(endereco.value && numero.value && cep.value && bairro.value && cidade.value && uf.value)">
+                                            <input type="text" class="form-control" id="cidade" name="cidade" required data-msg-required="Por favor, informe a cidade.">
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group mb-2">
                                             <label for="uf" class="form-label">Estado</label>
-                                            <select class="form-select" id="uf" name="uf" required data-msg-required="Por favor, selecione o estado." dmx-on:changed="pode_avancar.setValue(endereco.value && numero.value && cep.value && bairro.value && cidade.value && uf.value)">
+                                            <select class="form-select" id="uf" name="uf" required data-msg-required="Por favor, selecione o estado.">
                                                 <option value="" selected disabled>Selecione o estado...</option>
                                                 <option value="AC">Acre</option>
                                                 <option value="AL">Alagoas</option>
@@ -149,32 +149,33 @@
                                     <div class="col-md-6">
                                         <div class="form-group mb-2">
                                             <label for="nome_completo" class="form-label">Nome Completo</label>
-                                            <input type="text" class="form-control" id="nome_completo" name="nome_completo" required data-msg-required="Por favor, informe o nome completo." dmx-on:input="pode_avancar.setValue(nome_completo.value && nome_tratamento.value && email.value && senha.value && confirmar_senha.value)">
+                                            <input type="text" class="form-control" id="nome_completo" name="nome_completo" required data-msg-required="Por favor, informe o nome completo.">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mb-2">
                                             <label for="nome_tratamento" class="form-label">Nome de Tratamento</label>
-                                            <input type="text" class="form-control" id="nome_tratamento" name="nome_tratamento" placeholder="Como você gostaria de ser chamado(a)" required data-msg-required="Por favor, informe o nome de tratamento." dmx-on:input="pode_avancar.setValue(nome_completo.value && nome_tratamento.value && email.value && senha.value && confirmar_senha.value)">
+                                            <input type="text" class="form-control" id="nome_tratamento" name="nome_tratamento" placeholder="Como você gostaria de ser chamado(a)" required data-msg-required="Por favor, informe o nome de tratamento.">
                                         </div>
                                     </div>
                                     <div class="col-12">
                                         <div class="form-group mb-2">
                                             <label for="email" class="form-label">Email</label>
-                                            <input type="email" class="form-control" id="email" name="email" required data-msg-required="Por favor, informe um email válido." data-rule-email="true" data-msg-email="Por favor, informe um email válido." dmx-on:input="pode_avancar.setValue(nome_completo.value && nome_tratamento.value && email.value && senha.value && confirmar_senha.value)">
+                                            <input type="email" class="form-control" id="email" name="email" required data-msg-required="Por favor, informe um email válido." data-rule-email="true" data-msg-email="Por favor, informe um email válido.">
+                                            <small id="bs5-form-group-help2" class="form-text text-danger" dmx-show="criar_conta_form.data.resposta=='Este e-mail já esta cadastrado!'">{{criar_conta_form.data.resposta}}</small>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mb-2">
                                             <label for="senha" class="form-label">Senha</label>
-                                            <input type="password" class="form-control" id="senha" name="senha" required minlength="8" data-msg-required="A senha é obrigatória." data-msg-minlength="A senha deve ter pelo menos 8 caracteres." dmx-on:input="pode_avancar.setValue(nome_completo.value && nome_tratamento.value && email.value && senha.value && confirmar_senha.value)">
+                                            <input type="password" class="form-control" id="senha" name="senha" required minlength="8" data-msg-required="A senha é obrigatória." data-msg-minlength="A senha deve ter pelo menos 8 caracteres.">
                                             <div class="form-text">Mínimo 8 caracteres com pelo menos 1 minúscula, 1 maiúscula e 1 número.</div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group mb-2">
                                             <label for="confirmar_senha" class="form-label">Confirmar Senha</label>
-                                            <input type="password" class="form-control" id="confirmar_senha" name="confirmar_senha" required data-rule-equalto="#senha" data-msg-required="Por favor, confirme a senha." data-msg-equalto="As senhas não coincidem." dmx-on:input="pode_avancar.setValue(nome_completo.value && nome_tratamento.value && email.value && senha.value && confirmar_senha.value)">
+                                            <input type="password" class="form-control" id="confirmar_senha" name="confirmar_senha" required data-rule-equalto="#senha" data-msg-required="Por favor, confirme a senha." data-msg-equalto="As senhas não coincidem.">
                                         </div>
                                     </div>
                                 </div>
@@ -190,7 +191,7 @@
                                     <div class="col-12 mt-3">
                                         <div class="form-group">
                                             <div class="form-check">
-                                                <input type="checkbox" class="form-check-input" id="aceitar_termos" name="aceitar_termos" value="1" required data-msg-required="Você deve aceitar os termos para continuar." dmx-on:changed="pode_avancar.setValue(aceitar_termos.checked)">
+                                                <input type="checkbox" class="form-check-input" id="aceitar_termos" name="aceitar_termos" value="1" required data-msg-required="Você deve aceitar os termos para continuar.">
                                                 <input type="hidden" name="plano" value="beta">
                                                 <label class="form-check-label" for="aceitar_termos">
                                                     Eu aceito os <a href="#" class="text-decoration-none">Termos de Uso</a> e a <a href="#" class="text-decoration-none">Política de Privacidade</a> do Plano Beta
@@ -204,7 +205,7 @@
                             <!-- Navigation Controls -->
                             <div class="d-flex justify-content-between align-items-center mt-4">
                                 <!-- Botão Voltar -->
-                                <button type="button" class="btn btn-outline-secondary" dmx-show="etapas.value > 0" dmx-on:click="etapas.setValue(etapas.value - 1); pode_avancar.setValue(true)">
+                                <button type="button" class="btn btn-outline-secondary" dmx-show="etapas.value > 0" dmx-on:click="etapas.setValue(etapas.value - 1)">
                                     <i class="bi bi-arrow-left me-1"></i>
                                     Voltar
                                 </button>
@@ -217,13 +218,13 @@
                                 <!-- Botão Próximo/Finalizar -->
                                 <div>
                                     <!-- Botão Próximo (etapas 0-2) -->
-                                    <button type="button" class="btn btn-primary" dmx-show="etapas.value < 3" dmx-bind:disabled="!pode_avancar.value" dmx-on:click="etapas.setValue(etapas.value + 1); pode_avancar.setValue(false)">
+                                    <button type="button" class="btn btn-primary" dmx-show="etapas.value < 3" dmx-on:click="etapas.setValue(etapas.value + 1)">
                                         Próximo
                                         <i class="bi bi-arrow-right ms-1"></i>
                                     </button>
 
                                     <!-- Botão Criar Conta (etapa 3) -->
-                                    <button type="submit" class="btn btn-success" dmx-show="etapas.value == 3" dmx-bind:disabled="!pode_avancar.value">
+                                    <button class="btn btn-success" dmx-show="etapas.value == 3" dmx-on:click="run([{run:{outputType:'text',action:`criar_conta_form.submit()`}},{wait:{delay:2000}},{condition:{outputType:'boolean',if:`criar_conta_form.data.resposta.contains(\'Conta criada com sucesso!\', false)`,then:{steps:[{run:{outputType:'text',action:`notificacoes.success(\'Sua conta foi criada com sucesso! Seja bem-vindo(a)!\')`}},{wait:{delay:4500}},{run:{outputType:'text',action:`navegacao.goto(\'/\',true)`}}]}}},{condition:{outputType:'boolean',if:`criar_conta_form.data.resposta.contains(\'Este e-mail já esta cadastrado!\', \'false\')`,then:{steps:{run:{outputType:'text',action:`notificacoes.warning(\'Este e-mail já esta cadastrado! Utilize outro para criar uma conta ou entre em contato com o suporte!\')`}}}}},{condition:{outputType:'boolean',if:`criar_conta_form.data.resposta.contains(\'Este CNPJ já esta cadastrado!\', false)`,then:{steps:{run:{outputType:'text',action:`notificacoes.warning(\'Este CNPJ já esta cadastrado! Utilize outro para criar uma conta ou entre em contato com o suporte!\')`}}}}}])">
                                         <i class="bi bi-check-circle me-1"></i>
                                         Criar Conta
                                     </button>
