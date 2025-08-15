@@ -9,16 +9,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="../bootstrap/5/css/bootstrap.min.css" />
     <link rel="stylesheet" href="../css/style.css" />
-    <script src="../dmxAppConnect/dmxRouting/dmxRouting.js" defer></script>
+
     <script src="../js/routes.js" defer></script>
     <script src="../dmxAppConnect/dmxStateManagement/dmxStateManagement.js" defer></script>
     <script src="../dmxAppConnect/dmxFormatter/dmxFormatter.js" defer></script>
     <link rel="stylesheet" href="../dmxAppConnect/dmxNotifications/dmxNotifications.css" />
     <script src="../dmxAppConnect/dmxNotifications/dmxNotifications.js" defer></script>
     <script src="../dmxAppConnect/dmxBrowser/dmxBrowser.js" defer></script>
+    <script src="../dmxAppConnect/dmxRouting/dmxRouting.js" defer></script>
+    <script src="../dmxAppConnect/dmxBootstrap5Navigation/dmxBootstrap5Navigation.js" defer></script>
 </head>
 
 <body is="dmx-app" id="backoffice">
+
     <div is="dmx-browser" id="navegacao"></div>
     <dmx-notifications id="notificacoes"></dmx-notifications>
     <script is="dmx-flow" id="redirect_deslogado" type="text/dmx-flow" autorun="true">{
@@ -33,13 +36,13 @@
   }
 }</script>
     <dmx-local-manager id="idUsuario"></dmx-local-manager>
-    <header class="mb-3 py-4 bg-black">
+    <header class="py-3 bg-black border-bottom border-dark">
         <div class="container-xxl">
             <div class="row align-items-center">
                 <div class="col align-self-center">
                     <div class="d-flex flex-row align-items-center">
-                        <a href="/" internal="true"><img src="../assets/images/appIcon.ico" class="img-fluid" width="56"></a>
-                        <h5 class="text-white">{{idUsuario.data.id}}</h5>
+
+                        <a href="/in/security/" internal="true"><img src="../assets/images/appIcon.ico" class="img-fluid" width="56"></a>
 
                     </div>
                 </div>
@@ -52,6 +55,19 @@
         </div>
     </header>
 
+    <header class="mb-3 py-2 bg-black">
+        <div class="container-xxl">
+            <div class="row">
+                <div class="col px-0">
+                    <div class="nav w-100">
+                        <a class="nav-item nav-link" href="/in/security/empresa" internal="true">Empresa</a>
+                        <a class="nav-item nav-link" href="/in/security/colaborador" internal="true">Colaborador</a>
+                        <a class="nav-item nav-link" href="/in/security/funil-de-vendas" internal="true">Funil de venda</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
     <main is="dmx-view" id="view1"></main>
     <script src="../bootstrap/5/js/bootstrap.bundle.min.js"></script>
 </body>

@@ -2,6 +2,10 @@ if (!dmx.routing) dmx.routing = {};
 dmx.routing.router = 'hash';
 dmx.routing.routes = [
   {
+    "path": "/in/security/colaborador",
+    "url": "../interno/colaborador.html"
+  },
+  {
     "path": "/",
     "url": "./home.html"
   },
@@ -14,7 +18,15 @@ dmx.routing.routes = [
     "url": "./interno/backoffice.html"
   },
   {
-    "path": "/interno/",
-    "url": "./interno/home.html"
+    "path": "/in/security/",
+    "url": "../interno/home.html"
+  },
+  {
+    "path": "/in/security/empresa",
+    "url": "../interno/empresa.html"
+  },
+  {
+    "path": "/in/security/funil-de-vendas",
+    "url": "../interno/funil-de-vendas.html"
   }
 ]
