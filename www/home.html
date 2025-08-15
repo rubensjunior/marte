@@ -38,11 +38,11 @@
                 <main class="w-100 d-flex justify-content-center mb-4">
                     <div class="col-12 col-sm-10 col-md-8 col-lg-10 col-xl-9 col-xxl-8 p-4 p-md-5 p-lg-6 glass-background-solid">
                         <div class="text-center mb-4">
-                            <h1 class="h3 mb-2">Bem-vindo(a)</h1>
+                            <h1 class="h3 mb-2">Bem-vindo(a) {{view1.id_usuario.data.id}}</h1>
                             <p class="h6 text-muted mb-0">Acesse o seu CRM de atendimento e prospecção de alunos</p>
                         </div>
 
-                        <form is="dmx-serverconnect-form" id="login_form" method="post" action="http://localhost:3000/api/login" site="backendMarte">
+                        <form is="dmx-serverconnect-form" id="login_form" method="post" action="http://localhost:3000/api/login" site="backendMarte" dmx-on:error="notificacoes.danger('Ocorreu um erro: '+lastError.status+lastError.message+lastError.response+'. Entre em contato com o suporte: suporte@spacefeed.app')" dmx-on:unauthorized="notificacoes.warning('Login ou senha errados.')" dmx-on:success="id_usuario.set('id',login_form.data.identity);navegacao.goto('../interno/backoffice.html')">
 
                             <div class="form-group mb-3">
                                 <label for="email" class="visually-hidden">E-mail</label>

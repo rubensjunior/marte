@@ -14,7 +14,7 @@ dmx.routing.routes = [
     "url": "./interno/backoffice.html"
   },
   {
-    "path": "/interno/home",
+    "path": "/interno/",
     "url": "./interno/home.html"
   }
 ]
