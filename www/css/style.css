@@ -8,7 +8,7 @@
     min-height: 100vh;
 }
 .bg-backoffice {
-    background-color: #F3F6F9;
+    background-color: #ffffff;
 }
 
 
@@ -531,8 +531,10 @@ textarea.form-control {
     align-items: center !important;
 }
 .menu-nav{
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
-    color: #99a1b7;
-    text-transform: uppercase;
+    color: #78829D;
+}
+.profile-menu .dropdown-toggle::after{
+  display: none !important;
 }

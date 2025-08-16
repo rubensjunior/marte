@@ -18,9 +18,14 @@
     <script src="../dmxAppConnect/dmxBrowser/dmxBrowser.js" defer></script>
     <script src="../dmxAppConnect/dmxRouting/dmxRouting.js" defer></script>
     <script src="../dmxAppConnect/dmxBootstrap5Navigation/dmxBootstrap5Navigation.js" defer></script>
+    <link rel="stylesheet" href="../fontawesome5/css/all.min.css" />
+    <link rel="stylesheet" href="../dmxAppConnect/dmxPreloader/dmxPreloader.css" />
+    <script src="../dmxAppConnect/dmxPreloader/dmxPreloader.js" defer></script>
 </head>
 
 <body is="dmx-app" id="backoffice" class="bg-backoffice">
+    <dmx-preloader id="carregamento" spinner="wave" color="#ffc107"></dmx-preloader>
+
 
     <div is="dmx-browser" id="navegacao"></div>
     <dmx-notifications id="notificacoes"></dmx-notifications>
@@ -36,14 +41,15 @@
   }
 }</script>
     <dmx-local-manager id="idUsuario"></dmx-local-manager>
-    <header class="py-3 border-top border-dark">
+    <dmx-serverconnect id="usuario" url="http://localhost:3000/api/dados-usuario" site="backendMarte" dmx-param:id_usuario_logado="idUsuario.data.id"></dmx-serverconnect>
+    <header class="py-3 border-top border-bottom  border-light-subtle">
         <div class="container-fluid">
             <div class="row align-items-center">
                 <div class="col align-self-center">
-                    <div class="d-flex flex-row align-items-center gap-3">
-                        <a href="/in/security/" internal="true"><img src="../assets/images/logo_fundo%20branco.png" class="img-fluid" width="48"></a>
+                    <div class="d-flex flex-row align-items-center gap-2">
+                        <a href="/in/security/" internal="true" class="me-2"><img src="../assets/images/logo_fundo%20branco.png" class="img-fluid" width="48"></a>
                         <div class="dropdown">
-                            <button id="dropdown1" class="btn dropdown-toggle btn-sm  " type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Empresa&nbsp;</button>
+                            <button id="dropdown1" class="btn dropdown-toggle btn-sm menu-nav" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Empresa&nbsp;</button>
                             <div class="dropdown-menu mt-4" aria-labelledby="dropdown1">
                                 <a class="dropdown-item" href="#">Adicionar nova unidade</a>
                                 <a class="dropdown-item" href="#">Faturas</a>
@@ -51,21 +57,21 @@
                             </div>
                         </div>
                         <div class="dropdown">
-                            <button id="dropdown2" class="btn dropdown-toggle btn-sm  " type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Colaboradores&nbsp;</button>
+                            <button id="dropdown2" class="btn dropdown-toggle btn-sm menu-nav " type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Colaboradores&nbsp;</button>
                             <div class="dropdown-menu mt-4" aria-labelledby="dropdown2">
                                 <a class="dropdown-item" href="#">Meus colaboradores</a>
                                 <a class="dropdown-item" href="#">Colaboradores inativos</a>
                             </div>
                         </div>
                         <div class="dropdown">
-                            <button id="dropdown3" class="btn dropdown-toggle btn-sm  " type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Leads&nbsp;</button>
+                            <button id="dropdown3" class="btn dropdown-toggle btn-sm menu-nav" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Leads&nbsp;</button>
                             <div class="dropdown-menu mt-4" aria-labelledby="dropdown3">
                                 <a class="dropdown-item" href="#">Gerenciar leads</a>
                                 <a class="dropdown-item" href="#">Relatórios</a>
                             </div>
                         </div>
                         <div class="dropdown">
-                            <button id="dropdown4" class="btn dropdown-toggle btn-sm  " type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Funil de vendas&nbsp;</button>
+                            <button id="dropdown4" class="btn dropdown-toggle btn-sm menu-nav " type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Funil de vendas&nbsp;</button>
                             <div class="dropdown-menu mt-4" aria-labelledby="dropdown4">
                                 <a class="dropdown-item" href="#">Gerenciar funis</a>
                             </div>
@@ -76,7 +82,27 @@
                     </div>
                 </div>
                 <div class="col">
-                    <div class="d-flex justify-content-end align-items-center">
+                    <div class="d-flex justify-content-end align-items-center gap-4">
+
+                        <i class="far fa-bell fa-lg m"></i>
+                        <div class="dropdown profile-menu">
+                            <button id="dropdown5" class="btn dropdown-toggle btn-sm" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div class="d-flex flex-row align-items-center justify-content-end p-0">
+
+                                    <div class="d-flex justify-content-start flex-column me-3">
+                                        <h6 class="m-0 text-end">{{usuario.data.query[0].nome_tratamento}}</h6>
+                                        <p class="m-0 text-muted text-end">{{usuario.data.query[0].nome_polo}}</p>
+                                    </div><img class="rounded-circle img-fluid" width="40" src="../assets/images/avatar.png">
+
+                                </div>
+                            </button>
+                            <div class="dropdown-menu mt-3" aria-labelledby="dropdown5">
+                                <a class="dropdown-item" href="#">Action</a>
+                                <a class="dropdown-item" href="#">Another action</a>
+                                <a class="dropdown-item text-danger" href="#" dmx-on:click="idUsuario.removeAll();navegacao.reload()">Deslogar</a>
+                            </div>
+                        </div>
+                        <!-- Profile Dropdown (botão flat, menu padrão bootstrap) -->
                     </div>
                 </div>
             </div>

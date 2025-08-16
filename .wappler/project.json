@@ -18,6 +18,10 @@
     {
       "name": "capacitor",
       "type": "local"
+    },
+    {
+      "name": "fontawesome_5",
+      "type": "local"
     }
   ],
   "runtime": "capacitor",

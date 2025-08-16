@@ -21,7 +21,7 @@ const reloadWatcher = {
 export function setupReloadWatcher(electronCapacitorApp: ElectronCapacitorApp): void {
   reloadWatcher.watcher = chokidar
     .watch(join(app.getAppPath(), 'app'), {
-      ignored: /[/\\]\\./,
+      ignored: /[/\\]\./,
       persistent: true,
     })
     .on('ready', () => {
@@ -103,7 +103,7 @@ export class ElectronCapacitorApp {
       ? { titleBarStyle: 'hiddenInset' as const }
       : {
         titleBarStyle: 'hidden' as const,
-        titleBarOverlay: { color: '#000000', symbolColor: '#ffffff', height: 30 }
+        titleBarOverlay: { color: '#ffffff', symbolColor: '#000000', height: 30 }
       };
 
     const icon = nativeImage.createFromPath(
@@ -121,7 +121,7 @@ export class ElectronCapacitorApp {
       ...titleBarConfig,
       backgroundColor: '#000000',
       x: this.mainWindowState.x,
-      title: 'Marte', // Define título explícito
+      title: 'Spacefeed Marte', // Define título explícito
       y: this.mainWindowState.y,
       width: this.mainWindowState.width,
       height: this.mainWindowState.height,
@@ -255,7 +255,7 @@ export class ElectronCapacitorApp {
           top: 0;
           left: 15px; /* Posição à esquerda */
           z-index: 10001;
-          color: #ffffff;
+          color: #000000;
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
           font-size: 13px;
           font-weight: 400;
