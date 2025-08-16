@@ -243,21 +243,21 @@ export class ElectronCapacitorApp {
           left: 0;
           right: 0;
           height: 30px;
-          background-color: #000000;
+          background-color: #ffffff;
           z-index: 10000;
           -webkit-app-region: drag;
         }
         
         /* Título do texto */
         body::after {
-          content: 'Spacefeed Marte';
+          content: 'Spacefeed Marte - Beta v1.0.0';
           position: fixed;
           top: 0;
           left: 15px; /* Posição à esquerda */
           z-index: 10001;
           color: #ffffff;
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-          font-size: 14px;
+          font-size: 13px;
           font-weight: 400;
           line-height: 30px;
           height: 30px;

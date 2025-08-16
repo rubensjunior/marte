@@ -36,39 +36,54 @@
   }
 }</script>
     <dmx-local-manager id="idUsuario"></dmx-local-manager>
-    <header class="py-3 bg-black border-bottom border-dark">
-        <div class="container-xxl">
+    <header class="py-3 border-top border-dark">
+        <div class="container-fluid">
             <div class="row align-items-center">
                 <div class="col align-self-center">
-                    <div class="d-flex flex-row align-items-center">
+                    <div class="d-flex flex-row align-items-center gap-3">
+                        <a href="/in/security/" internal="true"><img src="../assets/images/logo_fundo%20branco.png" class="img-fluid" width="48"></a>
+                        <div class="dropdown">
+                            <button id="dropdown1" class="btn dropdown-toggle btn-sm  " type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Empresa&nbsp;</button>
+                            <div class="dropdown-menu mt-4" aria-labelledby="dropdown1">
+                                <a class="dropdown-item" href="#">Adicionar nova unidade</a>
+                                <a class="dropdown-item" href="#">Faturas</a>
+                                <a class="dropdown-item" href="#">Suporte</a>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <button id="dropdown2" class="btn dropdown-toggle btn-sm  " type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Colaboradores&nbsp;</button>
+                            <div class="dropdown-menu mt-4" aria-labelledby="dropdown2">
+                                <a class="dropdown-item" href="#">Meus colaboradores</a>
+                                <a class="dropdown-item" href="#">Colaboradores inativos</a>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <button id="dropdown3" class="btn dropdown-toggle btn-sm  " type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Leads&nbsp;</button>
+                            <div class="dropdown-menu mt-4" aria-labelledby="dropdown3">
+                                <a class="dropdown-item" href="#">Gerenciar leads</a>
+                                <a class="dropdown-item" href="#">Relatórios</a>
+                            </div>
+                        </div>
+                        <div class="dropdown">
+                            <button id="dropdown4" class="btn dropdown-toggle btn-sm  " type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Funil de vendas&nbsp;</button>
+                            <div class="dropdown-menu mt-4" aria-labelledby="dropdown4">
+                                <a class="dropdown-item" href="#">Gerenciar funis</a>
+                            </div>
+                        </div>
 
-                        <a href="/in/security/" internal="true"><img src="../assets/images/appIcon.ico" class="img-fluid" width="56"></a>
+
 
                     </div>
                 </div>
                 <div class="col">
                     <div class="d-flex justify-content-end align-items-center">
-                        <button id="btn1" class="btn btn-warning btn-sm" dmx-on:click="idUsuario.removeAll();redirect_deslogado.run()">Sair</button>
                     </div>
                 </div>
             </div>
         </div>
     </header>
 
-    <header class="mb-3 py-2 bg-black">
-        <div class="container-xxl">
-            <div class="row">
-                <div class="col px-0">
-                    <div class="nav w-100">
-                        <a class="nav-item nav-link menu-nav" href="/in/security/empresa" internal="true">Empresa</a>
-                        <a class="nav-item nav-link menu-nav" href="/in/security/colaborador" internal="true">Colaborador</a>
-                        <a class="nav-item nav-link menu-nav" href="/in/security/funil-de-vendas" internal="true">Funil de venda</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    <main is="dmx-view" id="view1"></main>
+    <main is="dmx-view" id="view1" class="py-3"></main>
     <script src="../bootstrap/5/js/bootstrap.bundle.min.js"></script>
 </body>
 
