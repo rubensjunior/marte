@@ -1,8 +1,104 @@
-<!-- Wappler include head-page="backoffice.html" is="dmx-app" id="empresa" appConnect="local" bootstrap5="local" capacitor="local" -->
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12 p-4 rounded-4 bg-white">
-            <h1>Empresa</h1>
+<!-- Wappler include head-page="backoffice.html" is="dmx-app" id="empresa" appConnect="local" bootstrap5="local" capacitor="local" fontawesome_5="local" components="{dmxPreloader:{},dmxBootstrap5TableGenerator:{},dmxBootstrap5Modal:{}}" -->
+<div class="modal mt-3" id="modal_criar" is="dmx-bs5-modal" tabindex="-1" nocloseonclick="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cria nova empresa</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form1">
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group mb-3"> <label for="input1" class="form-label">Some text</label>
+                                <input type="text" class="form-control" id="input1" name="input1" aria-describedby="input1_help" placeholder="Enter some text">
+                                <small id="input1_help" class="form-text text-muted">Your input is very valuable.</small>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group mb-3"> <label for="input2" class="form-label">Some text</label>
+                                <input type="text" class="form-control" id="input2" name="input1" aria-describedby="input1_help1" placeholder="Enter some text">
+                                <small id="input1_help1" class="form-text text-muted">Your input is very valuable.</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group mb-3"> <label for="input3" class="form-label">Some text</label>
+                                <input type="text" class="form-control" id="input3" name="input1" aria-describedby="input1_help2" placeholder="Enter some text">
+                                <small id="input1_help2" class="form-text text-muted">Your input is very valuable.</small>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group mb-3"> <label for="input3" class="form-label">Some text</label>
+                                <input type="text" class="form-control" id="input3" name="input1" aria-describedby="input1_help2" placeholder="Enter some text">
+                                <small id="input1_help2" class="form-text text-muted">Your input is very valuable.</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group mb-3"> <label for="input4" class="form-label">Some text</label>
+                                <input type="text" class="form-control" id="input4" name="input1" aria-describedby="input1_help3" placeholder="Enter some text">
+                                <small id="input1_help3" class="form-text text-muted">Your input is very valuable.</small>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group mb-3"> <label for="input4" class="form-label">Some text</label>
+                                <input type="text" class="form-control" id="input4" name="input1" aria-describedby="input1_help3" placeholder="Enter some text">
+                                <small id="input1_help3" class="form-text text-muted">Your input is very valuable.</small>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Cadastrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt-4 px-3 py-2">
+    <div class="row align-items-center">
+        <div class="col align-self-center">
+            <div class="d-flex flex-column align-items-start gap-1">
+                <h5 class="m-0">Minhas Empresas</h5>
+                <h6 class="m-0 breadcrumb-interno">Home - Empresa - Gerenciar Empresas</h6>
+            </div>
+        </div>
+        <div class="col align-self-center">
+            <div class="d-flex justify-content-end align-items-center gap-2">
+                <button id="btn1" class="btn btn-secondary"><i class="fas fa-filter me-2 fa-xs"></i>Filtrar</button>
+                <button id="btn2" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_criar">Adicionar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt-3 py-2">
+    <div class="row border border-light-subtle py-3 px-2 rounded-3 m-0 bg-white">
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="pb-3 titulo-tabela">Razao social</th>
+                        <th class="pb-3 titulo-tabela">Nome fantasia</th>
+                        <th class="pb-3 titulo-tabela">Nome polo</th>
+                        <th class="pb-3 titulo-tabela">Cnpj</th>
+                        <th class="pb-3 titulo-tabela">Status</th>
+                    </tr>
+                </thead>
+                <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="listar_empresas.data.query_empresas" id="tableRepeat2">
+                    <tr>
+                        <td dmx-text="razao_social" class="py-3 texto-tabela"></td>
+                        <td dmx-text="nome_fantasia" class="py-3 texto-tabela"></td>
+                        <td dmx-text="nome_polo" class="py-3 texto-tabela"></td>
+                        <td dmx-text="cnpj" class="py-3 texto-tabela"></td>
+                        <td dmx-text="status_empresa" class="py-3 texto-tabela"></td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

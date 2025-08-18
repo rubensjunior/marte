@@ -21,9 +21,13 @@
     <link rel="stylesheet" href="../fontawesome5/css/all.min.css" />
     <link rel="stylesheet" href="../dmxAppConnect/dmxPreloader/dmxPreloader.css" />
     <script src="../dmxAppConnect/dmxPreloader/dmxPreloader.js" defer></script>
+    <link rel="stylesheet" href="../dmxAppConnect/dmxBootstrap5TableGenerator/dmxBootstrap5TableGenerator.css" />
+<script src="../dmxAppConnect/dmxBootstrap5Modal/dmxBootstrap5Modal.js" defer></script>
 </head>
 
 <body is="dmx-app" id="backoffice" class="bg-backoffice">
+
+
     <dmx-preloader id="carregamento" spinner="wave" color="#ffc107"></dmx-preloader>
 
 
@@ -42,74 +46,57 @@
 }</script>
     <dmx-local-manager id="idUsuario"></dmx-local-manager>
     <dmx-serverconnect id="usuario" url="http://localhost:3000/api/dados-usuario" site="backendMarte" dmx-param:id_usuario_logado="idUsuario.data.id"></dmx-serverconnect>
-    <header class="py-3 border-top border-bottom  border-light-subtle">
-        <div class="container-fluid">
-            <div class="row align-items-center">
-                <div class="col align-self-center">
-                    <div class="d-flex flex-row align-items-center gap-2">
-                        <a href="/in/security/" internal="true" class="me-2"><img src="../assets/images/logo_fundo%20branco.png" class="img-fluid" width="48"></a>
-                        <div class="dropdown">
-                            <button id="dropdown1" class="btn dropdown-toggle btn-sm menu-nav" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Empresa&nbsp;</button>
-                            <div class="dropdown-menu mt-4" aria-labelledby="dropdown1">
-                                <a class="dropdown-item" href="#">Adicionar nova unidade</a>
-                                <a class="dropdown-item" href="#">Faturas</a>
-                                <a class="dropdown-item" href="#">Suporte</a>
-                            </div>
-                        </div>
-                        <div class="dropdown">
-                            <button id="dropdown2" class="btn dropdown-toggle btn-sm menu-nav " type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Colaboradores&nbsp;</button>
-                            <div class="dropdown-menu mt-4" aria-labelledby="dropdown2">
-                                <a class="dropdown-item" href="#">Meus colaboradores</a>
-                                <a class="dropdown-item" href="#">Colaboradores inativos</a>
-                            </div>
-                        </div>
-                        <div class="dropdown">
-                            <button id="dropdown3" class="btn dropdown-toggle btn-sm menu-nav" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Leads&nbsp;</button>
-                            <div class="dropdown-menu mt-4" aria-labelledby="dropdown3">
-                                <a class="dropdown-item" href="#">Gerenciar leads</a>
-                                <a class="dropdown-item" href="#">Relatórios</a>
-                            </div>
-                        </div>
-                        <div class="dropdown">
-                            <button id="dropdown4" class="btn dropdown-toggle btn-sm menu-nav " type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Funil de vendas&nbsp;</button>
-                            <div class="dropdown-menu mt-4" aria-labelledby="dropdown4">
-                                <a class="dropdown-item" href="#">Gerenciar funis</a>
-                            </div>
-                        </div>
+    <dmx-serverconnect id="listar_empresas" url="http://localhost:3000/api/listar-empresas" site="backendMarte" dmx-param:id_usuario_logado="idUsuario.data.id"></dmx-serverconnect>
+    <div class="container-fluid">
+        <div class="row border-top border-bottom border-dark-subtitle bg-white py-3">
+            <div class="col-1 align-self-center text-center"><a href="/in/security/" internal="true" class="me-2"><img src="../assets/images/logo_fundo%20branco.png" class="img-fluid" width="48"></a></div>
+            <div class="col align-self-center">
+                <div class="d-flex flex-row justify-content-start gap-2 align-items-center"><select id="select1" class="form-select select-border" dmx-bind:options="listar_empresas.data.query_empresas" optiontext="nome_polo" optionvalue="id_empresa">
+                        <option selected="" value="">Mudar de empresa</option>
+                    </select><button id="btn1" class="btn btn-primary"><i class="fas fa-plus fa-sm"></i><br></button></div>
 
 
+            </div>
+            <div class="col align-self-center">
+                <div class="d-flex justify-content-end align-items-center gap-4">
 
+                    <i class="far fa-bell fa-lg m"></i>
+                    <div class="dropdown profile-menu">
+                        <button id="dropdown5" class="btn dropdown-toggle btn-sm" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <div class="d-flex flex-row align-items-center justify-content-end p-0">
+
+                                <div class="d-flex justify-content-start flex-column me-3">
+                                    <h6 class="m-0 text-end">{{usuario.data.query[0].nome_tratamento}}</h6>
+                                    <p class="m-0 text-muted text-end">{{usuario.data.query[0].nome_polo}}</p>
+                                </div><img class="rounded-circle img-fluid" width="40" src="../assets/images/avatar.png">
+
+                            </div>
+                        </button>
+                        <div class="dropdown-menu mt-3" aria-labelledby="dropdown5">
+                            <a class="dropdown-item" href="#">Action</a>
+                            <a class="dropdown-item" href="#">Another action</a>
+                            <a class="dropdown-item text-danger" href="#" dmx-on:click="idUsuario.removeAll();navegacao.reload()">Deslogar</a>
+                        </div>
                     </div>
-                </div>
-                <div class="col">
-                    <div class="d-flex justify-content-end align-items-center gap-4">
-
-                        <i class="far fa-bell fa-lg m"></i>
-                        <div class="dropdown profile-menu">
-                            <button id="dropdown5" class="btn dropdown-toggle btn-sm" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <div class="d-flex flex-row align-items-center justify-content-end p-0">
-
-                                    <div class="d-flex justify-content-start flex-column me-3">
-                                        <h6 class="m-0 text-end">{{usuario.data.query[0].nome_tratamento}}</h6>
-                                        <p class="m-0 text-muted text-end">{{usuario.data.query[0].nome_polo}}</p>
-                                    </div><img class="rounded-circle img-fluid" width="40" src="../assets/images/avatar.png">
-
-                                </div>
-                            </button>
-                            <div class="dropdown-menu mt-3" aria-labelledby="dropdown5">
-                                <a class="dropdown-item" href="#">Action</a>
-                                <a class="dropdown-item" href="#">Another action</a>
-                                <a class="dropdown-item text-danger" href="#" dmx-on:click="idUsuario.removeAll();navegacao.reload()">Deslogar</a>
-                            </div>
-                        </div>
-                        <!-- Profile Dropdown (botão flat, menu padrão bootstrap) -->
-                    </div>
+                    <!-- Profile Dropdown (botão flat, menu padrão bootstrap) -->
                 </div>
             </div>
         </div>
-    </header>
+        <div class="row h-100">
+            <div class="col-1 text-center py-4 px-3">
+                <h6 class="text-center mb-3 mt-3 side-menu-title">Tools</h6>
+                <div class="d-flex justify-content-center align-items-center"><a href="/in/security/empresa" class="btn text-center w-100 py-3 btn-secondary" internal="true"><i class="fas fa-home"></i>
+                        <div class="side-menu-link">Empresa</div>
+                    </a></div>
 
-    <main is="dmx-view" id="view1" class="py-3"></main>
+            </div>
+            <div class="col-11">
+                <main is="dmx-view" id="view1"></main>
+            </div>
+        </div>
+    </div>
+
+
     <script src="../bootstrap/5/js/bootstrap.bundle.min.js"></script>
 </body>
 

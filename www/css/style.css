@@ -8,7 +8,7 @@
     min-height: 100vh;
 }
 .bg-backoffice {
-    background-color: #ffffff;
+    background-color: #F9F9F9;
 }
 
 
@@ -530,11 +530,83 @@ textarea.form-control {
     -ms-flex-align: center !important;
     align-items: center !important;
 }
-.menu-nav{
+
+.menu-nav {
     font-size: 15px;
     font-weight: 600;
     color: #78829D;
 }
-.profile-menu .dropdown-toggle::after{
-  display: none !important;
+
+.profile-menu .dropdown-toggle::after {
+    display: none !important;
+}
+
+.breadcrumb-interno {
+    font-size: 13px;
+    color: #78829D;
+}
+
+.titulo-tabela {
+    font-size: 13px;
+    color: #99a1b7 !important;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.texto-tabela {
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+.side-menu-title {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.side-menu-link {
+    font-size: 13px;
+    font-weight: 500;
+    color: #78829D;
+}
+
+/* Customização do botão secundário do Bootstrap para cor branca */
+.btn-secondary {
+    background-color: #ffffff !important;
+    border-color: #dee2e6 !important;
+    color: #212529 !important;
+}
+
+.btn-secondary:hover {
+    background-color: #f8f9fa !important;
+    border-color: #adb5bd !important;
+    color: #212529 !important;
+}
+
+.btn-secondary:focus,
+.btn-secondary.focus {
+    background-color: #f8f9fa !important;
+    border-color: #adb5bd !important;
+    color: #212529 !important;
+    -webkit-box-shadow: 0 0 0 0.25rem rgba(222, 226, 230, 0.5) !important;
+            box-shadow: 0 0 0 0.25rem rgba(222, 226, 230, 0.5) !important;
+}
+
+.btn-secondary:active,
+.btn-secondary.active {
+    background-color: #e9ecef !important;
+    border-color: #adb5bd !important;
+    color: #212529 !important;
+}
+
+.btn-secondary:disabled,
+.btn-secondary.disabled {
+    background-color: #ffffff !important;
+    border-color: #dee2e6 !important;
+    color: #6c757d !important;
+}
+.select-border{
+    font-weight: 500;
+    border-style: dotted;
+    border-color: #6c757d !important;
+    max-width: 280px;
 }
