@@ -153,7 +153,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" dmx-on:click="form_criar_empresa.reset()"></button>
             </div>
             <div class="modal-body p-4">
-                <form id="form_criar_empresa1" is="dmx-serverconnect-form" method="post" action="http://localhost:3000/api/criar_empresa" site="backendMarte" dmx-on:error="notificacoes.danger('Ocorreu um erro: '+lastError.status+lastError.message+lastError.response+'. Entre em contato com o suporte: suporte@spacefeed.app')" dmx-on:success="run([{condition:{outputType:'boolean',if:`form_criar_empresa.data.resposta.contains(\'Este CNPJ já esta cadastrado!\', false)`,then:{steps:{run:{outputType:'text',action:`notificacoes.warning(form_criar_empresa.data.resposta)`}}}}},{condition:{outputType:'boolean',if:`form_criar_empresa.data.resposta.contains(\'Empresa cadastrada com sucesso!\', false)`,then:{steps:{run:{outputType:'text',action:`listar_empresas.load({id_usuario_logado: idUsuario.data.id});form_criar_empresa.reset();modal_criar.hide();notificacoes.success(form_criar_empresa.data.resposta)`}}}}}])">
+                <form id="form_edit_empresa" is="dmx-serverconnect-form" method="post" action="http://localhost:3000/api/atualizar-empresa" site="backendMarte" dmx-on:error="data_empresa.select(0);modal_editar.hide();form_edit_empresa.reset();notificacoes.danger('Ocorreu um erro: '+lastError.status+lastError.message+lastError.response+'. Entre em contato com o suporte.')" dmx-on:success="listar_empresas.load({});data_empresa.select(0);modal_editar.hide();form_edit_empresa.reset();notificacoes.success('Atualização realizada com sucesso!')">
 
                     <h5 class="m-0 mb-3">Informações da Empresa</h5>
 
@@ -194,8 +194,8 @@
                             </div>
                         </div>
                         <div class="col">
-                            <div class="form-group mb-3"> <label for="edit_numero" class="form-label">Número</label>
-                                <input type="text" class="form-control" id="edit_numero" name="edit_numero" aria-describedby="input5_help1" required="" data-msg-required="Este é um campo brigatório!" dmx-bind:value="data_empresa.data.numero">
+                            <div class="form-group mb-3"> <label for="u" class="form-label">Número</label>
+                                <input type="text" class="form-control" id="u" name="edit_numero" aria-describedby="input5_help1" required="" data-msg-required="Este é um campo brigatório!" dmx-bind:value="data_empresa.data.numero">
                             </div>
                         </div>
                         <div class="col">
@@ -224,7 +224,7 @@
                         </div>
                         <div class="col">
                             <div class="form-group mb-3"> <label for="input11" class="form-label">Estado</label>
-                                <select class="form-select" id="edit_uf" name="edit_uf" required="" data-msg-required="Por favor, selecione o estado." dmx-bind:value="data_empresa.data.uf">
+                                <select class="form-select" id="u" name="edit_uf" required="" data-msg-required="Por favor, selecione o estado." dmx-bind:value="data_empresa.data.uf">
                                     <option value="" selected disabled>Selecione o estado...</option>
                                     <option value="AC">Acre</option>
                                     <option value="AL">Alagoas</option>
@@ -257,13 +257,13 @@
                             </div>
                         </div>
                     </div><input id="edit_id_usuario" name="edit_id_usuario" type="hidden" class="form-control" dmx-bind:value="idUsuario.data.id">
-                    <input id="edit_id_empresa_matriz" name="edit_id_empresa_matriz" type="hidden" class="form-control" dmx-bind:value="listar_empresas.data.query_empresas[0].empresa_matriz">
+                    <input id="edit_id_empresa" name="edit_id_empresa" type="hidden" class="form-control" dmx-bind:value="data_empresa.data.id_empresa">
 
                 </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" dmx-on:click="form_criar_empresa.reset()">Cancelar</button>
-                <button type="button" class="btn btn-primary" dmx-on:click="form_criar_empresa.submit()">Atualizar</button>
+                <button type="button" class="btn btn-primary" dmx-on:click="form_edit_empresa.submit()">Atualizar</button>
             </div>
         </div>
     </div>
