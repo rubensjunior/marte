@@ -278,7 +278,6 @@
         </div>
         <div class="col align-self-center">
             <div class="d-flex align-items-center gap-2 justify-content-end">
-                <button id="btn1" class="btn btn-secondary"><i class="fas fa-filter me-2 fa-xs"></i>Filtrar</button>
                 <button id="btn2" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_criar">Adicionar</button>
             </div>
         </div>
@@ -306,7 +305,7 @@
                         <td dmx-text="nome_fantasia" class="py-3 texto-tabela"></td>
                         <td dmx-text="nome_polo" class="py-3 texto-tabela"></td>
                         <td dmx-text="cnpj" class="py-3 texto-tabela"></td>
-                        <td dmx-text="status_empresa" class="py-3 texto-tabela" dmx-style:text-bg-primary.important="status_empresa=='ATIVO'" dmx-style:text-bg-danger.important="status_empresa=='INATIVO'"></td>
+                        <td class="py-3 texto-tabela"><span class="badge" dmx-class:text-bg-success="status_empresa == 'Ativo'" dmx-class:text-bg-danger="status_empresa == 'Inativo'" dmx-text="status_empresa"></span></td>
                         <td class="py-3 texto-tabela text-end">
                             <div class="dropdown">
                                 <button id="dropdown1" class="btn dropdown-toggle btn-sm btn-light texto-tabela" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" dmx-hide="status_empresa=='Inativo'">Ação&nbsp;</button>
