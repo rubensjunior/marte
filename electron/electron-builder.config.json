@@ -6,6 +6,7 @@
   "files": [
     "assets/**/*",
     "build/**/*",
+    "interno/**/*",
     "capacitor.config.*",
     "app/**/*"
   ],
