@@ -46,5 +46,40 @@ dmx.config({
         }
       ]
     }
+  },
+  "empresa": {
+    "data_empresa": {
+      "meta": [
+        {
+          "type": "text",
+          "name": "id_empresa"
+        },
+        {
+          "type": "text",
+          "name": "razao_social"
+        },
+        {
+          "type": "text",
+          "name": "nome_fantasia"
+        },
+        {
+          "type": "text",
+          "name": "nome_polo"
+        },
+        {
+          "type": "text",
+          "name": "cnpj"
+        },
+        {
+          "type": "text",
+          "name": "status_empresa"
+        },
+        {
+          "type": "number",
+          "name": "empresa_matriz"
+        }
+      ],
+      "outputType": "array"
+    }
   }
 });

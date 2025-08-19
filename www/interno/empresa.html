@@ -1,61 +1,269 @@
-<!-- Wappler include head-page="backoffice.html" is="dmx-app" id="empresa" appConnect="local" bootstrap5="local" capacitor="local" fontawesome_5="local" components="{dmxPreloader:{},dmxBootstrap5TableGenerator:{},dmxBootstrap5Modal:{}}" -->
+<!-- Wappler include head-page="backoffice.html" is="dmx-app" id="empresa" appConnect="local" bootstrap5="local" capacitor="local" fontawesome_5="local" components="{dmxPreloader:{},dmxBootstrap5TableGenerator:{},dmxBootstrap5Modal:{},dmxValidator:{},dmxFormatter:{},dmxDataTraversal:{}}" -->
+
+<dmx-data-detail id="data_empresa" dmx-bind:data="listar_empresas.data.query_empresas" key="id_empresa"></dmx-data-detail>
+<dmx-serverconnect id="desativar_empresa" noload="true" url="http://localhost:3000/api/desativar-empresa" site="backendMarte" dmx-param:id_empresa="data_empresa.data.id_empresa" dmx-on:success="data_empresa.select(0);listar_empresas.load({});modal_desativar.hide();notificacoes.success('Empresa desativada com sucesso!')"></dmx-serverconnect>
+<div class="modal" id="modal_desativar" is="dmx-bs5-modal" tabindex="-1" nocloseonclick="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Desativar empresa</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" dmx-on:click="data_empresa.select(0)"></button>
+            </div>
+            <div class="modal-body text-center">
+                <i class="fas fa-exclamation-circle fa-3x mb-3 text-warning"></i>
+                <p class="text-center">Você está prestes a desativar a empresa <b>{{data_empresa.data.razao_social}}</b>. Essa ação é irreversível. Para reativar, será necessário abrir um chamado de suporte. Deseja continuar?</p>
+            </div>
+            <div class="modal-footer d-flex justify-content-center">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" dmx-on:click="data_empresa.select(0)">Cancelar</button>
+                <button type="button" class="btn btn-danger" dmx-on:click="desativar_empresa.load({id_empresa: data_empresa.data.id_empresa})">Sim! Quero continuar!</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../js/masks.js"></script>
 <div class="modal mt-3" id="modal_criar" is="dmx-bs5-modal" tabindex="-1" nocloseonclick="true">
     <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Cria nova empresa</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" dmx-on:click="form_criar_empresa.reset()"></button>
             </div>
-            <div class="modal-body">
-                <form id="form1">
+            <div class="modal-body p-4">
+                <form id="form_criar_empresa" is="dmx-serverconnect-form" method="post" action="http://localhost:3000/api/criar_empresa" site="backendMarte" dmx-on:error="notificacoes.danger('Ocorreu um erro: '+lastError.status+lastError.message+lastError.response+'. Entre em contato com o suporte: suporte@spacefeed.app')" dmx-on:success="run([{condition:{outputType:'boolean',if:`form_criar_empresa.data.resposta.contains(\'Este CNPJ já esta cadastrado!\', false)`,then:{steps:{run:{outputType:'text',action:`notificacoes.warning(form_criar_empresa.data.resposta)`}}}}},{condition:{outputType:'boolean',if:`form_criar_empresa.data.resposta.contains(\'Empresa cadastrada com sucesso!\', false)`,then:{steps:{run:{outputType:'text',action:`listar_empresas.load({id_usuario_logado: idUsuario.data.id});form_criar_empresa.reset();modal_criar.hide();notificacoes.success(form_criar_empresa.data.resposta)`}}}}}])">
+
+                    <h5 class="m-0 mb-3">Informações da Empresa</h5>
+
                     <div class="row">
                         <div class="col">
-                            <div class="form-group mb-3"> <label for="input1" class="form-label">Some text</label>
-                                <input type="text" class="form-control" id="input1" name="input1" aria-describedby="input1_help" placeholder="Enter some text">
-                                <small id="input1_help" class="form-text text-muted">Your input is very valuable.</small>
+                            <div class="form-group mb-3"> <label for="razao_social" class="form-label">Razão Social</label>
+                                <input type="text" class="form-control" id="razao_social" name="razao_social" aria-describedby="input1_help" required="" data-msg-required="Este é um campo brigatório!">
                             </div>
                         </div>
                         <div class="col">
-                            <div class="form-group mb-3"> <label for="input2" class="form-label">Some text</label>
-                                <input type="text" class="form-control" id="input2" name="input1" aria-describedby="input1_help1" placeholder="Enter some text">
-                                <small id="input1_help1" class="form-text text-muted">Your input is very valuable.</small>
+                            <div class="form-group mb-3"> <label for="nome_fantasia" class="form-label">Nome Fantasia</label>
+                                <input type="text" class="form-control" id="nome_fantasia" name="nome_fantasia" aria-describedby="input1_help1" required="" data-msg-required="Este é um campo brigatório!">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group mb-3"> <label for="nome_polo" class="form-label">Nome do Polo</label>
+                                <input type="text" class="form-control" id="nome_polo" name="nome_polo" aria-describedby="input1_help4" required="" data-msg-required="Este é um campo brigatório!">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <div class="form-group mb-3"> <label for="input3" class="form-label">Some text</label>
-                                <input type="text" class="form-control" id="input3" name="input1" aria-describedby="input1_help2" placeholder="Enter some text">
-                                <small id="input1_help2" class="form-text text-muted">Your input is very valuable.</small>
+                            <div class="form-group mb-3"> <label for="cnpj" class="form-label">CNPJ</label>
+                                <input type="text" class="form-control" id="cnpj" name="cnpj" placeholder="XX.XXX.XXX/XXXX-XX" aria-describedby="input1_help2" required="" data-msg-required="Este é um campo brigatório!">
                             </div>
                         </div>
                         <div class="col">
-                            <div class="form-group mb-3"> <label for="input3" class="form-label">Some text</label>
-                                <input type="text" class="form-control" id="input3" name="input1" aria-describedby="input1_help2" placeholder="Enter some text">
-                                <small id="input1_help2" class="form-text text-muted">Your input is very valuable.</small>
+                            <div class="form-group mb-3"> <label for="cnpj" class="form-label">Whatsapp</label>
+                                <input type="text" class="form-control" id="whatsapp" name="whatsapp" placeholder="(XX) XXXXX-XXXX" aria-describedby="input1_help2" required="" data-msg-required="Este é um campo brigatório!">
+                            </div>
+                        </div>
+                    </div>
+                    <h5 class="m-0 mb-3">Endereço da Empresa</h5>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="form-group mb-3"> <label for="endereco" class="form-label">Endereço completo</label>
+                                <input type="text" class="form-control" id="endereco" name="endereco" aria-describedby="input5_help" required="" data-msg-required="Este é um campo brigatório!">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group mb-3"> <label for="numero" class="form-label">Número</label>
+                                <input type="text" class="form-control" id="numero" name="numero" aria-describedby="input5_help1" required="" data-msg-required="Este é um campo brigatório!">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group mb-3"> <label for="cep" class="form-label">CEP</label>
+                                <input type="text" class="form-control" id="cep" name="cep" placeholder="XXXXX-XXX" aria-describedby="input5_help5" required="" data-msg-required="Este é um campo brigatório!">
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col">
-                            <div class="form-group mb-3"> <label for="input4" class="form-label">Some text</label>
-                                <input type="text" class="form-control" id="input4" name="input1" aria-describedby="input1_help3" placeholder="Enter some text">
-                                <small id="input1_help3" class="form-text text-muted">Your input is very valuable.</small>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <div class="form-group mb-3"> <label for="input4" class="form-label">Some text</label>
-                                <input type="text" class="form-control" id="input4" name="input1" aria-describedby="input1_help3" placeholder="Enter some text">
-                                <small id="input1_help3" class="form-text text-muted">Your input is very valuable.</small>
+                            <div class="form-group mb-3"> <label for="complemento" class="form-label">Completmento</label>
+                                <input type="text" class="form-control" id="complemento" name="complemento" aria-describedby="input5_help2">
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group mb-3"> <label for="bairro" class="form-label">Bairro</label>
+                                <input type="text" class="form-control" id="bairro" name="bairro" aria-describedby="input5_help3" required="" data-msg-required="Este é um campo brigatório!">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group mb-3"> <label for="bairro" class="form-label">Cidade</label>
+                                <input type="text" class="form-control" id="cidade" name="cidade" aria-describedby="input5_help3" required="" data-msg-required="Este é um campo brigatório!">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group mb-3"> <label for="input11" class="form-label">Estado</label>
+                                <select class="form-select" id="uf" name="uf" required data-msg-required="Por favor, selecione o estado.">
+                                    <option value="" selected disabled>Selecione o estado...</option>
+                                    <option value="AC">Acre</option>
+                                    <option value="AL">Alagoas</option>
+                                    <option value="AP">Amapá</option>
+                                    <option value="AM">Amazonas</option>
+                                    <option value="BA">Bahia</option>
+                                    <option value="CE">Ceará</option>
+                                    <option value="DF">Distrito Federal</option>
+                                    <option value="ES">Espírito Santo</option>
+                                    <option value="GO">Goiás</option>
+                                    <option value="MA">Maranhão</option>
+                                    <option value="MT">Mato Grosso</option>
+                                    <option value="MS">Mato Grosso do Sul</option>
+                                    <option value="MG">Minas Gerais</option>
+                                    <option value="PA">Pará</option>
+                                    <option value="PB">Paraíba</option>
+                                    <option value="PR">Paraná</option>
+                                    <option value="PE">Pernambuco</option>
+                                    <option value="PI">Piauí</option>
+                                    <option value="RJ">Rio de Janeiro</option>
+                                    <option value="RN">Rio Grande do Norte</option>
+                                    <option value="RS">Rio Grande do Sul</option>
+                                    <option value="RO">Rondônia</option>
+                                    <option value="RR">Roraima</option>
+                                    <option value="SC">Santa Catarina</option>
+                                    <option value="SP">São Paulo</option>
+                                    <option value="SE">Sergipe</option>
+                                    <option value="TO">Tocantins</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div><input id="id_usuario" name="id_usuario" type="hidden" class="form-control" dmx-bind:value="idUsuario.data.id">
+                    <input id="id_empresa_matriz" name="id_empresa_matriz" type="hidden" class="form-control" dmx-bind:value="listar_empresas.data.query_empresas[0].empresa_matriz">
 
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-primary">Cadastrar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" dmx-on:click="form_criar_empresa.reset()">Cancelar</button>
+                <button type="button" class="btn btn-primary" dmx-on:click="form_criar_empresa.submit()">Cadastrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal mt-3" id="modal_editar" is="dmx-bs5-modal" tabindex="-1" nocloseonclick="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Cria nova empresa</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" dmx-on:click="form_criar_empresa.reset()"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form id="form_criar_empresa1" is="dmx-serverconnect-form" method="post" action="http://localhost:3000/api/criar_empresa" site="backendMarte" dmx-on:error="notificacoes.danger('Ocorreu um erro: '+lastError.status+lastError.message+lastError.response+'. Entre em contato com o suporte: suporte@spacefeed.app')" dmx-on:success="run([{condition:{outputType:'boolean',if:`form_criar_empresa.data.resposta.contains(\'Este CNPJ já esta cadastrado!\', false)`,then:{steps:{run:{outputType:'text',action:`notificacoes.warning(form_criar_empresa.data.resposta)`}}}}},{condition:{outputType:'boolean',if:`form_criar_empresa.data.resposta.contains(\'Empresa cadastrada com sucesso!\', false)`,then:{steps:{run:{outputType:'text',action:`listar_empresas.load({id_usuario_logado: idUsuario.data.id});form_criar_empresa.reset();modal_criar.hide();notificacoes.success(form_criar_empresa.data.resposta)`}}}}}])">
+
+                    <h5 class="m-0 mb-3">Informações da Empresa</h5>
+
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group mb-3"> <label for="edit_razao_social" class="form-label">Razão Social</label>
+                                <input type="text" class="form-control" id="edit_razao_social" name="edit_razao_social" aria-describedby="input1_help" required="" data-msg-required="Este é um campo brigatório!" dmx-bind:value="data_empresa.data.razao_social">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group mb-3"> <label for="edit_nome_fantasia" class="form-label">Nome Fantasia</label>
+                                <input type="text" class="form-control" id="edit_nome_fantasia" name="edit_nome_fantasia" aria-describedby="input1_help1" required="" data-msg-required="Este é um campo brigatório!" dmx-bind:value="data_empresa.data.nome_fantasia">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group mb-3"> <label for="edit_nome_polo" class="form-label">Nome do Polo</label>
+                                <input type="text" class="form-control" id="edit_nome_polo" name="edit_nome_polo" aria-describedby="input1_help4" required="" data-msg-required="Este é um campo brigatório!" dmx-bind:value="data_empresa.data.nome_polo">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group mb-3"> <label for="edit_cnpj" class="form-label">CNPJ</label>
+                                <input type="text" class="form-control" id="edit_cnpj" name="edit_cnpj" placeholder="XX.XXX.XXX/XXXX-XX" aria-describedby="input1_help2" required="" data-msg-required="Este é um campo brigatório!" dmx-bind:value="data_empresa.data.cnpj">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group mb-3"> <label for="edit_cnpj" class="form-label">Whatsapp</label>
+                                <input type="text" class="form-control" id="edit_whatsapp" name="edit_whatsapp" placeholder="(XX) XXXXX-XXXX" aria-describedby="input1_help2" required="" data-msg-required="Este é um campo brigatório!" dmx-bind:value="data_empresa.data.whatsapp">
+                            </div>
+                        </div>
+                    </div>
+                    <h5 class="m-0 mb-3">Endereço da Empresa</h5>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="form-group mb-3"> <label for="edit_endereco" class="form-label">Endereço completo</label>
+                                <input type="text" class="form-control" id="edit_endereco" name="edit_endereco" aria-describedby="input5_help" required="" data-msg-required="Este é um campo brigatório!" dmx-bind:value="data_empresa.data.endereco">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group mb-3"> <label for="edit_numero" class="form-label">Número</label>
+                                <input type="text" class="form-control" id="edit_numero" name="edit_numero" aria-describedby="input5_help1" required="" data-msg-required="Este é um campo brigatório!" dmx-bind:value="data_empresa.data.numero">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group mb-3"> <label for="edit_cep" class="form-label">CEP</label>
+                                <input type="text" class="form-control" id="edit_cep" name="edit_cep" placeholder="XXXXX-XXX" aria-describedby="input5_help5" required="" data-msg-required="Este é um campo brigatório!" dmx-bind:value="data_empresa.data.cep">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group mb-3"> <label for="edit_complemento" class="form-label">Completmento</label>
+                                <input type="text" class="form-control" id="edit_complemento" name="edit_complemento" aria-describedby="input5_help2" dmx-bind:value="data_empresa.data.complemento">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group mb-3"> <label for="edit_bairro" class="form-label">Bairro</label>
+                                <input type="text" class="form-control" id="edit_bairro" name="edit_bairro" aria-describedby="input5_help3" required="" data-msg-required="Este é um campo brigatório!" dmx-bind:value="data_empresa.data.bairro">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group mb-3"> <label for="edit_bairro" class="form-label">Cidade</label>
+                                <input type="text" class="form-control" id="edit_cidade" name="edit_cidade" aria-describedby="input5_help3" required="" data-msg-required="Este é um campo brigatório!" dmx-bind:value="data_empresa.data.cidade">
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group mb-3"> <label for="input11" class="form-label">Estado</label>
+                                <select class="form-select" id="edit_uf" name="edit_uf" required="" data-msg-required="Por favor, selecione o estado." dmx-bind:value="data_empresa.data.uf">
+                                    <option value="" selected disabled>Selecione o estado...</option>
+                                    <option value="AC">Acre</option>
+                                    <option value="AL">Alagoas</option>
+                                    <option value="AP">Amapá</option>
+                                    <option value="AM">Amazonas</option>
+                                    <option value="BA">Bahia</option>
+                                    <option value="CE">Ceará</option>
+                                    <option value="DF">Distrito Federal</option>
+                                    <option value="ES">Espírito Santo</option>
+                                    <option value="GO">Goiás</option>
+                                    <option value="MA">Maranhão</option>
+                                    <option value="MT">Mato Grosso</option>
+                                    <option value="MS">Mato Grosso do Sul</option>
+                                    <option value="MG">Minas Gerais</option>
+                                    <option value="PA">Pará</option>
+                                    <option value="PB">Paraíba</option>
+                                    <option value="PR">Paraná</option>
+                                    <option value="PE">Pernambuco</option>
+                                    <option value="PI">Piauí</option>
+                                    <option value="RJ">Rio de Janeiro</option>
+                                    <option value="RN">Rio Grande do Norte</option>
+                                    <option value="RS">Rio Grande do Sul</option>
+                                    <option value="RO">Rondônia</option>
+                                    <option value="RR">Roraima</option>
+                                    <option value="SC">Santa Catarina</option>
+                                    <option value="SP">São Paulo</option>
+                                    <option value="SE">Sergipe</option>
+                                    <option value="TO">Tocantins</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div><input id="edit_id_usuario" name="edit_id_usuario" type="hidden" class="form-control" dmx-bind:value="idUsuario.data.id">
+                    <input id="edit_id_empresa_matriz" name="edit_id_empresa_matriz" type="hidden" class="form-control" dmx-bind:value="listar_empresas.data.query_empresas[0].empresa_matriz">
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" dmx-on:click="form_criar_empresa.reset()">Cancelar</button>
+                <button type="button" class="btn btn-primary" dmx-on:click="form_criar_empresa.submit()">Atualizar</button>
             </div>
         </div>
     </div>
@@ -69,7 +277,7 @@
             </div>
         </div>
         <div class="col align-self-center">
-            <div class="d-flex justify-content-end align-items-center gap-2">
+            <div class="d-flex align-items-center gap-2 justify-content-end">
                 <button id="btn1" class="btn btn-secondary"><i class="fas fa-filter me-2 fa-xs"></i>Filtrar</button>
                 <button id="btn2" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_criar">Adicionar</button>
             </div>
@@ -82,23 +290,45 @@
             <table class="table">
                 <thead>
                     <tr>
+
                         <th class="pb-3 titulo-tabela">Razao social</th>
                         <th class="pb-3 titulo-tabela">Nome fantasia</th>
                         <th class="pb-3 titulo-tabela">Nome polo</th>
                         <th class="pb-3 titulo-tabela">Cnpj</th>
                         <th class="pb-3 titulo-tabela">Status</th>
+                        <th scope="row" class="pb-3 titulo-tabela text-end">Ações</th>
                     </tr>
                 </thead>
                 <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="listar_empresas.data.query_empresas" id="tableRepeat2">
                     <tr>
-                        <td dmx-text="razao_social" class="py-3 texto-tabela"></td>
+
+                        <td dmx-text="razao_social" class="py-3 texto-tabela fw-bold"></td>
                         <td dmx-text="nome_fantasia" class="py-3 texto-tabela"></td>
                         <td dmx-text="nome_polo" class="py-3 texto-tabela"></td>
                         <td dmx-text="cnpj" class="py-3 texto-tabela"></td>
-                        <td dmx-text="status_empresa" class="py-3 texto-tabela"></td>
+                        <td dmx-text="status_empresa" class="py-3 texto-tabela" dmx-style:text-bg-primary.important="status_empresa=='ATIVO'" dmx-style:text-bg-danger.important="status_empresa=='INATIVO'"></td>
+                        <td class="py-3 texto-tabela text-end">
+                            <div class="dropdown">
+                                <button id="dropdown1" class="btn dropdown-toggle btn-sm btn-light texto-tabela" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" dmx-hide="status_empresa=='Inativo'">Ação&nbsp;</button>
+                                <div class="dropdown-menu" aria-labelledby="dropdown1">
+                                    <a class="dropdown-item dropdown-item-menor curso-ponteiro" dmx-on:click="data_empresa.select(id_empresa);modal_editar.show()">Editar</a>
+                                    <a class="dropdown-item text-danger dropdown-item-menor curso-ponteiro" dmx-on:click="data_empresa.select(id_empresa);modal_desativar.show()">Desativar</a>
+                                </div>
+                            </div>
+                        </td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 </div>
+
+<script>
+    // Initialize masks when modal is shown
+document.addEventListener('DOMContentLoaded', function() {
+    const modal = document.getElementById('modal_criar');
+    modal.addEventListener('shown.bs.modal', function() {
+        initializeMasks();
+    });
+});
+</script>
