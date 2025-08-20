@@ -7,6 +7,33 @@
     background-color: #F3F3F3;
     min-height: 100vh;
 }
+
+/* Garantir que o body e html ocupem 100% da altura */
+html, body {
+    height: 100%;
+    overflow-x: hidden;
+}
+
+/* Garantir que o dmx-view ocupe toda a altura disponível */
+#view1 {
+    height: 100vh !important;
+    align-self: stretch !important;
+}
+
+/* Garantir que container-fluid ocupe toda a altura sem gerar scroll */
+.h-100 {
+    height: 100% !important;
+    max-height: 100vh;
+}
+
+/* Ajustar container para não gerar overflow */
+.container-fluid.h-100 {
+    height: 100vh !important;
+    max-height: 100vh;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
 .bg-backoffice {
     background-color: #F9F9F9;
 }
@@ -387,6 +414,12 @@ textarea.form-control {
     .wizard-navigation .btn {
         width: 100%;
     }
+    
+    /* Ajustar container-fluid em mobile para não gerar scroll */
+    .container-fluid.h-100 {
+        height: 100vh !important;
+        padding: 1rem !important;
+    }
 }
 
 @media (max-width: 575.98px) {
@@ -398,6 +431,11 @@ textarea.form-control {
     .wizard-content {
         min-height: 150px;
     }
+    
+    /* Reduzir padding ainda mais em telas pequenas */
+    .container-fluid.h-100 {
+        padding: 0.5rem !important;
+    }
 }
 
 /* Responsividade completa */
@@ -407,12 +445,22 @@ textarea.form-control {
     .container-fluid {
         padding: 3rem !important;
     }
+    
+    .container-fluid.h-100 {
+        padding: 3rem !important;
+        height: 100vh !important;
+    }
 }
 
 /* Tablets em portrait */
 @media (max-width: 991.98px) {
     .container-fluid {
         padding: 2rem !important;
+    }
+    
+    .container-fluid.h-100 {
+        padding: 2rem !important;
+        height: 100vh !important;
     }
     
     .glass-background-solid {
