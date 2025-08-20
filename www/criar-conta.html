@@ -224,7 +224,7 @@
                                     </button>
 
                                     <!-- Botão Criar Conta (etapa 3) -->
-                                    <button class="btn btn-success" dmx-show="etapas.value == 3" dmx-on:click="run([{run:{outputType:'text',action:`criar_conta_form.submit()`}},{wait:{delay:2000}},{condition:{outputType:'boolean',if:`criar_conta_form.data.resposta.contains(\'Conta criada com sucesso!\', false)`,then:{steps:[{run:{outputType:'text',action:`notificacoes.success(\'Sua conta foi criada com sucesso! Seja bem-vindo(a)!\')`}},{wait:{delay:4500}},{run:{outputType:'text',action:`navegacao.goto(\'/\',true)`}}]}}},{condition:{outputType:'boolean',if:`criar_conta_form.data.resposta.contains(\'Este e-mail já esta cadastrado!\', \'false\')`,then:{steps:{run:{outputType:'text',action:`notificacoes.warning(\'Este e-mail já esta cadastrado! Utilize outro para criar uma conta ou entre em contato com o suporte!\')`}}}}},{condition:{outputType:'boolean',if:`criar_conta_form.data.resposta.contains(\'Este CNPJ já esta cadastrado!\', false)`,then:{steps:{run:{outputType:'text',action:`notificacoes.warning(\'Este CNPJ já esta cadastrado! Utilize outro para criar uma conta ou entre em contato com o suporte!\')`}}}}}])">
+                                    <button class="btn btn-success" dmx-show="etapas.value == 3">
                                         <i class="bi bi-check-circle me-1"></i>
                                         Criar Conta
                                     </button>
