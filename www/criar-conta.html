@@ -24,7 +24,7 @@
                             <p class="h6 text-muted mb-0">Preencha o formulário abaixo para criar sua conta.</p>
                         </div>
 
-                        <form id="criar_conta_form" is="dmx-serverconnect-form" method="post" action="http://localhost:3000/api/nova-conta" site="backendMarte" dmx-on:error="notificacoes.error('Erro ao criar a conta. Tente novamente.')">
+                        <form id="criar_conta_form" is="dmx-serverconnect-form" method="post" action="http://localhost:3000/api/nova-conta" site="backendMarte" dmx-on:error="notificacoes.error('Erro ao criar a conta. Tente novamente.')" dmx-on:success="run([{condition:{outputType:'boolean',if:`criar_conta_form.data.resposta.contains(\'Este CNPJ já esta cadastrado!\', false)`,then:{steps:{run:{outputType:'text',action:`notificacoes.warning(criar_conta_form.data.resposta)`}}}}},{condition:{outputType:'boolean',if:`criar_conta_form.data.resposta.contains(\'Este e-mail já esta cadastrado!\', false)`,then:{steps:{run:{outputType:'text',action:`notificacoes.warning(criar_conta_form.data.resposta)`}}}}},{condition:{outputType:'boolean',if:`criar_conta_form.data.resposta.contains(\'Este e-mail já esta cadastrado!\', false)`,then:{steps:[{run:{outputType:'text',action:`notificacoes.success(criar_conta_form.data.resposta);criar_conta_form.reset()`}},{wait:{delay:3500}},{run:{outputType:'text',action:`navegacao.goto(\'/\',true)`}}]}}}])">
 
                             <!-- Step 1: Dados da Empresa -->
                             <div class="wizard-step-content" id="step-1" dmx-show="etapas.value == 0">
