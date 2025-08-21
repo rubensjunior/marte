@@ -1,14 +1,15 @@
-<!-- Wappler include head-page="backoffice.html" is="dmx-app" id="colaborador" appConnect="local" bootstrap5="local" capacitor="local" components="{dmxBootstrap5Modal:{},dmxValidator:{}}" -->
+<!-- Wappler include head-page="backoffice.html" is="dmx-app" id="colaborador" appConnect="local" bootstrap5="local" capacitor="local" components="{dmxBootstrap5Modal:{},dmxValidator:{},dmxBootstrap5TableGenerator:{}}" -->
+<dmx-serverconnect id="listar_colaboradores" url="http://localhost:3000/api/listar-colaboradores" site="backendMarte" dmx-param:id_empresa_atual="usuario.data.query[0].empresa_selecionada"></dmx-serverconnect>
 
 <div class="modal" id="modal_criar" is="dmx-bs5-modal" tabindex="-1" nocloseonclick="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Criar colaborador</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" dmx-on:click="form_criar_colaborador.reset()"></button>
             </div>
             <div class="modal-body p-4">
-                <form id="form_criar_colaborador">
+                <form id="form_criar_colaborador" is="dmx-serverconnect-form" method="post" action="http://localhost:3000/api/criar-colaborador" site="backendMarte" dmx-on:error="notificacoes.danger('Ocorreu um erro: '+lastError.status+lastError.message+lastError.response+'. Entre em contato com o suporte.')" dmx-on:success="run([{condition:{outputType:'boolean',if:`form_criar_colaborador.data.resposta==\'Usuário já está associado a uma empresa!\'`,then:{steps:{run:{outputType:'text',action:`notificacoes.warning(form_criar_colaborador.data.resposta)`}}}}},{condition:{outputType:'boolean',if:`form_criar_colaborador.data.resposta==\'Usuário cadastrado com sucesso!\'`,then:{steps:{run:{outputType:'text',action:`form_criar_colaborador.reset();modal_criar.hide();notificacoes.success(form_criar_colaborador.data.resposta);listar_colaboradores.load({id_empresa_atual: usuario.data.query[0].empresa_selecionada})`}}}}}])">
 
                     <div class="row">
                         <div class="col">
@@ -24,11 +25,11 @@
                     </div>
                     <div class="form-group mb-3"> <label for="email" class="form-label">E-mail</label>
                         <input type="email" class="form-control" id="email" name="email" aria-describedby="input3_help" required="" data-msg-required="Este é um campo obrigatório." data-rule-email="" data-msg-email="Insira um e-mal válido!">
-                    </div><input id="id_empresa_atual" name="id_empresa_atual" type="hidden" class="form-control" dmx-bind:value="usuario.data.query[0].empresa_selecionada">
+                    </div><input id="id_empresa_atual" name="id_empresa_atual" class="form-control" dmx-bind:value="usuario.data.query[0].empresa_selecionada" type="hidden">
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" dmx-on:click="form_criar_colaborador.reset()">Cancelar</button>
                 <button type="button" class="btn btn-primary" dmx-on:click="form_criar_colaborador.submit()">Cadastrar</button>
             </div>
         </div>
@@ -50,6 +51,27 @@
 </div>
 <div class="container-fluid mt-3 py-2">
     <div class="row border border-light-subtle py-3 px-2 rounded-3 m-0 bg-white">
-        <div class="col"></div>
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th class="pb-3 titulo-tabela">Nome completo</th>
+                        <th class="pb-3 titulo-tabela">Nome tratamento</th>
+                        <th class="pb-3 titulo-tabela">Email</th>
+                        <th class="pb-3 titulo-tabela">Cargo usuario empresa</th>
+                        <th class="pb-3 titulo-tabela">Status usuario</th>
+                    </tr>
+                </thead>
+                <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="view1.listar_colaboradores.data.query_colaboradores" id="tableRepeat2">
+                    <tr>
+                        <td dmx-text="nome_completo" class="py-3 texto-tabela fw-boldu"></td>
+                        <td dmx-text="nome_tratamento" class="py-3 texto-tabela"></td>
+                        <td dmx-text="email" class="py-3 texto-tabela"></td>
+                        <td dmx-text="cargo_usuario_empresa" class="py-3 texto-tabela"></td>
+                        <td dmx-text="status_usuario" class="py-3 texto-tabela"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </div>
