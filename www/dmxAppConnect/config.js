@@ -81,5 +81,61 @@ dmx.config({
       ],
       "outputType": "array"
     }
+  },
+  "colaborador": {
+    "data_colaborador": {
+      "meta": [
+        {
+          "type": "text",
+          "name": "nome_completo"
+        },
+        {
+          "type": "text",
+          "name": "nome_tratamento"
+        },
+        {
+          "type": "text",
+          "name": "email"
+        },
+        {
+          "type": "text",
+          "name": "cargo_usuario_empresa"
+        },
+        {
+          "type": "text",
+          "name": "status_usuario"
+        }
+      ],
+      "outputType": "array"
+    },
+    "tableRepeat1": {
+      "meta": [
+        {
+          "type": "text",
+          "name": "id_usuarios"
+        },
+        {
+          "type": "text",
+          "name": "nome_completo"
+        },
+        {
+          "type": "text",
+          "name": "nome_tratamento"
+        },
+        {
+          "type": "text",
+          "name": "email"
+        },
+        {
+          "type": "text",
+          "name": "cargo_usuario_empresa"
+        },
+        {
+          "type": "text",
+          "name": "status_usuario"
+        }
+      ],
+      "outputType": "array"
+    }
   }
 });

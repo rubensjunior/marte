@@ -1,7 +1,7 @@
 <!-- Wappler include head-page="backoffice.html" is="dmx-app" id="empresa" appConnect="local" bootstrap5="local" capacitor="local" fontawesome_5="local" components="{dmxPreloader:{},dmxBootstrap5TableGenerator:{},dmxBootstrap5Modal:{},dmxValidator:{},dmxFormatter:{},dmxDataTraversal:{}}" -->
 
 <dmx-data-detail id="data_empresa" dmx-bind:data="listar_empresas.data.query_empresas" key="id_empresa"></dmx-data-detail>
-<dmx-serverconnect id="desativar_empresa" noload="true" url="http://localhost:3000/api/desativar-empresa" site="backendMarte" dmx-param:id_empresa="data_empresa.data.id_empresa" dmx-on:success="data_empresa.select(0);listar_empresas.load({});modal_desativar.hide();notificacoes.success('Empresa desativada com sucesso!')"></dmx-serverconnect>
+<dmx-serverconnect id="desativar_empresa" noload="true" url="http://localhost:3000/api/desativar-empresa" site="backendMarte" dmx-param:id_empresa="data_empresa.data.id_empresa" dmx-on:success="data_empresa.select(0);listar_empresas.load({});modal_desativar.hide();notificacoes.success('Empresa desativada com sucesso!')" dmx-on:error="data_empresa.select(0);modal_desativar.hide();notificacoes.danger('Ocorreu um erro: '+lastError.status+lastError.message+lastError.response+'. Entre em contato com o suporte.')"></dmx-serverconnect>
 <div class="modal" id="modal_desativar" is="dmx-bs5-modal" tabindex="-1" nocloseonclick="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -298,7 +298,7 @@
                         <th scope="row" class="pb-3 titulo-tabela text-end">Ações</th>
                     </tr>
                 </thead>
-                <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="listar_empresas.data.query_empresas" id="tableRepeat2">
+                <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="listar_empresas.data.query_empresas" id="tableRepeat2" key="id_empresa">
                     <tr>
 
                         <td dmx-text="razao_social" class="py-3 texto-tabela fw-bold"></td>
@@ -308,7 +308,7 @@
                         <td class="py-3 texto-tabela"><span class="badge" dmx-class:text-bg-success="status_empresa == 'Ativo'" dmx-class:text-bg-danger="status_empresa == 'Inativo'" dmx-text="status_empresa"></span></td>
                         <td class="py-3 texto-tabela text-end">
                             <div class="dropdown">
-                                <button id="dropdown1" class="btn dropdown-toggle btn-sm btn-light texto-tabela" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" dmx-hide="status_empresa=='Inativo'">Ação&nbsp;</button>
+                                <button id="dropdown1" class="btn dropdown-toggle btn-sm btn-light texto-tabela" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" dmx-hide="status_empresa=='Inativo'">Ações&nbsp;</button>
                                 <div class="dropdown-menu" aria-labelledby="dropdown1">
                                     <a class="dropdown-item dropdown-item-menor curso-ponteiro" dmx-on:click="data_empresa.select(id_empresa);modal_editar.show()">Editar</a>
                                     <a class="dropdown-item text-danger dropdown-item-menor curso-ponteiro" dmx-on:click="data_empresa.select(id_empresa);modal_desativar.show()">Desativar</a>
