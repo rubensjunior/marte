@@ -18,7 +18,8 @@ html, body {
 /* Garantir que o dmx-view ocupe toda a altura disponível */
 #view1 {
     height: 100vh !important;
-    align-self: stretch !important;
+    -ms-flex-item-align: stretch !important;
+        align-self: stretch !important;
 }
 
 /* Garantir que container-fluid ocupe toda a altura sem gerar scroll */
@@ -32,7 +33,8 @@ html, body {
     height: 100vh !important;
     max-height: 100vh;
     overflow: hidden;
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
 }
 
 .bg-backoffice {
@@ -620,7 +622,7 @@ textarea.form-control {
 }
 
 .side-menu-link {
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 500;
     color: #78829D;
 }
