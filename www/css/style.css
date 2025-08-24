@@ -6,7 +6,7 @@
     background-size: cover;
     background-attachment: fixed;
     background-color: #F3F3F3;
-    min-height: 100vh;
+    height: 100vh;
 }
 
 /* Garantir que o body e html ocupem 100% da altura */
@@ -17,22 +17,19 @@ html, body {
 
 /* Garantir que o dmx-view ocupe toda a altura disponível */
 #view1 {
-    height: 100vh !important;
-    -ms-flex-item-align: stretch !important;
-        align-self: stretch !important;
+    height: 100%;
+    max-height: 100vh;
+    overflow: auto;
 }
 
 /* Garantir que container-fluid ocupe toda a altura sem gerar scroll */
 .h-100 {
     height: 100% !important;
-    max-height: 100vh;
 }
 
 /* Ajustar container para não gerar overflow */
 .container-fluid.h-100 {
-    height: 100vh !important;
-    max-height: 100vh;
-    overflow: hidden;
+    height: 100%;
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
 }
@@ -420,7 +417,6 @@ textarea.form-control {
     
     /* Ajustar container-fluid em mobile para não gerar scroll */
     .container-fluid.h-100 {
-        height: 100vh !important;
         padding: 1rem !important;
     }
 }
@@ -448,22 +444,12 @@ textarea.form-control {
     .container-fluid {
         padding: 3rem !important;
     }
-    
-    .container-fluid.h-100 {
-        padding: 3rem !important;
-        height: 100vh !important;
-    }
 }
 
 /* Tablets em portrait */
 @media (max-width: 991.98px) {
     .container-fluid {
         padding: 2rem !important;
-    }
-    
-    .container-fluid.h-100 {
-        padding: 2rem !important;
-        height: 100vh !important;
     }
     
     .glass-background-solid {
