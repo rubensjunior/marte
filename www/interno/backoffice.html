@@ -32,6 +32,8 @@
 
 
 
+
+
     <dmx-preloader id="carregamento" spinner="wave" color="#ffc107"></dmx-preloader>
 
 
@@ -51,6 +53,7 @@
     <dmx-serverconnect id="selecionar_empresa" noload="true" url="http://localhost:3000/api/selecionar-empresa" site="backendMarte"></dmx-serverconnect><dmx-local-manager id="idUsuario"></dmx-local-manager>
     <dmx-serverconnect id="usuario" url="http://localhost:3000/api/dados-usuario" site="backendMarte" dmx-param:id_usuario_logado="idUsuario.data.id"></dmx-serverconnect>
     <dmx-serverconnect id="listar_empresas" url="http://localhost:3000/api/listar-empresas" site="backendMarte" dmx-param:id_usuario_logado="idUsuario.data.id"></dmx-serverconnect>
+    <dmx-serverconnect id="listar_colaboradores" url="http://localhost:3000/api/listar-colaboradores" site="backendMarte" dmx-param:id_empresa_atual="usuario.data.query[0].empresa_selecionada"></dmx-serverconnect>
     <div class="container-fluid">
         <div class="row border-top border-bottom border-dark-subtitle bg-white py-3">
             <div class="col-1 align-self-center text-center"><a href="/in/security/" internal="true" class="me-2"><img src="../assets/images/logo_fundo%20branco.png" class="img-fluid" width="48"></a></div>
@@ -62,10 +65,10 @@
                         <select class="form-select select-border" id="inputGroupSelect04" aria-label="Example select with button addon" dmx-bind:options="listar_empresas.data.query_empresas" optiontext="nome_polo" optionvalue="id_empresa" dmx-bind:value="usuario.data.query[0].empresa_selecionada">
                             <option selected="" value="">Mudar de empresa</option>
                         </select>
-                        <button class="btn btn-dark" type="button" dmx-on:click="selecionar_empresa.load({id_usuario: idUsuario.data.id, id_empresa: inputGroupSelect04.selectedValue});navegacao.reload()"><i class="fas fa-plus fa-sm px-2"></i><br></button>
+                        <button class="btn btn-primary" type="button" dmx-on:click="selecionar_empresa.load({id_usuario: idUsuario.data.id, id_empresa: inputGroupSelect04.selectedValue});navegacao.reload()"><i class="fas fa-plus fa-sm px-2"></i><br></button>
                     </div>
 
-                    <button id="btn2" class="btn btn-dark" dmx-on:click="navegacao.reload()">Atualizar</button>
+                    <button id="btn2" class="btn btn-primary" dmx-on:click="navegacao.reload()">Atualizar</button>
                 </div>
 
 

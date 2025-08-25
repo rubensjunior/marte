@@ -111,6 +111,85 @@ dmx.config({
     "tableRepeat1": {
       "meta": [
         {
+          "name": "$index",
+          "type": "number"
+        },
+        {
+          "name": "$key",
+          "type": "text"
+        },
+        {
+          "name": "$value",
+          "type": "object"
+        },
+        {
+          "type": "text",
+          "name": "id_empresa"
+        },
+        {
+          "type": "text",
+          "name": "razao_social"
+        },
+        {
+          "type": "text",
+          "name": "nome_fantasia"
+        },
+        {
+          "type": "text",
+          "name": "nome_polo"
+        },
+        {
+          "type": "text",
+          "name": "cnpj"
+        },
+        {
+          "type": "number",
+          "name": "empresa_matriz"
+        },
+        {
+          "type": "text",
+          "name": "cep"
+        },
+        {
+          "type": "text",
+          "name": "whatsapp"
+        },
+        {
+          "type": "text",
+          "name": "status_empresa"
+        },
+        {
+          "type": "text",
+          "name": "endereco"
+        },
+        {
+          "type": "text",
+          "name": "numero"
+        },
+        {
+          "type": "text",
+          "name": "complemento"
+        },
+        {
+          "type": "text",
+          "name": "bairro"
+        },
+        {
+          "type": "text",
+          "name": "cidade"
+        },
+        {
+          "type": "text",
+          "name": "uf"
+        }
+      ],
+      "outputType": "array"
+    }
+  },
+  "times": {
+    "data_filtro_colaborador": {
+      "meta": [
+        {
           "type": "text",
           "name": "id_usuarios"
         },
@@ -133,6 +212,39 @@ dmx.config({
         {
           "type": "text",
           "name": "status_usuario"
+        }
+      ],
+      "outputType": "array"
+    },
+    "repeat_times": {
+      "meta": [
+        {
+          "type": "text",
+          "name": "id_times"
+        },
+        {
+          "type": "text",
+          "name": "nome_time"
+        },
+        {
+          "type": "text",
+          "name": "descricao_time"
+        },
+        {
+          "type": "number",
+          "name": "criado_por_time"
+        },
+        {
+          "type": "number",
+          "name": "responsavel"
+        },
+        {
+          "type": "text",
+          "name": "status_time"
+        },
+        {
+          "type": "number",
+          "name": "empresa_times"
         }
       ],
       "outputType": "array"

@@ -1,7 +1,6 @@
 <!-- Wappler include head-page="backoffice.html" is="dmx-app" id="colaborador" appConnect="local" bootstrap5="local" capacitor="local" components="{dmxBootstrap5Modal:{},dmxValidator:{},dmxBootstrap5TableGenerator:{},dmxDataTraversal:{},dmxFormatter:{}}" -->
 <dmx-serverconnect id="desativar_usuario" noload="true" url="http://localhost:3000/api/desativa-colaborador" site="backendMarte" dmx-param:id_usuario="​" dmx-on:success="listar_colaboradores.load({id_empresa_atual: usuario.data.query[0].empresa_selecionada});data_colaborador.select(0);modal_desativar.hide();notificacoes.success('Colaborador desativado com sucesso!')" dmx-on:error="data_colaborador.select(0);modal_desativar.hide();notificacoes.danger('Ocorreu um erro: '+lastError.status+lastError.message+lastError.response+'. Entre em contato com o suporte!')"></dmx-serverconnect>
 
-<dmx-serverconnect id="listar_colaboradores" url="http://localhost:3000/api/listar-colaboradores" site="backendMarte" dmx-param:id_empresa_atual="usuario.data.query[0].empresa_selecionada"></dmx-serverconnect>
 
 <dmx-data-detail id="data_colaborador" dmx-bind:data="listar_colaboradores.data.query_colaboradores" key="id_usuarios"></dmx-data-detail>
 <div class="modal" id="modal_desativar" is="dmx-bs5-modal" tabindex="-1" nocloseonclick="true">
@@ -26,7 +25,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">Criar colaborador</h5>
+                <h5 class="modal-title">Criar novo colaborador</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" dmx-on:click="form_criar_colaborador.reset()"></button>
             </div>
             <div class="modal-body p-4">
@@ -113,27 +112,24 @@
                         <th class="pb-3 titulo-tabela">Nome completo</th>
                         <th class="pb-3 titulo-tabela">Nome tratamento</th>
                         <th class="pb-3 titulo-tabela">Email</th>
-                        <th class="pb-3 titulo-tabela">Função</th>
+                        <th class="pb-3 titulo-tabela">Cargo usuario empresa</th>
                         <th class="pb-3 titulo-tabela">Status</th>
                         <th scope="row" class="pb-3 titulo-tabela text-end">Ações</th>
                     </tr>
                 </thead>
-                <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="listar_colaboradores.data.query_colaboradores" id="tableRepeat1" key="id_usuarios">
+                <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="listar_colaboradores.data.query_colaboradores" id="tableRepeat2" key="id_usuarios">
                     <tr>
                         <td dmx-text="nome_completo" class="py-3 texto-tabela fw-bold"></td>
                         <td dmx-text="nome_tratamento" class="py-3 texto-tabela"></td>
                         <td dmx-text="email" class="py-3 texto-tabela"></td>
                         <td dmx-text="cargo_usuario_empresa" class="py-3 texto-tabela"></td>
-                        <td class="py-3 texto-tabela">
-                            <span class="badge" dmx-class:text-bg-success="status_usuario == 'Ativo'" dmx-class:text-bg-danger="status_usuario == 'Inativo'" dmx-text="status_usuario">
-                            </span>
-                        </td>
+                        <td class="py-3 texto-tabela"><span class="badge" dmx-class:text-bg-success="status_usuario == 'Ativo'" dmx-class:text-bg-danger="status_usuario == 'Inativo'" dmx-text="status_usuario"></span></td>
                         <td class="py-3 texto-tabela text-end">
                             <div class="dropdown">
-                                <button id="dropdown1" class="btn dropdown-toggle btn-sm btn-light texto-tabela" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" dmx-hide="status_usuario=='Inativo'">Ações&nbsp;</button>
+                                <button id="dropdown1" class="btn dropdown-toggle btn-sm btn-light texto-tabela" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" dmx-hide="status_usuario=='Inativo'">AÇÕES&nbsp;</button>
                                 <div class="dropdown-menu" aria-labelledby="dropdown1">
                                     <a class="dropdown-item dropdown-item-menor curso-ponteiro" dmx-on:click="data_colaborador.select(id_usuarios);modal_editar.show()">Editar</a>
-                                    <a class="dropdown-item text-danger dropdown-item-menor curso-ponteiro" dmx-on:click="data_colaborador.select(id_usuarios);modal_desativar.show()">Desativar</a>
+                                    <a class="dropdown-item text-danger dropdown-item-menor curso-ponteiro" dmx-on:click="data_colaborador.select(id_usuarios);modal_desativar.show()">DESATIVAR</a>
                                 </div>
                             </div>
                         </td>
