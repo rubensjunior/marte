@@ -1,6 +1,11 @@
-<!-- Wappler include head-page="backoffice.html" is="dmx-app" id="times" appConnect="local" bootstrap5="local" capacitor="local" fontawesome_5="local" components="{dmxBootstrap5Modal:{},dmxDataTraversal:{}}" -->
+<!-- Wappler include head-page="backoffice.html" is="dmx-app" id="times" appConnect="local" bootstrap5="local" capacitor="local" fontawesome_5="local" components="{dmxBootstrap5Modal:{},dmxDataTraversal:{},dmxValidator:{},dmxBootstrap5TableGenerator:{}}" -->
+
+
+
 <dmx-serverconnect id="listar_times" url="http://localhost:3000/api/listar-times" site="backendMarte" dmx-param:id_empresa="usuario.data.query[0].empresa_selecionada"></dmx-serverconnect>
 <dmx-data-view id="data_filtro_colaborador" dmx-bind:data="listar_colaboradores.data.query_colaboradores" filter="status_usuario=='Ativo'"></dmx-data-view>
+<dmx-data-detail id="data_time" dmx-bind:data="listar_times.data.query_times" key="id_times"></dmx-data-detail>
+<dmx-serverconnect id="listar_membros" noload="true" url="http://localhost:3000/api/listar-membros" site="backendMarte"></dmx-serverconnect>
 <div class="modal" id="modal_criar" is="dmx-bs5-modal" tabindex="-1" nocloseonclick="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -9,9 +14,9 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" dmx-on:click="form_criar_time.reset()"></button>
             </div>
             <div class="modal-body p-4">
-                <form id="form_criar_time" is="dmx-serverconnect-form" method="post" action="http://localhost:3000/api/criar-time" site="backendMarte" dmx-on:error="notificacoes.warning('Ocorreu um erro: '+lastError.status+lastError.message+lastError.response+'. Entre em contato com o suporte.')" dmx-on:success="modal_criar.hide();form_criar_time.reset();notificacoes.success('Time criado com sucesso!')">
+                <form id="form_criar_time" is="dmx-serverconnect-form" method="post" action="http://localhost:3000/api/criar-time" site="backendMarte" dmx-on:error="notificacoes.warning('Ocorreu um erro: '+lastError.status+lastError.message+lastError.response+'. Entre em contato com o suporte.')" dmx-on:success="modal_criar.hide();form_criar_time.reset();notificacoes.success('Time criado com sucesso!');listar_times.load({id_empresa: usuario.data.query[0].empresa_selecionada})">
                     <div class="form-group mb-3"> <label for="nome_time" class="form-label">Nome do time</label>
-                        <input type="text" class="form-control" id="nome_time" name="nome_time" aria-describedby="input1_help">
+                        <input type="text" class="form-control" id="nome_time" name="nome_time" aria-describedby="input1_help" required="" data-msg-required="Este é um campo obrigatório!">
                         <input type="hidden" class="form-control" id="id_criado_por" name="id_criado_por" aria-describedby="input1_help" dmx-bind:value="usuario.data.query[0].id_usuarios">
                         <input type="hidden" class="form-control" id="id_empresa" name="id_empresa" aria-describedby="input1_help" dmx-bind:value="usuario.data.query[0].empresa_selecionada">
                     </div>
@@ -19,7 +24,7 @@
                         <textarea id="descricao_time" class="form-control" name="descricao_time"></textarea>
                     </div>
                     <div class="form-group mb-3"> <label for="input2" class="form-label">Responsável</label>
-                        <select id="id_responsavel" class="form-select" dmx-bind:value="​" dmx-bind:options="data_filtro_colaborador.data" optiontext="nome_tratamento" optionvalue="id_usuarios" name="id_responsavel">
+                        <select id="id_responsavel" class="form-select" dmx-bind:options="data_filtro_colaborador.data" optiontext="nome_tratamento" optionvalue="id_usuarios" name="id_responsavel" required="" data-msg-required="Este é um campo obrigatório!">
                             <option selected="" value="">Selecione um responsável</option>
                         </select>
                     </div>
@@ -28,6 +33,91 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" dmx-on:click="form_criar_time.reset()">Cancelar</button>
                 <button type="button" class="btn btn-primary" dmx-on:click="form_criar_time.submit()">Cadastrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="modal_editar" is="dmx-bs5-modal" tabindex="-1" nocloseonclick="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Criar novo time</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" dmx-on:click="data_time.select(0);form_editar_time.reset()"></button>
+            </div>
+            <div class="modal-body p-4">
+                <form id="form_editar_time" is="dmx-serverconnect-form" method="post" action="http://localhost:3000/api/atualizar-times" site="backendMarte" dmx-on:error="notificacoes.danger('Ocorreu um erro: '+lastError.status+lastError.message+lastError.response+'. Entre em contato com o suporte.')" dmx-on:success="data_time.select(0);form_editar_time.reset();modal_editar.hide();notificacoes.success('Time atualizado com sucesso!');listar_times.load({id_empresa: usuario.data.query[0].empresa_selecionada})">
+
+                    <div class="form-group mb-3"> <label for="edit_nome_time" class="form-label">Nome do time</label>
+                        <input type="text" class="form-control" id="edit_nome_time" name="edit_nome_time" aria-describedby="input1_help" required="" data-msg-required="Este é um campo obrigatório!" dmx-bind:value="data_time.data.nome_time">
+                        <input type="hidden" class="form-control" id="edit_id_time" name="edit_id_time" aria-describedby="input1_help" dmx-bind:value="data_time.data.id_times">
+                    </div>
+                    <div class="form-group mb-3"> <label for="input2" class="form-label">Descrição do time</label>
+                        <textarea id="edit_descricao_time" class="form-control" name="edit_descricao_time" required="" data-msg-required="Este é um campo obrigatório!" dmx-bind:value="data_time.data.descricao_time"></textarea>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <div class="form-group mb-3"> <label for="input2" class="form-label">Responsável</label>
+                                <select id="edit_id_responsavel" class="form-select" dmx-bind:value="data_time.data.responsavel" dmx-bind:options="data_filtro_colaborador.data" optiontext="nome_tratamento" optionvalue="id_usuarios" name="edit_id_responsavel" required="" data-msg-required="Este é um campo obrigatório.">
+                                    <option selected="" value="">Selecione um responsável</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group mb-3"> <label for="input1" class="form-label">Status</label>
+                                <select id="status_time" class="form-select" dmx-bind:value="data_time.data.status_time" name="status_time">
+                                    <option value="Ativo">Ativo</option>
+                                    <option value="Inativo">Inativo</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" dmx-on:click="data_time.select(0);form_editar_time.reset()">Cancelar</button>
+                <button type="button" class="btn btn-primary" dmx-on:click="form_editar_time.submit()">Atualizar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal" id="modal_membro" is="dmx-bs5-modal" tabindex="-1" nocloseonclick="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Adicionar membro</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" dmx-on:click="data_time.select(0);form1.reset()"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form_adicionarmembro" is="dmx-serverconnect-form" method="post" action="http://localhost:3000/api/criar-membro" site="backendMarte" dmx-on:error="notificacoes.danger('Ocorreu um erro: '+lastError.status+lastError.message+lastError.response+'. Entre em contato com o suporte.')" dmx-on:success="listar_membros.load({id_time: data_time.data.id_times});form_adicionarmembro.reset();notificacoes.success('Membro adicionado com sucesso!')">
+                    <div class="form-group mb-3"> <label for="input1" class="form-label">Colaboradores</label>
+                        <select id="membro_time" class="form-select" dmx-bind:options="data_filtro_colaborador.data" optiontext="nome_tratamento" optionvalue="id_usuarios" name="membro_time" required="" data-msg-required="Este é um campo obrigatório!">
+                            <option selected="" value="">Escolha um colaborador</option>
+                        </select>
+                        <input id="empresa_membro" name="empresa_membro" type="hidden" class="form-control" dmx-bind:value="data_time.data.empresa_times">
+                        <input id="time" name="time" type="hidden" class="form-control" dmx-bind:value="data_time.data.id_times">
+                    </div>
+                </form>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th class="pb-3 titulo-tabela">Colaborador</th>
+                            <th class="pb-3 titulo-tabela text-end">Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="listar_membros.data.query" id="tableRepeat1">
+                        <tr>
+                            <td dmx-text="nome_tratamento" class="py-3 texto-tabela fw-bold"></td>
+                            <td class="py-3 texto-tabela text-end">
+                                <button id="btn4" class="btn btn-sm btn-danger" dmx-show="status_membro=='Ativo'">Desativar</button>
+                                <button id="btn5" class="btn btn-sm btn-success" dmx-show="status_membro=='Inativo'">Ativar</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" dmx-on:click="data_time.select(0);form1.reset()">Cancelar</button>
+                <button type="button" class="btn btn-primary" dmx-on:click="form_adicionarmembro.submit()">Adicionar</button>
             </div>
         </div>
     </div>
@@ -47,23 +137,23 @@
         </div>
     </div>
 </div>
-<div class="container-fluid mt-3 py-2">
-    <div class="row align-items-stretch" is="dmx-repeat" id="repeat_times" dmx-bind:repeat="listar_times.data.query_times" key="id_times">
-        <div class="col-3 p-3 h-100">
+<div class="container-fluid">
+    <div class="row align-items-start" is="dmx-repeat" id="repeat_times" dmx-bind:repeat="listar_times.data.query_times" key="id_times">
+        <div class="col-3 p-4 h-100 align-self-start">
             <div class="row h-100 align-items-stretch">
                 <div class="col bg-white rounded-3 border border-light-subtitle p-3 h-100">
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <div class="d-flex w-75 align-items-center">
                             <h5 class="m-0">{{nome_time}}</h5>
                         </div>
-                        <div class="d-flex align-items-center"><button id="btn3" class="btn btn-sm btn-light"><i class="far fa-edit"></i><br></button></div>
+                        <div class="d-flex align-items-center"><button id="btn3" class="btn btn-sm btn-light" dmx-on:click="data_time.select(id_times)" data-bs-toggle="modal" data-bs-target="#modal_editar"><i class="far fa-edit"></i><br></button></div>
                     </div>
                     <div class="d-flex mb-2 gap-2">
                         <p class="m-0 text-start">{{descricao_time}}</p>
 
 
                     </div>
-                    <div class="d-flex flex-row align-items-center justify-content-between"><button id="btn1" class="btn btn-outline-primary btn-sm">Adicionar membros</button>
+                    <div class="d-flex flex-row align-items-center justify-content-between"><button id="btn1" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modal_membro" dmx-on:click="data_time.select(id_times);listar_membros.load({id_time: id_times})">Adicionar membros</button>
 
                     </div>
                 </div>

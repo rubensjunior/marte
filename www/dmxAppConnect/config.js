@@ -248,6 +248,76 @@ dmx.config({
         }
       ],
       "outputType": "array"
+    },
+    "data_time": {
+      "meta": [
+        {
+          "type": "text",
+          "name": "id_times"
+        },
+        {
+          "type": "text",
+          "name": "nome_time"
+        },
+        {
+          "type": "text",
+          "name": "descricao_time"
+        },
+        {
+          "type": "number",
+          "name": "criado_por_time"
+        },
+        {
+          "type": "number",
+          "name": "responsavel"
+        },
+        {
+          "type": "text",
+          "name": "status_time"
+        },
+        {
+          "type": "number",
+          "name": "empresa_times"
+        },
+        {
+          "type": "text",
+          "name": "nome_tratamento"
+        }
+      ],
+      "outputType": "array"
+    },
+    "repeatmembros": {
+      "meta": [
+        {
+          "type": "text",
+          "name": "id_times_membros"
+        },
+        {
+          "type": "number",
+          "name": "membro_time"
+        },
+        {
+          "type": "number",
+          "name": "board_time"
+        },
+        {
+          "type": "text",
+          "name": "status_membro"
+        },
+        {
+          "type": "number",
+          "name": "empresa_membro"
+        },
+        {
+          "type": "number",
+          "name": "time"
+        },
+        {
+          "type": "text",
+          "name": "nome_tratamento"
+        }
+      ],
+      "outputType": "array"
     }
   }
 });
