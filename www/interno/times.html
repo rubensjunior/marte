@@ -2,10 +2,13 @@
 
 
 
+
+
 <dmx-serverconnect id="listar_times" url="http://localhost:3000/api/listar-times" site="backendMarte" dmx-param:id_empresa="usuario.data.query[0].empresa_selecionada"></dmx-serverconnect>
 <dmx-data-view id="data_filtro_colaborador" dmx-bind:data="listar_colaboradores.data.query_colaboradores" filter="status_usuario=='Ativo'"></dmx-data-view>
 <dmx-data-detail id="data_time" dmx-bind:data="listar_times.data.query_times" key="id_times"></dmx-data-detail>
 <dmx-serverconnect id="listar_membros" noload="true" url="http://localhost:3000/api/listar-membros" site="backendMarte"></dmx-serverconnect>
+<dmx-serverconnect id="ativar_membro" noload="true" url="http://localhost:3000/api/ativar-membro" site="backendMarte"></dmx-serverconnect><dmx-serverconnect id="desativar_membro" noload="true" url="http://localhost:3000/api/desativar-membro" site="backendMarte"></dmx-serverconnect>
 <div class="modal" id="modal_criar" is="dmx-bs5-modal" tabindex="-1" nocloseonclick="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -81,7 +84,7 @@
     </div>
 </div>
 <div class="modal" id="modal_membro" is="dmx-bs5-modal" tabindex="-1" nocloseonclick="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Adicionar membro</h5>
@@ -101,15 +104,17 @@
                     <thead>
                         <tr>
                             <th class="pb-3 titulo-tabela">Colaborador</th>
+                            <th class="pb-3 titulo-tabela">Status</th>
                             <th class="pb-3 titulo-tabela text-end">Ações</th>
                         </tr>
                     </thead>
-                    <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="listar_membros.data.query" id="tableRepeat1">
+                    <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="listar_membros.data.query" id="tableRepeat2">
                         <tr>
-                            <td dmx-text="nome_tratamento" class="py-3 texto-tabela fw-bold"></td>
+                            <td class="py-3 texto-tabela fw-bold m-0" dmx-text="nome_tratamento"></td>
+                            <td dmx-text="status_membro" class="py-3 texto-tabela m-0"></td>
                             <td class="py-3 texto-tabela text-end">
-                                <button id="btn4" class="btn btn-sm btn-danger" dmx-show="status_membro=='Ativo'">Desativar</button>
-                                <button id="btn5" class="btn btn-sm btn-success" dmx-show="status_membro=='Inativo'">Ativar</button>
+                                <button id="btn4" class="btn btn-sm btn-danger" dmx-show="status_membro=='Ativo'" dmx-on:click="run([{run:{outputType:'text',action:`desativar_membro.load({id_membro: id_times_membros},true)`}},{wait:{delay:300}},{run:{outputType:'text',action:`listar_membros.load({id_time: data_time.data.id_times})`}}])">Desativar</button>
+                                <button id="btn5" class="btn btn-sm btn-success" dmx-show="status_membro=='Inativo'" dmx-on:click="run([{run:{outputType:'text',action:`ativar_membro.load({id_membro: id_times_membros},true)`}},{wait:{delay:300}},{run:{outputType:'text',action:`listar_membros.load({id_time: data_time.data.id_times})`}}])">Ativar</button>
                             </td>
                         </tr>
                     </tbody>
@@ -148,8 +153,9 @@
                         </div>
                         <div class="d-flex align-items-center"><button id="btn3" class="btn btn-sm btn-light" dmx-on:click="data_time.select(id_times)" data-bs-toggle="modal" data-bs-target="#modal_editar"><i class="far fa-edit"></i><br></button></div>
                     </div>
-                    <div class="d-flex mb-2 gap-2">
+                    <div class="d-flex mb-2 gap-2 flex-column justify-content-start py-2 border-top border-bottom border-ligth-subtitle">
                         <p class="m-0 text-start">{{descricao_time}}</p>
+                        <p class="m-0 text-start fw-bold">Responsável: {{nome_tratamento}}</p>
 
 
                     </div>
