@@ -34,12 +34,11 @@
         </div>
     </div>
 </div>
-<div class="container-fluid mt-4 px-3 py-2 mb-4">
+<div class="container-fluid bg-white px-3 py-3  border-bottom border-light-subtle">
     <div class="row align-items-center">
         <div class="col align-self-center">
             <div class="d-flex flex-column align-items-start gap-1">
                 <h5 class="m-0">Funil de Vendas: {{view1.board.data.id}}</h5>
-                <h6 class="m-0 breadcrumb-interno">Home - Negócios - Funil de Vendas</h6>
             </div>
         </div>
         <div class="col align-self-center">
@@ -49,7 +48,7 @@
         </div>
     </div>
 </div>
-<div class="container-fluid">
+<div class="container-fluid p-5">
     <div class="row" is="dmx-repeat" id="repeat_funil" dmx-bind:repeat="listar_funil.data.query_funil" key="id_board">
         <div class="col-3">
             <div class="row">
