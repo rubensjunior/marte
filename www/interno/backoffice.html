@@ -26,6 +26,20 @@
     <link rel="stylesheet" href="../dmxAppConnect/dmxValidator/dmxValidator.css" />
     <script src="../dmxAppConnect/dmxValidator/dmxValidator.js" defer></script>
     <script src="../dmxAppConnect/dmxDataTraversal/dmxDataTraversal.js" defer></script>
+
+    <!-- CSS específico para o layout backoffice -->
+    <style>
+        /* Apenas a coluna side_icon preenche a altura disponível */
+        #side_icon {
+            min-height: calc(100vh - 92px) !important;
+            height: calc(100vh - 92px) !important;
+        }
+
+        /* Remove scroll vertical do body do backoffice */
+        #backoffice {
+            overflow-y: hidden;
+        }
+    </style>
 </head>
 
 <body is="dmx-app" id="backoffice" class="bg-backoffice">
