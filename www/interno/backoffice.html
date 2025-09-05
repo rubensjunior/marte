@@ -30,13 +30,7 @@
 
 <body is="dmx-app" id="backoffice" class="bg-backoffice">
 
-
-
-
-
     <dmx-preloader id="carregamento" spinner="wave" color="#ffc107"></dmx-preloader>
-
-
     <div is="dmx-browser" id="navegacao"></div>
     <dmx-notifications id="notificacoes" position="bottom" align="center"></dmx-notifications>
     <script is="dmx-flow" id="redirect_deslogado" type="text/dmx-flow" autorun="true">{
@@ -55,8 +49,8 @@
     <dmx-serverconnect id="listar_empresas" url="http://localhost:3000/api/listar-empresas" site="backendMarte" dmx-param:id_usuario_logado="idUsuario.data.id"></dmx-serverconnect>
     <dmx-serverconnect id="listar_colaboradores" url="http://localhost:3000/api/listar-colaboradores" site="backendMarte" dmx-param:id_empresa_atual="usuario.data.query[0].empresa_selecionada"></dmx-serverconnect>
     <div class="container-fluid">
-        <div class="row border-top border-bottom border-dark-subtitle bg-white py-3">
-            <div class="col-1 align-self-center text-center"><a href="/in/security/" internal="true" class="me-2"><img src="../assets/images/logo_fundo%20branco.png" class="img-fluid" width="48"></a></div>
+        <div class="row border-top border-light-subtle bg-white py-3">
+            <div class="col-1 text-center align-self-center"><a href="/in/security/" internal="true"><img src="../assets/images/Spacefeed%20AVP%20-%2009.png" class="img-fluid m-0" width="48"></a></div>
             <div class="col align-self-center">
                 <div class="d-flex flex-row justify-content-start gap-2 align-items-stretch">
 
@@ -100,18 +94,17 @@
             </div>
         </div>
         <div class="row h-100">
-            <div class="col-1 text-center py-3 px-3">
-                <h6 class="text-center mb-3 mt-3 side-menu-title">Ferramentas</h6>
-                <div class="d-flex justify-content-center align-items-center mb-3"><a href="/in/security/empresa" class="btn text-center w-100 py-3 btn-secondary" internal="true"><i class="fas fa-home"></i>
+            <div class="col-1 text-center py-4 px-3 bg-white h-100" id="side_icon">
+                <div class="d-flex justify-content-center align-items-center mb-3"><a href="/in/security/empresa" class="btn text-center w-100 py-3" internal="true"><i class="fas fa-home"></i>
                         <div class="side-menu-link">Empresa</div>
                     </a></div>
-                <div class="d-flex justify-content-center align-items-center mb-3"><a href="/in/security/colaborador" class="btn text-center w-100 py-3 btn-secondary" internal="true"><i class="fas fa-briefcase"></i>
+                <div class="d-flex justify-content-center align-items-center mb-3"><a href="/in/security/colaborador" class="btn text-center w-100 py-3" internal="true"><i class="fas fa-briefcase"></i>
                         <div class="side-menu-link">Colaborador</div>
                     </a></div>
-                <div class="d-flex justify-content-center align-items-center mb-3"><a href="/in/security/times" class="btn text-center w-100 py-3 btn-secondary" internal="true"><i class="fas fa-user-friends"></i>
+                <div class="d-flex justify-content-center align-items-center mb-3"><a href="/in/security/times" class="btn text-center w-100 py-3" internal="true"><i class="fas fa-user-friends"></i>
                         <div class="side-menu-link">Times</div>
                     </a></div>
-                <div class="d-flex justify-content-center align-items-center mb-3"><a href="/in/security/funil-de-vendas" class="btn text-center w-100 py-3 btn-secondary" internal="true"><i class="fas fa-filter"></i>
+                <div class="d-flex justify-content-center align-items-center mb-3"><a href="/in/security/funil-de-vendas" class="btn text-center w-100 py-3" internal="true"><i class="fas fa-filter"></i>
                         <div class="side-menu-link">Funil</div>
                     </a></div>
 

@@ -1,15 +1,67 @@
-<!-- Wappler include head-page="backoffice.html" is="dmx-app" id="funildevendas" appConnect="local" bootstrap5="local" capacitor="local" -->
-<div class="container-fluid mt-4 px-3 py-2">
+<!-- Wappler include head-page="backoffice.html" is="dmx-app" id="funildevendas" appConnect="local" bootstrap5="local" capacitor="local" components="{dmxBootstrap5Modal:{},dmxValidator:{},dmxDataTraversal:{},dmxStateManagement:{}}" -->
+<dmx-query-manager id="board"></dmx-query-manager>
+
+<dmx-serverconnect id="listar_funil" url="http://localhost:3000/api/listar_funil" site="backendMarte" dmx-param:id_empresa_funil="usuario.data.query[0].empresa_selecionada"></dmx-serverconnect>
+<dmx-serverconnect id="listar_time" url="http://localhost:3000/api/listar-times" site="backendMarte" dmx-param:id_empresa="usuario.data.query[0].empresa_selecionada"></dmx-serverconnect>
+<div class="modal" id="modal_criar" is="dmx-bs5-modal" tabindex="-1" nocloseonclick="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Criar novo funil</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" dmx-on:click="form_criar.reset()"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form_criar" is="dmx-serverconnect-form" method="post" action="http://localhost:3000/api/criar-funil" site="backendMarte" dmx-on:error="notificacoes.danger('Ocorreu um erro: '+lastError.status+lastError.message+lastError.response+'. Entre em contato com o suporte.')" dmx-on:success="listar_funil.load({id_empresa_funil: usuario.data.query[0].empresa_selecionada});form_criar.reset();modal_criar.hide();notificacoes.success('Funil cadastrado com sucesso!')">
+                    <div class="form-group mb-3"> <label for="nome_funil" class="form-label">Nome do funil</label>
+                        <input type="text" class="form-control" id="nome_funil" name="nome_funil" aria-describedby="input1_help" required="" data-msg-required="Este é um campo obrigatório!">
+                        <input type="hidden" class="form-control" id="id_empresa" name="id_empresa" aria-describedby="input1_help" dmx-bind:value="usuario.data.query[0].empresa_selecionada">
+                        <input type="hidden" class="form-control" id="id_criado_por" name="id_criado_por" aria-describedby="input1_help" dmx-bind:value="usuario.data.query[0].id_usuarios">
+                    </div>
+                    <div class="form-group mb-3"> <label for="input2" class="form-label">Descrição</label>
+                        <textarea id="descricao" class="form-control" style="min-height:120px" name="descricao"></textarea>
+                    </div>
+                    <div class="form-group mb-3"> <label for="input2" class="form-label">Time atrelado</label>
+                        <select id="time" class="form-select" dmx-bind:options="listar_time.data.query_times" optiontext="nome_time" optionvalue="id_times" name="time" required="" data-msg-required="Este é um campo obrigatório!">
+                            <option selected="" value="">Escolha um time</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" dmx-on:click="form_criar.reset()">Cancelar</button>
+                <button type="button" class="btn btn-primary" dmx-on:click="form_criar.submit()">Cadastrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt-4 px-3 py-2 mb-4">
     <div class="row align-items-center">
         <div class="col align-self-center">
             <div class="d-flex flex-column align-items-start gap-1">
-                <h5 class="m-0">Funil de Vendas</h5>
+                <h5 class="m-0">Funil de Vendas: {{view1.board.data.id}}</h5>
                 <h6 class="m-0 breadcrumb-interno">Home - Negócios - Funil de Vendas</h6>
             </div>
         </div>
         <div class="col align-self-center">
             <div class="d-flex align-items-center gap-2 justify-content-end">
                 <button id="btn2" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_criar">Adicionar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row" is="dmx-repeat" id="repeat_funil" dmx-bind:repeat="listar_funil.data.query_funil" key="id_board">
+        <div class="col-3">
+            <div class="row">
+                <div class="col">
+                    <div class="d-flex bg-white border border-light-subtle flex-column gap-3 justify-content-start rounded-3 p-3">
+                        <h4>{{nome_board}}</h4>
+                        <h6>{{descricao_board}}</h6><button id="btn1" class="btn btn-primary btn-sm" dmx-on:click="board.set('id',id_board);navegacao.goto('/in/security/board-funil',true)">Acessar</button>
+                    </div>
+
+
+
+                </div>
             </div>
         </div>
     </div>

@@ -1,7 +1,8 @@
 {
   "bootstrap5": {
     "basic": {
-      "secondary": "#f9f9f9"
+      "warning": "#fbb03b",
+      "primary": "#1b1464"
     },
     "advanced": {}
   }

@@ -146,14 +146,14 @@
     <div class="row align-items-start" is="dmx-repeat" id="repeat_times" dmx-bind:repeat="listar_times.data.query_times" key="id_times">
         <div class="col-3 p-4 h-100 align-self-start">
             <div class="row h-100 align-items-stretch">
-                <div class="col bg-white rounded-3 border border-light-subtitle p-3 h-100">
+                <div class="col bg-white rounded-3 border border-light-subtle p-3 h-100">
                     <div class="d-flex justify-content-between align-items-center mb-2">
                         <div class="d-flex w-75 align-items-center">
                             <h5 class="m-0">{{nome_time}}</h5>
                         </div>
                         <div class="d-flex align-items-center"><button id="btn3" class="btn btn-sm btn-light" dmx-on:click="data_time.select(id_times)" data-bs-toggle="modal" data-bs-target="#modal_editar"><i class="far fa-edit"></i><br></button></div>
                     </div>
-                    <div class="d-flex mb-2 gap-2 flex-column justify-content-start py-2 border-top border-bottom border-ligth-subtitle">
+                    <div class="d-flex my-3 gap-3 flex-column justify-content-start py-3 border-top border-bottom border-ligth-subtitle">
                         <p class="m-0 text-start">{{descricao_time}}</p>
                         <p class="m-0 text-start fw-bold">Responsável: {{nome_tratamento}}</p>
 

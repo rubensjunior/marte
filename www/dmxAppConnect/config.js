@@ -319,5 +319,70 @@ dmx.config({
       ],
       "outputType": "array"
     }
+  },
+  "funildevendas": {
+    "repeat_funil": {
+      "meta": [
+        {
+          "type": "text",
+          "name": "id_board"
+        },
+        {
+          "type": "datetime",
+          "name": "created_at_board"
+        },
+        {
+          "type": "text",
+          "name": "nome_board"
+        },
+        {
+          "type": "text",
+          "name": "tipo_board"
+        },
+        {
+          "type": "number",
+          "name": "criado_por_board"
+        },
+        {
+          "type": "text",
+          "name": "descricao_board"
+        },
+        {
+          "type": "number",
+          "name": "time"
+        },
+        {
+          "type": "number",
+          "name": "empresa_board"
+        }
+      ],
+      "outputType": "array"
+    },
+    "localStorage": [
+      {
+        "type": "number",
+        "name": "id"
+      }
+    ],
+    "query": [
+      {
+        "type": "number",
+        "name": "id"
+      }
+    ]
+  },
+  "boardfunil": {
+    "localStorage": [
+      {
+        "type": "number",
+        "name": "id"
+      }
+    ],
+    "query": [
+      {
+        "type": "number",
+        "name": "id"
+      }
+    ]
   }
 });
