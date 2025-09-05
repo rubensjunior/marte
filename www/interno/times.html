@@ -142,30 +142,21 @@
     </div>
 </div>
 <div class="container-fluid p-5">
-    <div class="row align-items-start" is="dmx-repeat" id="repeat_times" dmx-bind:repeat="listar_times.data.query_times" key="id_times">
-        <div class="col-3 h-100 align-self-start">
-            <div class="row h-100 align-items-stretch">
-                <div class="col bg-white rounded-3 border border-light-subtle p-3 h-100">
-                    <div class="d-flex justify-content-between align-items-center mb-2">
-                        <div class="d-flex w-75 align-items-center">
-                            <h5 class="m-0">{{nome_time}}</h5>
-                        </div>
-                        <div class="d-flex align-items-center"><button id="btn3" class="btn btn-sm btn-light" dmx-on:click="data_time.select(id_times)" data-bs-toggle="modal" data-bs-target="#modal_editar"><i class="far fa-edit"></i><br></button></div>
-                    </div>
-                    <div class="d-flex my-3 gap-3 flex-column justify-content-start py-3 border-top border-bottom border-ligth-subtitle">
-                        <p class="m-0 text-start">{{descricao_time}}</p>
+    <div class="row" is="dmx-repeat" id="repeat_times" dmx-bind:repeat="listar_times.data.query_times" key="id_times">
+        <div class="col-3">
+            <div class="row">
+                <div class="col">
+                    <div class="d-flex bg-white border border-light-subtle flex-column gap-3 justify-content-start rounded-3 p-3">
+                        <h4>{{nome_time}}</h4>
+                        <h6>{{descricao_time}}</h6>
                         <p class="m-0 text-start fw-bold">Responsável: {{nome_tratamento}}</p>
-
-
-                    </div>
-                    <div class="d-flex flex-row align-items-center justify-content-between"><button id="btn1" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#modal_membro" dmx-on:click="data_time.select(id_times);listar_membros.load({id_time: id_times})">Adicionar membros</button>
-
+                        <div class="d-flex gap-2">
+                            <button id="btn1" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal_membro" dmx-on:click="data_time.select(id_times);listar_membros.load({id_time: id_times})">Adicionar membros</button>
+                            <button id="btn3" class="btn btn-light btn-sm" dmx-on:click="data_time.select(id_times)" data-bs-toggle="modal" data-bs-target="#modal_editar"><i class="far fa-edit"></i></button>
+                        </div>
                     </div>
                 </div>
             </div>
-
-
-
         </div>
     </div>
 </div>
