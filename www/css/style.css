@@ -1,4 +1,3 @@
-/* (arquivo original restaurado. Removidas as regras inseridas anteriormente para espaçamento específico do input-group) */
 .bg-login {
     background-image: url('../assets/images/bg-inicial.jpg')!important;
     background-position: center;
@@ -8,66 +7,28 @@
     background-color: #F3F3F3;
     height: 100vh;
 }
+
 .header-azul{
     background-color: #1b1464 !important;
 }
+
 .header-azul-escuro{
     background-color: #140f4b !important;
-}
-/* Garantir que o body e html ocupem 100% da altura */
-html, body {
-    height: 100%;
-    overflow-x: hidden;
-}
-
-/* Garantir que o dmx-view ocupe toda a altura disponível */
-#view1 {
-    height: 100%;
-    max-height: 100vh;
-    overflow: auto;
-}
-
-/* Garantir que container-fluid ocupe toda a altura sem gerar scroll */
-.h-100 {
-    height: 100% !important;
-}
-
-/* Ajustar container para não gerar overflow */
-.container-fluid.h-100 {
-    height: 100%;
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
 }
 
 .bg-backoffice {
     background-color: #F0F4F9;
 }
+
 .curso-ponteiro{
     cursor: pointer;
 }
 
-/* Definição da fonte customizada Poppins */
-@font-face {
-    font-family: 'Poppins';
-    src: url('../assets/fontes/Poppins-Bold.ttf') format('truetype');
-    font-weight: 800;
-    font-style: normal;
-}
-
-/* Aplicação da fonte aos headings */
-/*h1, h2, h3, h4, h5, h6{
-    font-family: 'Poppins';
-    font-weight: 800;
-}*/
 #containerform {
     -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05), 
                 0 4px 15px rgba(0, 0, 0, 0.05);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05), 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05), 
                 0 4px 15px rgba(0, 0, 0, 0.05);
-    -webkit-transition: -webkit-box-shadow 0.3s ease;
-    transition: -webkit-box-shadow 0.3s ease;
-    transition: box-shadow 0.3s ease;
-    transition: box-shadow 0.3s ease, -webkit-box-shadow 0.3s ease;
 }
 
 /* Altura padrão de 48px para inputs e botões Bootstrap */
@@ -84,16 +45,6 @@ textarea.form-control {
 }
 
 /* Input groups também seguem a altura padrão */
-.input-group .form-control,
-.input-group .form-select {
-    height: 48px;
-}
-
-/* Garantir que os elementos dentro de input-group se alinhem */
-.input-group {
-    height: 48px;
-}
-
 .input-group-text {
     height: 48px;
     display: -webkit-box;
@@ -106,12 +57,11 @@ textarea.form-control {
 
 /* Variação mais opaca com sombra mais escura */
 .glass-background-solid {
-    /* Fallback para Electron sem backdrop-filter */
     background: rgba(255, 255, 255, 0.85);
     border: 1px solid rgba(255, 255, 255, 0.9);
     border-radius: 12px;
     -webkit-box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
-            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.18);
 }
 
 /* Glassmorphism para navegadores que suportam backdrop-filter */
@@ -128,24 +78,6 @@ textarea.form-control {
     font-size: 13px;
 }
 
-/* Classe customizada para padding um pouco menor em desktop */
-@media (min-width: 992px) {
-    .p-lg-6 {
-        padding: 3rem !important;
-    }
-}
-
-/* Links dentro do formulário */
-.glass-background-solid a {
-    color: #6c757d;
-    -webkit-transition: color 0.2s ease;
-    transition: color 0.2s ease;
-}
-
-.glass-background-solid a:hover {
-    color: #495057;
-}
-
 /* Estilos personalizados para validação de formulário */
 .invalid-feedback {
     display: block;
@@ -154,12 +86,15 @@ textarea.form-control {
     font-size: 0.875rem;
     color: #dc3545;
 }
+
 .form-control{
-    background-color: #f9f9f9 !important;
+    background-color: #f9f9f9;
 }
+
 .form-select{
-    background-color: #f9f9f9 !important;
+    background-color: #f9f9f9;
 }
+
 .form-control.is-invalid,
 .form-select.is-invalid {
     border-color: #dc3545;
@@ -214,232 +149,6 @@ textarea.form-control {
 .form-control.is-invalid ~ .invalid-feedback,
 .form-select.is-invalid ~ .invalid-feedback {
     display: block;
-}
-
-/* Estilos para o Wizard */
-.wizard-steps {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    margin-bottom: 2rem;
-    padding: 0;
-    list-style: none;
-    position: relative;
-}
-
-.wizard-steps::before {
-    content: '';
-    position: absolute;
-    top: 15px;
-    left: 0;
-    right: 0;
-    height: 2px;
-    background-color: #e9ecef;
-    z-index: 1;
-}
-
-.wizard-step {
-    position: relative;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1;
-    z-index: 2;
-}
-
-.wizard-step-number {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-    background-color: #e9ecef;
-    color: #6c757d;
-    font-weight: 600;
-    font-size: 14px;
-    margin-bottom: 8px;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-}
-
-.wizard-step-title {
-    font-size: 12px;
-    color: #6c757d;
-    text-align: center;
-    font-weight: 500;
-    -webkit-transition: all 0.3s ease;
-    transition: all 0.3s ease;
-}
-
-.wizard-step.active .wizard-step-number {
-    background-color: #0d6efd;
-    color: white;
-}
-
-.wizard-step.active .wizard-step-title {
-    color: #0d6efd;
-    font-weight: 600;
-}
-
-.wizard-step.completed .wizard-step-number {
-    background-color: #198754;
-    color: white;
-}
-
-.wizard-step.completed .wizard-step-title {
-    color: #198754;
-}
-
-/* REDUZIDA: Altura mínima do conteúdo do wizard */
-.wizard-content {
-    min-height: 250px;
-}
-
-/* CORRIGIDO: Mostra todas as seções do wizard por padrão */
-.wizard-step-content {
-    display: block;
-    margin-bottom: 2rem;
-}
-
-.wizard-step-content.active {
-    display: block;
-    -webkit-animation: fadeIn 0.3s ease-in;
-            animation: fadeIn 0.3s ease-in;
-}
-
-@-webkit-keyframes fadeIn {
-    from { opacity: 0; -webkit-transform: translateY(10px); transform: translateY(10px); }
-    to { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; -webkit-transform: translateY(10px); transform: translateY(10px); }
-    to { opacity: 1; -webkit-transform: translateY(0); transform: translateY(0); }
-}
-
-/* REDUZIDOS: Espaçamentos da navegação do wizard */
-.wizard-navigation {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    margin-top: 1rem;
-    padding-top: 0.75rem;
-    border-top: 1px solid rgba(0, 0, 0, 0.125);
-}
-
-/* Resumo do plano */
-.plan-summary {
-    background: rgba(13, 110, 253, 0.1);
-    border: 1px solid rgba(13, 110, 253, 0.2);
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin-top: 1rem;
-}
-
-.plan-summary h6 {
-    color: #0d6efd;
-    margin-bottom: 1rem;
-}
-
-.summary-item {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-pack: justify;
-        -ms-flex-pack: justify;
-            justify-content: space-between;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    padding: 0.5rem 0;
-    border-bottom: 1px solid rgba(13, 110, 253, 0.1);
-}
-
-.summary-item:last-child {
-    border-bottom: none;
-    font-weight: 600;
-    margin-top: 0.5rem;
-    padding-top: 1rem;
-    border-top: 2px solid rgba(13, 110, 253, 0.2);
-}
-
-/* Responsividade para o wizard */
-@media (max-width: 767.98px) {
-    .wizard-steps {
-        margin-bottom: 1.5rem;
-    }
-    
-    .wizard-step-number {
-        width: 28px;
-        height: 28px;
-        font-size: 12px;
-    }
-    
-    .wizard-step-title {
-        font-size: 11px;
-    }
-    
-    /* REDUZIDA: Altura mínima em mobile */
-    .wizard-content {
-        min-height: 200px;
-    }
-    
-    .wizard-navigation {
-        -webkit-box-orient: vertical;
-        -webkit-box-direction: normal;
-            -ms-flex-direction: column;
-                flex-direction: column;
-        gap: 1rem;
-        margin-top: 0.75rem;
-        padding-top: 0.5rem;
-    }
-    
-    .wizard-navigation .btn {
-        width: 100%;
-    }
-    
-    /* Ajustar container-fluid em mobile para não gerar scroll */
-    .container-fluid.h-100 {
-        padding: 1rem !important;
-    }
-}
-
-@media (max-width: 575.98px) {
-    .wizard-step-title {
-        font-size: 10px;
-    }
-    
-    /* REDUZIDA: Altura mínima em telas muito pequenas */
-    .wizard-content {
-        min-height: 150px;
-    }
-    
-    /* Reduzir padding ainda mais em telas pequenas */
-    .container-fluid.h-100 {
-        padding: 0.5rem !important;
-    }
 }
 
 /* Responsividade completa */
@@ -554,45 +263,8 @@ textarea.form-control {
     }
 }
 
-/* Garantir que o flexbox funcione corretamente em navegadores antigos */
-.d-flex {
-    display: -webkit-box !important;
-    display: -ms-flexbox !important;
-    display: flex !important;
-}
-
-.flex-column {
-    -webkit-box-orient: vertical !important;
-    -webkit-box-direction: normal !important;
-    -ms-flex-direction: column !important;
-    flex-direction: column !important;
-}
-
-.justify-content-center {
-    -webkit-box-pack: center !important;
-    -ms-flex-pack: center !important;
-    justify-content: center !important;
-}
-
-.align-items-center {
-    -webkit-box-align: center !important;
-    -ms-flex-align: center !important;
-    align-items: center !important;
-}
-
-.menu-nav {
-    font-size: 15px;
-    font-weight: 600;
-    color: #78829D;
-}
-
 .profile-menu .dropdown-toggle::after {
     display: none !important;
-}
-
-.breadcrumb-interno {
-    font-size: 13px;
-    color: #78829D;
 }
 
 .titulo-tabela {
@@ -653,124 +325,40 @@ textarea.form-control {
     border-color: #dee2e6 !important;
     color: #6c757d !important;
 }
+
 .select-border{
     font-weight: 500;
     border-style: dotted;
     border-color: #6c757d !important;
     max-width: 280px;
 }
+
 .btn-light{
     background-color: #f9f9f9;
 }
+
 .dropdown-item-menor{
     font-size: 13px !important;
     font-weight: 500;
 }
+
 /* Chrome, Edge, Safari */
 ::-webkit-scrollbar {
-  width: 6px;              /* largura máxima */
-  background: #ffffff;       /* fundo branco */
+    width: 6px;
+    background: #ffffff;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #8a8a8a; /* barra cinza escuro */
-  border-radius: 8px;        /* arredondamento opcional */
+    background-color: #8a8a8a;
+    border-radius: 8px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background-color: #8a8a8a; /* cor mais escura ao passar o mouse */
+    background-color: #8a8a8a;
 }
 
 /* Firefox */
 * {
-  scrollbar-width: thin;             /* fino */
-  scrollbar-color: #8a8a8a #ffffff;  /* thumb cinza escuro + fundo branco */
-}
-
-/* Estilos para Cards dos Times - Altura Uniforme */
-#repeat_times {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-}
-
-#repeat_times .col-3 {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-}
-
-#repeat_times .row.h-100 {
-    -webkit-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-}
-
-#repeat_times .col.bg-white {
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    min-height: 200px; /* altura mínima para uniformidade */
-}
-
-/* Garantir que o conteúdo se distribua corretamente */
-#repeat_times .col.bg-white > div:last-child {
-    margin-top: auto; /* empurra o último elemento para o final */
-}
-
-/* Ajustar altura da descrição para manter uniformidade */
-#repeat_times .col.bg-white p {
-    -webkit-box-flex: 1;
-        -ms-flex: 1;
-            flex: 1;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3; /* limita a 3 linhas */
-    -webkit-box-orient: vertical;
-}
-
-/* Responsividade para os cards dos times */
-@media (max-width: 1199.98px) {
-    #repeat_times .col-3 {
-        width: 33.333333%;
-        -webkit-box-flex: 0;
-            -ms-flex: 0 0 33.333333%;
-                flex: 0 0 33.333333%;
-    }
-}
-
-@media (max-width: 991.98px) {
-    #repeat_times .col-3 {
-        width: 50%;
-        -webkit-box-flex: 0;
-            -ms-flex: 0 0 50%;
-                flex: 0 0 50%;
-    }
-}
-
-@media (max-width: 767.98px) {
-    #repeat_times .col-3 {
-        width: 100%;
-        -webkit-box-flex: 0;
-            -ms-flex: 0 0 100%;
-                flex: 0 0 100%;
-    }
-    
-    #repeat_times .col.bg-white {
-        min-height: 150px; /* altura menor em mobile */
-    }
+    scrollbar-width: thin;
+    scrollbar-color: #8a8a8a #ffffff;
 }
