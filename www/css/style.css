@@ -8,7 +8,12 @@
     background-color: #F3F3F3;
     height: 100vh;
 }
-
+.header-azul{
+    background-color: #1b1464 !important;
+}
+.header-azul-escuro{
+    background-color: #140f4b !important;
+}
 /* Garantir que o body e html ocupem 100% da altura */
 html, body {
     height: 100%;

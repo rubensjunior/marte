@@ -103,7 +103,7 @@ export class ElectronCapacitorApp {
       ? { titleBarStyle: 'hiddenInset' as const }
       : {
         titleBarStyle: 'hidden' as const,
-        titleBarOverlay: { color: '#ffffff', symbolColor: '#000000', height: 30 }
+        titleBarOverlay: { color: '#1b1464', symbolColor: '#ffffff', height: 30 }
       };
 
     const icon = nativeImage.createFromPath(
@@ -243,7 +243,7 @@ export class ElectronCapacitorApp {
           left: 0;
           right: 0;
           height: 30px;
-          background-color: #ffffff;
+          background-color: #1b1464;
           z-index: 10000;
           -webkit-app-region: drag;
         }
@@ -255,7 +255,7 @@ export class ElectronCapacitorApp {
           top: 0;
           left: 15px; /* Posição à esquerda */
           z-index: 10001;
-          color: #000000;
+          color: #ffffff;
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
           font-size: 13px;
           font-weight: 400;
