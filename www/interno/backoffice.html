@@ -50,8 +50,8 @@
     <dmx-serverconnect id="usuario" url="http://localhost:3000/api/dados-usuario" site="backendMarte" dmx-param:id_usuario_logado="idUsuario.data.id"></dmx-serverconnect>
     <dmx-serverconnect id="listar_empresas" url="http://localhost:3000/api/listar-empresas" site="backendMarte" dmx-param:id_usuario_logado="idUsuario.data.id"></dmx-serverconnect>
     <dmx-serverconnect id="listar_colaboradores" url="http://localhost:3000/api/listar-colaboradores" site="backendMarte" dmx-param:id_empresa_atual="usuario.data.query[0].empresa_selecionada"></dmx-serverconnect>
-    <header>
-        <div class="container-fluid header-azul py-3">
+    <header class="bg-gradiente">
+        <div class="container-fluid py-3  border border-primary">
             <div class="row">
                 <div class="col align-self-center">
                     <div class="d-flex align-items-center gap-2"><a href="/in/security/" internal="true" class="me-4"><img src="../assets/images/Spacefeed%20AVP%20-%2010.png" class="img-fluid m-0" width="40"></a>
@@ -93,13 +93,13 @@
                 </div>
             </div>
         </div>
-        <div class="header-azul-escuro container-fluid py-2">
+        <div class="container-fluid py-2">
             <div class="nav w-100 align-items-center gap-3">
-                <a class="nav-item nav-link text-white" href="/in/security/" internal="true">Inicio</a>
-                <a class="nav-item nav-link text-white" href="/in/security/empresa" internal="true">Empresas</a>
-                <a class="nav-item nav-link text-white" href="/in/security/colaborador" internal="true">Colaboradores</a>
-                <a class="nav-item nav-link text-white" href="/in/security/times" internal="true">Times</a>
-                <a class="nav-item nav-link text-white" href="/in/security/funil-de-vendas" internal="true">Funil de vendas</a>
+                <a class="nav-item nav-link text-white lh-1 px-0" href="/in/security/" internal="true">Inicio</a>
+                <a class="nav-item nav-link text-white lh-1" href="/in/security/empresa" internal="true">Empresas</a>
+                <a class="nav-item nav-link text-white lh-1" href="/in/security/colaborador" internal="true">Colaboradores</a>
+                <a class="nav-item nav-link text-white lh-1" href="/in/security/times" internal="true">Times</a>
+                <a class="nav-item nav-link text-white lh-1" href="/in/security/funil-de-vendas" internal="true">Funil de vendas</a>
             </div>
         </div>
 

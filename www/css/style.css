@@ -7,9 +7,13 @@
     background-color: #F3F3F3;
     height: 100vh;
 }
+.bg-gradiente {
+  /* Fallback */
+  background: #1b1464;
 
-.header-azul{
-    background-color: #1b1464 !important;
+  /* Gradiente moderno */
+  background: -webkit-gradient(linear, left top, left bottom, from(#1b1464), to(#140f4b));
+  background: linear-gradient(to bottom, #1b1464 0%, #140f4b 100%);
 }
 
 .header-azul-escuro{
