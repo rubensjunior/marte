@@ -107,7 +107,7 @@ export class ElectronCapacitorApp {
       };
 
     const icon = nativeImage.createFromPath(
-      join(app.getAppPath(), 'assets', process.platform === 'win32' ? 'appIcon.ico' : 'appIcon.png')
+      join(app.getAppPath(), 'app', 'assets', 'images', 'Spacefeed - Avatar principal - 02.png')
     );
     this.mainWindowState = windowStateKeeper({
       defaultWidth: 1000,
@@ -183,7 +183,9 @@ export class ElectronCapacitorApp {
       this.SplashScreen = new CapacitorSplashScreen({
         imageFilePath: join(
           app.getAppPath(),
+          'app',
           'assets',
+          'images',
           this.CapacitorFileConfig.electron?.splashScreenImageName ?? 'splash.png'
         ),
         windowWidth: 400,
@@ -208,6 +210,8 @@ export class ElectronCapacitorApp {
       }
     });
 
+    this.setupTitleBar();
+
     // Link electron plugins into the system.
     setupCapacitorElectronPlugins();
 
@@ -231,7 +235,7 @@ export class ElectronCapacitorApp {
         body { 
           margin: 0 !important;
           padding: 0 !important;
-          padding-top: 30px !important;
+          padding-top: 35px !important;
           box-sizing: border-box !important;
         }
         
@@ -242,35 +246,145 @@ export class ElectronCapacitorApp {
           top: 0;
           left: 0;
           right: 0;
-          height: 30px;
+          height: 35px;
           background-color: #1b1464;
           z-index: 10000;
           -webkit-app-region: drag;
         }
         
-        /* Título do texto */
+        /* Título do texto com ícone */
         body::after {
           content: 'Spacefeed Marte - Beta v1.0.0';
+          display: flex;
+          align-items: center;
           position: fixed;
           top: 0;
-          left: 15px; /* Posição à esquerda */
+          left: 15px;
+          width: calc(100% - 15px);
           z-index: 10001;
           color: #ffffff;
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
           font-size: 13px;
           font-weight: 400;
-          line-height: 40px;
-          height: 30px;
+          height: 35px;
+          padding-left: 30px;
+          pointer-events: none;
+        }
+        
+        /* Ícone da imagem */
+        html::before {
+          content: '';
+          position: fixed;
+          top: 7px;
+          left: 12px;
+          width: 20px;
+          height: 20px;
+          background-image: url('capacitor-electron://localhost/assets/images/Spacefeed AVP - 10.png');
+          background-size: contain;
+          background-repeat: no-repeat;
+          z-index: 10002;
           pointer-events: none;
         }
       `);
-
       setTimeout(() => {
         if (electronIsDev) {
           this.MainWindow.webContents.openDevTools();
         }
         CapElectronEventEmitter.emit('CAPELECTRON_DeeplinkListenerInitialized', '');
       }, 400);
+    });
+  }
+
+  private setupTitleBar(): void {
+    const applyFullTitleBarStyles = () => {
+      this.MainWindow.webContents.insertCSS(`
+        /* Reaplica todos os estilos da barra de título */
+        body { 
+          padding-top: 35px !important; 
+        }
+        
+        body::before {
+          content: '' !important;
+          position: fixed !important;
+          top: 0 !important;
+          left: 0 !important;
+          right: 0 !important;
+          height: 35px !important;
+          background-color: #1b1464 !important;
+          z-index: 10000 !important;
+          -webkit-app-region: drag !important;
+          display: block !important;
+        }
+        
+        body::after {
+          content: 'Spacefeed Marte - Beta v1.0.0' !important;
+          display: flex !important;
+          align-items: center !important;
+          position: fixed !important;
+          top: 0 !important;
+          left: 15px !important;
+          width: calc(100% - 15px) !important;
+          z-index: 10001 !important;
+          color: #ffffff !important;
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+          font-size: 13px !important;
+          font-weight: 400 !important;
+          height: 35px !important;
+          padding-left: 30px !important;
+          pointer-events: none !important;
+        }
+        
+        html::before {
+          content: '' !important;
+          position: fixed !important;
+          top: 7px !important;
+          left: 12px !important;
+          width: 20px !important;
+          height: 20px !important;
+          background-image: url('capacitor-electron://localhost/assets/images/Spacefeed AVP - 10.png') !important;
+          background-size: contain !important;
+          background-repeat: no-repeat !important;
+          z-index: 10002 !important;
+          pointer-events: none !important;
+          display: block !important;
+        }
+      `);
+    };
+
+    // Aplica estilos completos quando navegar para outras páginas
+    this.MainWindow.webContents.on('did-navigate', () => {
+      setTimeout(applyFullTitleBarStyles, 100);
+      // Força a criação da imagem via JavaScript como backup
+      setTimeout(() => {
+        this.MainWindow.webContents.executeJavaScript(`
+          const existingIcon = document.querySelector('.electron-title-icon');
+          if (existingIcon) existingIcon.remove();
+          
+          const icon = document.createElement('img');
+          icon.className = 'electron-title-icon';
+          icon.src = 'capacitor-electron://localhost/assets/images/Spacefeed AVP - 10.png';
+          icon.style.cssText = 'position: fixed !important; top: 7px !important; left: 12px !important; width: 20px !important; height: 20px !important; z-index: 10002 !important; pointer-events: none !important;';
+          document.body.appendChild(icon);
+        `).catch(() => { });
+      }, 250);
+    });
+
+    // Também aplica quando a página termina de carregar
+    this.MainWindow.webContents.on('did-finish-load', () => {
+      setTimeout(applyFullTitleBarStyles, 50);
+      // Força a criação da imagem via JavaScript como backup
+      setTimeout(() => {
+        this.MainWindow.webContents.executeJavaScript(`
+          const existingIcon = document.querySelector('.electron-title-icon');
+          if (existingIcon) existingIcon.remove();
+          
+          const icon = document.createElement('img');
+          icon.className = 'electron-title-icon';
+          icon.src = 'capacitor-electron://localhost/assets/images/Spacefeed AVP - 10.png';
+          icon.style.cssText = 'position: fixed !important; top: 7px !important; left: 12px !important; width: 20px !important; height: 20px !important; z-index: 10002 !important; pointer-events: none !important;';
+          document.body.appendChild(icon);
+        `).catch(() => { });
+      }, 200);
     });
   }
 }
@@ -282,17 +396,17 @@ export function setupContentSecurityPolicy(customScheme: string): void {
       responseHeaders: {
         ...details.responseHeaders,
         'Content-Security-Policy': [
-          `default-src 'self' ${customScheme}://* http://localhost:3000/*; 
-script-src 'self' ${customScheme}://* http://localhost:3000/* 'unsafe-inline' 'unsafe-eval'; 
-style-src 'self' ${customScheme}://* http://localhost:3000/* 'unsafe-inline'; 
-connect-src 'self' ${customScheme}://* http://localhost:* http://127.0.0.1:* http://* https://* ws://* wss://*; 
-img-src 'self' data: ${customScheme}://* http://* https://*; 
-frame-src 'self' ${customScheme}://* http://* https://*; 
-font-src 'self' data: ${customScheme}://* http://* https://*;
-media-src 'self' ${customScheme}://* http://* https://*;
-object-src 'none';
-form-action 'self' ${customScheme}://* http://* https://*;
-worker-src 'self' ${customScheme}://* blob:;`,
+          `default -src 'self' ${customScheme}://* http://localhost:3000/*; 
+      script - src 'self' ${customScheme}://* http://localhost:3000/* 'unsafe-inline' 'unsafe-eval'; 
+      style - src 'self' ${customScheme}://* http://localhost:3000/* 'unsafe-inline'; 
+      connect - src 'self' ${customScheme}://* http://localhost:* http://127.0.0.1:* http://* https://* ws://* wss://*; 
+      img - src 'self' data: ${customScheme}://* http://* https://*; 
+      frame - src 'self' ${customScheme}://* http://* https://*; 
+      font - src 'self' data: ${customScheme}://* http://* https://*;
+      media - src 'self' ${customScheme}://* http://* https://*;
+      object - src 'none';
+    form - action 'self' ${customScheme}://* http://* https://*;
+    worker - src 'self' ${customScheme}://* blob:;`,
         ],
       },
     });
