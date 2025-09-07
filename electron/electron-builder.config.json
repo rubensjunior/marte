@@ -23,7 +23,9 @@
     "allowToChangeInstallationDirectory": true,
     "createDesktopShortcut": true,
     "createStartMenuShortcut": true,
-    "shortcutName": "Spacefeed Marte"
+    "shortcutName": "Spacefeed Marte",
+    "installerIcon": "assets/installerIcon.ico",
+    "uninstallerIcon": "assets/uninstallIcon.ico"
   },
   "win": {
     "target": "nsis",
