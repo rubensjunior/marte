@@ -68,9 +68,16 @@
   background: -webkit-gradient(linear, left top, left bottom, from(#1b1464), to(#140f4b));
   background: linear-gradient(to bottom, #1b1464 0%, #140f4b 100%);
 }
-
+.card-gradiente{
+    background-color: #fbb03b;
+    background: -webkit-gradient(linear, left top, right top, from(#fbb03b), to(#f15a24));
+    background: linear-gradient(to right, #fbb03b 0%, #f15a24 100%);
+}
+.card-transparente{
+    background-color: #ffffff00;
+}
 .header-azul-escuro{
-    background-color: #140f4b !important;
+    background-color: #140f4b !important;   
     min-height: 280px;
 }
 .container-minimo {
@@ -228,7 +235,24 @@ textarea.form-control {
     color: #ffffff !important;
     border-color: rgba(255, 255, 255, 0.6) !important;
     border-style: solid !important;
-    box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.15) !important;
+    -webkit-box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.15) !important;
+            box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.15) !important;
+}
+
+.input-group-transparent .form-control::-webkit-input-placeholder {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.input-group-transparent .form-control::-moz-placeholder {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.input-group-transparent .form-control:-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.input-group-transparent .form-control::-ms-input-placeholder {
+    color: rgba(255, 255, 255, 0.7) !important;
 }
 
 .input-group-transparent .form-control::placeholder {

@@ -1,7 +1,8 @@
 {
   "bootstrap5": {
     "basic": {
-      "info": "#494383"
+      "info": "#494383",
+      "warning": "#fbb03b "
     },
     "advanced": {}
   }

@@ -140,5 +140,23 @@
     </div>
 </header>
 <main class="px-4">
-    <div class="container-fluid bg-white rounded-4 p-4 container-minimo shadow"></div>
+    <div class="container-fluid bg-white rounded-4 p-4 container-minimo shadow">
+        <div class="row" is="dmx-repeat" id="repeat_cards_times" dmx-bind:repeat="listar_times.data.query_times" key="id_times">
+            <div class="col-3">
+                <div class="card card-gradiente border border-0">
+                    <div class="card-header card-transparente border border-0">
+                        <h3 class="text-white">{{nome_time}}</h3>
+                    </div>
+                    <div class="card-body card-transparente">
+                        <p class="card-text text-white">{{descricao_time}}. Responsável: {{nome_tratamento}},</p>
+                    </div>
+                    <div class="card-footer card-transparente border border-0 gap-3 pb-3">
+                        <button id="btn1" class="btn btn-secondary">Adicionar membro</button>
+                        <button id="btn3" class="btn btn-secondary">Editar</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </main>
