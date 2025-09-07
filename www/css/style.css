@@ -20,7 +20,9 @@
         -ms-flex-direction: column;
             flex-direction: column;
 }
-
+.mega-menu{
+    min-width: 512px;
+}
 .container-fluid .row.h-100 {
     -webkit-box-flex: 1;
         -ms-flex: 1;
@@ -84,7 +86,8 @@ body#index main#view1 {
     padding: 0 !important;
     /* Compensar title bar do Electron */
     padding-top: 30px !important;
-    box-sizing: border-box !important;
+    -webkit-box-sizing: border-box !important;
+            box-sizing: border-box !important;
 }
 
 /* Ajustar altura do container considerando o padding-top */
@@ -92,7 +95,8 @@ body#index main#view1 .container-fluid {
     min-height: calc(100vh - 30px) !important;
     padding: 1rem !important;
     margin: 0 !important;
-    box-sizing: border-box !important;
+    -webkit-box-sizing: border-box !important;
+            box-sizing: border-box !important;
 }
 
 /* Remover limitações de altura dos elementos filhos - deixar fluir naturalmente */
@@ -129,7 +133,8 @@ body#index main#view1 .wizard-step-content {
 
 /* Garantir que outros elementos não adicionem altura extra */
 body#index * {
-    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
 }
 
 /* Remover qualquer margin/padding que possa estar causando overflow */
@@ -339,9 +344,10 @@ textarea.form-control {
     color: rgba(255, 255, 255, 0.7) !important;
 }
 
+/* CORREÇÃO: Opções do select com estilo padrão Bootstrap */
 .input-group-transparent .form-select option {
-    background-color: #212529 !important;
-    color: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #212529 !important;
 }
 
 .input-group-transparent .input-group-text {
