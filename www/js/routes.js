@@ -38,7 +38,7 @@ dmx.routing.routes = [
     "url": "../interno/board-funil.html"
   },
   {
-    "path": "/in/security/",
+    "path": "/in/security/leads",
     "url": "../interno/Leads.html"
   }
 ]
