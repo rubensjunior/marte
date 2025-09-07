@@ -7,6 +7,59 @@
     background-color: #F3F3F3;
     height: 100vh;
 }
+
+/* Centralização vertical para containers de formulários */
+.container-fluid.vh-100,
+.container-fluid.h-100 {
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+}
+
+.container-fluid .row.h-100 {
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+}
+
+/* Garantir que as colunas mantenham a altura total */
+.container-fluid .row.h-100 > .col-12,
+.container-fluid .row.h-100 > .col-lg-6 {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    min-height: 100vh;
+}
+
+/* Container específico para formulários */
+.container-fluid .row.h-100 .d-flex.flex-column.h-100 {
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
+    min-height: 100vh;
+}
+
 .bg-gradiente {
   /* Fallback */
   background: #1b1464;
@@ -18,10 +71,15 @@
 
 .header-azul-escuro{
     background-color: #140f4b !important;
+    min-height: 280px;
+}
+.container-minimo {
+    min-height: 320px;
+    margin-top: -136px;
 }
 
 .bg-backoffice {
-    background-color: #F0F4F9;
+    background-color: #ffffff;
 }
 
 .curso-ponteiro{
@@ -46,17 +104,6 @@
 textarea.form-control {
     height: auto;
     min-height: 48px;
-}
-
-/* Input groups também seguem a altura padrão */
-.input-group-text {
-    height: 48px;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
 }
 
 /* Variação mais opaca com sombra mais escura */
@@ -155,6 +202,58 @@ textarea.form-control {
     display: block;
 }
 
+/* Classe customizada para input group transparente com texto branco */
+.input-group-transparent {
+    /* Mantém altura padrão do Bootstrap */
+    height: auto;
+}
+
+/* Estilos com alta especificidade para sobrescrever outras classes */
+.input-group-transparent .form-control,
+.input-group-transparent .form-select,
+.input-group-transparent .form-select.select-border {
+    background-color: transparent !important;
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    border-style: solid !important;
+    /* Mantém altura padrão Bootstrap */
+    height: calc(2.25rem + 2px) !important;
+    min-height: calc(2.25rem + 2px) !important;
+}
+
+.input-group-transparent .form-control:focus,
+.input-group-transparent .form-select:focus,
+.input-group-transparent .form-select.select-border:focus {
+    background-color: transparent !important;
+    color: #ffffff !important;
+    border-color: rgba(255, 255, 255, 0.6) !important;
+    border-style: solid !important;
+    box-shadow: 0 0 0 0.25rem rgba(255, 255, 255, 0.15) !important;
+}
+
+.input-group-transparent .form-control::placeholder {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+.input-group-transparent .form-select option {
+    background-color: #212529 !important;
+    color: #ffffff !important;
+}
+
+.input-group-transparent .input-group-text {
+    background-color: transparent !important;
+    color: rgba(255, 255, 255, 0.8) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    /* Mantém altura padrão Bootstrap */
+    height: calc(2.25rem + 2px);
+}
+
+.input-group-transparent .btn {
+    /* Mantém altura padrão Bootstrap para botões */
+    height: calc(2.25rem + 2px);
+    border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
 /* Responsividade completa */
 
 /* Tablets em landscape e desktops pequenos */
@@ -207,6 +306,15 @@ textarea.form-control {
     .bg-login {
         background-attachment: scroll;
     }
+
+    /* Centralização vertical em móveis */
+    .container-fluid .row.h-100 > .col-12,
+    .container-fluid .row.h-100 > .col-lg-6 {
+        min-height: 100vh;
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center;
+    }
 }
 
 /* Smartphones em portrait */
@@ -245,6 +353,14 @@ textarea.form-control {
     
     .mb-3 {
         margin-bottom: 0.75rem !important;
+    }
+
+    /* Manter centralização vertical mesmo em telas muito pequenas */
+    .container-fluid .row.h-100 {
+        min-height: 100vh;
+        -webkit-box-align: center;
+            -ms-flex-align: center;
+                align-items: center;
     }
 }
 

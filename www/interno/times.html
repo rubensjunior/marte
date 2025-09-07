@@ -127,36 +127,18 @@
         </div>
     </div>
 </div>
-<div class="container-fluid bg-white px-3 py-3  border-bottom border-light-subtle">
-    <div class="row align-items-center">
-        <div class="col align-self-center">
-            <div class="d-flex flex-column align-items-start gap-1">
-                <h5 class="m-0">Times de Trabalho</h5>
+<header class="container-fluid header-azul-escuro align-self-center">
+    <div class="container-fluid pt-5">
+        <div class="row align-items-start">
+            <div class="col align-self-center">
+                <h3 class="m-0 text-white">Times de trabalho</h3>
             </div>
-        </div>
-        <div class="col align-self-center">
-            <div class="d-flex align-items-center gap-2 justify-content-end">
-                <button id="btn2" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_criar">Adicionar</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container-fluid p-5">
-    <div class="row" is="dmx-repeat" id="repeat_times" dmx-bind:repeat="listar_times.data.query_times" key="id_times">
-        <div class="col-3">
-            <div class="row">
-                <div class="col">
-                    <div class="d-flex bg-white border border-light-subtle flex-column gap-3 justify-content-start rounded-3 p-3">
-                        <h4>{{nome_time}}</h4>
-                        <h6>{{descricao_time}}</h6>
-                        <p class="m-0 text-start fw-bold">Responsável: {{nome_tratamento}}</p>
-                        <div class="d-flex gap-2">
-                            <button id="btn1" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#modal_membro" dmx-on:click="data_time.select(id_times);listar_membros.load({id_time: id_times})">Adicionar membros</button>
-                            <button id="btn3" class="btn btn-light btn-sm" dmx-on:click="data_time.select(id_times)" data-bs-toggle="modal" data-bs-target="#modal_editar"><i class="far fa-edit"></i></button>
-                        </div>
-                    </div>
-                </div>
+            <div class="col align-self-center text-end">
+                <button id="btn2" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal_criar">Adicionar</button>
             </div>
         </div>
     </div>
-</div>
+</header>
+<main class="px-4">
+    <div class="container-fluid bg-white rounded-4 p-4 container-minimo shadow"></div>
+</main>

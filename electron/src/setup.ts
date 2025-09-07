@@ -231,7 +231,7 @@ export class ElectronCapacitorApp {
         body { 
           margin: 0 !important;
           padding: 0 !important;
-          padding-top: 30px !important;
+          padding-top: 48px !important;
           box-sizing: border-box !important;
         }
         
@@ -242,7 +242,7 @@ export class ElectronCapacitorApp {
           top: 0;
           left: 0;
           right: 0;
-          height: 30px;
+          height: 48px;
           background-color: #1b1464;
           z-index: 10000;
           -webkit-app-region: drag;
@@ -259,8 +259,8 @@ export class ElectronCapacitorApp {
           font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
           font-size: 13px;
           font-weight: 400;
-          line-height: 30px;
-          height: 30px;
+          line-height: 40px;
+          height: 40px;
           pointer-events: none;
         }
       `);

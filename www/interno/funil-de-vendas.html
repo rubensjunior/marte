@@ -34,34 +34,19 @@
         </div>
     </div>
 </div>
-<div class="container-fluid bg-white px-3 py-3  border-bottom border-light-subtle">
-    <div class="row align-items-center">
-        <div class="col align-self-center">
-            <div class="d-flex flex-column align-items-start gap-1">
-                <h5 class="m-0">Funil de Vendas: {{view1.board.data.id}}</h5>
+<header class="container-fluid header-azul-escuro align-self-center">
+    <div class="container-fluid pt-5">
+        <div class="row align-items-start">
+            <div class="col align-self-center">
+                <h3 class="m-0 text-white">Funil de vendas</h3>
             </div>
-        </div>
-        <div class="col align-self-center">
-            <div class="d-flex align-items-center gap-2 justify-content-end">
-                <button id="btn2" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_criar">Adicionar</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container-fluid p-5">
-    <div class="row" is="dmx-repeat" id="repeat_funil" dmx-bind:repeat="listar_funil.data.query_funil" key="id_board">
-        <div class="col-3">
-            <div class="row">
-                <div class="col">
-                    <div class="d-flex bg-white border border-light-subtle flex-column gap-3 justify-content-start rounded-3 p-3">
-                        <h4>{{nome_board}}</h4>
-                        <h6>{{descricao_board}}</h6><button id="btn1" class="btn btn-primary btn-sm" dmx-on:click="board.set('id',id_board);navegacao.goto('/in/security/board-funil',true)">Acessar</button>
-                    </div>
-
-
-
-                </div>
+            <div class="col align-self-center text-end">
+                <button id="btn2" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal_criar">Adicionar</button>
             </div>
         </div>
     </div>
-</div>
+</header>
+<main class="px-4">
+    <div class="container-fluid bg-white rounded-4 p-4 container-minimo shadow">
+    </div>
+</main>

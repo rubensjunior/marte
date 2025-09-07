@@ -89,52 +89,49 @@
         </div>
     </div>
 </div>
-<div class="container-fluid bg-white px-3 py-3  border-bottom border-light-subtle">
-    <div class="row align-items-center">
-        <div class="col">
-            <div class="d-flex flex-column align-items-start gap-1">
-                <h5 class="m-0">Colaboradores</h5>
+<header class="container-fluid header-azul-escuro align-self-center">
+    <div class="container-fluid pt-5">
+        <div class="row align-items-start">
+            <div class="col align-self-center">
+                <h3 class="m-0 text-white">Colaboradores</h3>
+            </div>
+            <div class="col align-self-center text-end">
+                <button id="btn1" class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal_criar">Adicionar</button>
             </div>
         </div>
-        <div class="col">
-            <div class="d-flex align-items-center gap-2 justify-content-end"><button id="btn1" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_criar">Adicionar</button></div>
-
-        </div>
     </div>
-</div>
-<div class="container-fluid p-5">
-    <div class="row border border-light-subtle py-3 px-2 rounded-3 m-0 bg-white">
-        <div class="col">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th class="pb-3 titulo-tabela">Nome completo</th>
-                        <th class="pb-3 titulo-tabela">Nome tratamento</th>
-                        <th class="pb-3 titulo-tabela">Email</th>
-                        <th class="pb-3 titulo-tabela">Cargo usuario empresa</th>
-                        <th class="pb-3 titulo-tabela">Status</th>
-                        <th scope="row" class="pb-3 titulo-tabela text-end">Ações</th>
-                    </tr>
-                </thead>
-                <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="listar_colaboradores.data.query_colaboradores" id="tableRepeat2" key="id_usuarios">
-                    <tr>
-                        <td dmx-text="nome_completo" class="py-3 texto-tabela fw-bold"></td>
-                        <td dmx-text="nome_tratamento" class="py-3 texto-tabela"></td>
-                        <td dmx-text="email" class="py-3 texto-tabela"></td>
-                        <td dmx-text="cargo_usuario_empresa" class="py-3 texto-tabela"></td>
-                        <td class="py-3 texto-tabela"><span class="badge" dmx-class:text-bg-success="status_usuario == 'Ativo'" dmx-class:text-bg-danger="status_usuario == 'Inativo'" dmx-text="status_usuario"></span></td>
-                        <td class="py-3 texto-tabela text-end">
-                            <div class="dropdown">
-                                <button id="dropdown1" class="btn dropdown-toggle btn-sm btn-light texto-tabela" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" dmx-hide="status_usuario=='Inativo'">AÇÕES&nbsp;</button>
-                                <div class="dropdown-menu" aria-labelledby="dropdown1">
-                                    <a class="dropdown-item dropdown-item-menor curso-ponteiro" dmx-on:click="data_colaborador.select(id_usuarios);modal_editar.show()">Editar</a>
-                                    <a class="dropdown-item text-danger dropdown-item-menor curso-ponteiro" dmx-on:click="data_colaborador.select(id_usuarios);modal_desativar.show()">DESATIVAR</a>
-                                </div>
+</header>
+<main class="px-4">
+    <div class="container-fluid bg-white rounded-4 p-4 container-minimo shadow">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th class="pb-3 titulo-tabela">Nome completo</th>
+                    <th class="pb-3 titulo-tabela">Nome tratamento</th>
+                    <th class="pb-3 titulo-tabela">Email</th>
+                    <th class="pb-3 titulo-tabela">Cargo usuario empresa</th>
+                    <th class="pb-3 titulo-tabela">Status</th>
+                    <th scope="row" class="pb-3 titulo-tabela text-end">Ações</th>
+                </tr>
+            </thead>
+            <tbody is="dmx-repeat" dmx-generator="bs5table" dmx-bind:repeat="listar_colaboradores.data.query_colaboradores" id="tableRepeat2" key="id_usuarios">
+                <tr>
+                    <td dmx-text="nome_completo" class="py-3 texto-tabela fw-bold"></td>
+                    <td dmx-text="nome_tratamento" class="py-3 texto-tabela"></td>
+                    <td dmx-text="email" class="py-3 texto-tabela"></td>
+                    <td dmx-text="cargo_usuario_empresa" class="py-3 texto-tabela"></td>
+                    <td class="py-3 texto-tabela"><span class="badge" dmx-class:text-bg-success="status_usuario == 'Ativo'" dmx-class:text-bg-danger="status_usuario == 'Inativo'" dmx-text="status_usuario"></span></td>
+                    <td class="py-3 texto-tabela text-end">
+                        <div class="dropdown">
+                            <button id="dropdown1" class="btn dropdown-toggle btn-sm btn-light texto-tabela" type="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" dmx-hide="status_usuario=='Inativo'">AÇÕES&nbsp;</button>
+                            <div class="dropdown-menu" aria-labelledby="dropdown1">
+                                <a class="dropdown-item dropdown-item-menor curso-ponteiro" dmx-on:click="data_colaborador.select(id_usuarios);modal_editar.show()">Editar</a>
+                                <a class="dropdown-item text-danger dropdown-item-menor curso-ponteiro" dmx-on:click="data_colaborador.select(id_usuarios);modal_desativar.show()">DESATIVAR</a>
                             </div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
     </div>
-</div>
+</main>
