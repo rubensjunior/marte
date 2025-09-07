@@ -60,6 +60,86 @@
     min-height: 100vh;
 }
 
+/* Correção ESPECÍFICA para a página index */
+body#index {
+    height: 100vh !important;
+    max-height: 100vh !important;
+    overflow: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+body#index.bg-login {
+    height: 100vh !important;
+    max-height: 100vh !important;
+}
+
+/* Controle do main view - APENAS SCROLL DA PÁGINA quando necessário */
+body#index main#view1 {
+    height: 100vh !important;
+    max-height: 100vh !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    /* Compensar title bar do Electron */
+    padding-top: 30px !important;
+    box-sizing: border-box !important;
+}
+
+/* Ajustar altura do container considerando o padding-top */
+body#index main#view1 .container-fluid {
+    min-height: calc(100vh - 30px) !important;
+    padding: 1rem !important;
+    margin: 0 !important;
+    box-sizing: border-box !important;
+}
+
+/* Remover limitações de altura dos elementos filhos - deixar fluir naturalmente */
+body#index main#view1 .container-fluid .row.h-100 {
+    min-height: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+}
+
+body#index main#view1 .container-fluid .row.h-100 > .col-12,
+body#index main#view1 .container-fluid .row.h-100 > .col-lg-6 {
+    min-height: 100% !important;
+    height: auto !important;
+}
+
+body#index main#view1 .d-flex.flex-column.h-100 {
+    min-height: 100% !important;
+    height: auto !important;
+}
+
+/* REMOVER qualquer limitação de altura do formulário - deixar crescer naturalmente */
+body#index main#view1 .glass-background-solid {
+    max-height: none !important;
+    overflow-y: visible !important;
+    margin: 1rem 0 !important;
+}
+
+/* REMOVER limitação de altura dos wizard steps */
+body#index main#view1 .wizard-step-content {
+    max-height: none !important;
+    overflow-y: visible !important;
+    padding-right: 0 !important;
+}
+
+/* Garantir que outros elementos não adicionem altura extra */
+body#index * {
+    box-sizing: border-box;
+}
+
+/* Remover qualquer margin/padding que possa estar causando overflow */
+body#index dmx-notifications,
+body#index [is="dmx-browser"],
+body#index [is="dmx-view"] {
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
 .bg-gradiente {
   /* Fallback */
   background: #1b1464;
@@ -285,6 +365,11 @@ textarea.form-control {
     .container-fluid {
         padding: 3rem !important;
     }
+    
+    /* Ajuste específico para o index */
+    body#index main#view1 .container-fluid {
+        padding: 1.5rem !important;
+    }
 }
 
 /* Tablets em portrait */
@@ -301,6 +386,11 @@ textarea.form-control {
     .glass-background-solid {
         width: 100% !important;
         max-width: 400px;
+    }
+    
+    /* Ajuste específico para o index */
+    body#index main#view1 .container-fluid {
+        padding: 1rem !important;
     }
 }
 
@@ -338,6 +428,22 @@ textarea.form-control {
         -webkit-box-pack: center;
             -ms-flex-pack: center;
                 justify-content: center;
+    }
+
+    /* Ajuste para mobile - comportamento normal */
+    body#index {
+        overflow-y: auto !important;
+    }
+
+    body#index main#view1 {
+        height: auto !important;
+        max-height: none !important;
+        padding-top: 0 !important;
+    }
+    
+    body#index main#view1 .container-fluid {
+        min-height: auto !important;
+        padding: 0.5rem !important;
     }
 }
 

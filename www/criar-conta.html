@@ -17,7 +17,7 @@
                 <main class="w-100 d-flex justify-content-center mb-4">
                     <div class="col-12 col-sm-11 col-md-10 col-lg-12 col-xl-11 col-xxl-10 p-4 p-md-5 p-lg-6 glass-background-solid">
                         <div class="text-center mb-4">
-                            <img src="assets/images/Spacefeed%20AVP%20-%2003.png" class="img-fluid mb-4" width="160" alt="Spacefeed Logo" dmx-on:click="navegacao.goto('/',true)">
+                            <img src="assets/images/Spacefeed%20AVP%20-%2001.png" class="img-fluid mb-4" width="160" alt="Spacefeed Logo" dmx-on:click="navegacao.goto('/',true)">
                             <p class="h6 text-muted mb-0">Preencha o formulário abaixo para criar sua conta.</p>
                         </div>
 
@@ -71,22 +71,16 @@
                                             <input type="text" class="form-control" id="endereco" name="endereco" required data-msg-required="Por favor, informe o endereço.">
                                         </div>
                                     </div>
-                                    <div class="col-md-4">
+                                    <div class="col-md-3">
                                         <div class="form-group mb-2">
                                             <label for="numero" class="form-label">Número</label>
                                             <input type="text" class="form-control" id="numero" name="numero" required data-msg-required="Por favor, informe o número.">
                                         </div>
                                     </div>
-                                    <div class="col-md-8">
+                                    <div class="col-md-3">
                                         <div class="form-group mb-2">
                                             <label for="cep" class="form-label">CEP</label>
                                             <input type="text" class="form-control" id="cep" name="cep" placeholder="XXXXX-XXX" required data-msg-required="Por favor, informe um CEP válido.">
-                                        </div>
-                                    </div>
-                                    <div class="col-12">
-                                        <div class="form-group mb-2">
-                                            <label for="complemento" class="form-label">Complemento <small class="text-muted">(opcional)</small></label>
-                                            <input type="text" class="form-control" id="complemento" name="complemento" placeholder="Sala, bloco, referência...">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -95,13 +89,20 @@
                                             <input type="text" class="form-control" id="bairro" name="bairro" required data-msg-required="Por favor, informe o bairro.">
                                         </div>
                                     </div>
+                                    <div class="col-12">
+                                        <div class="form-group mb-2">
+                                            <label for="complemento" class="form-label">Complemento <small class="text-muted">(opcional)</small></label>
+                                            <input type="text" class="form-control" id="complemento" name="complemento" placeholder="Sala, bloco, referência...">
+                                        </div>
+                                    </div>
+
                                     <div class="col-md-6">
                                         <div class="form-group mb-2">
                                             <label for="cidade" class="form-label">Cidade</label>
                                             <input type="text" class="form-control" id="cidade" name="cidade" required data-msg-required="Por favor, informe a cidade.">
                                         </div>
                                     </div>
-                                    <div class="col-12">
+                                    <div class="col-6">
                                         <div class="form-group mb-2">
                                             <label for="uf" class="form-label">Estado</label>
                                             <select class="form-select" id="uf" name="uf" required data-msg-required="Por favor, selecione o estado.">
@@ -235,9 +236,6 @@
                         </form>
                     </div>
                 </main>
-                <footer class="text-center px-3">
-                    <p class="mini-titulo mb-0 p-1 rounded-2">© Spacefeed é uma marca registrada de RKS Tech Solution. Todos os direitos reservados.</p>
-                </footer>
             </div>
         </div>
     </div>
