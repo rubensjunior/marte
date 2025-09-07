@@ -1,5 +1,6 @@
 {
   "appId": "com.spacefeed.marte",
+  "productName": "Spacefeed Marte",
   "directories": {
     "buildResources": "resources"
   },
@@ -19,14 +20,19 @@
   "nsis": {
     "allowElevation": true,
     "oneClick": false,
-    "allowToChangeInstallationDirectory": true
+    "allowToChangeInstallationDirectory": true,
+    "createDesktopShortcut": true,
+    "createStartMenuShortcut": true,
+    "shortcutName": "Spacefeed Marte"
   },
   "win": {
     "target": "nsis",
-    "icon": "assets/appIcon.ico"
+    "icon": "assets/appIcon.ico",
+    "requestedExecutionLevel": "asInvoker"
   },
   "mac": {
     "category": "your.app.category.type",
-    "target": "dmg"
+    "target": "dmg",
+    "icon": "assets/appIcon.png"
   }
 }

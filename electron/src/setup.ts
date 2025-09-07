@@ -106,9 +106,21 @@ export class ElectronCapacitorApp {
         titleBarOverlay: { color: '#1b1464', symbolColor: '#ffffff', height: 30 }
       };
 
-    const icon = nativeImage.createFromPath(
+    let icon = nativeImage.createFromPath(
       join(app.getAppPath(), 'app', 'assets', 'images', 'Spacefeed - Avatar principal - 02.png')
     );
+
+    // Certifica que o ícone é carregado corretamente
+    if (icon.isEmpty()) {
+      console.warn('Ícone principal não encontrado, tentando ícone alternativo...');
+      const fallbackIcon = nativeImage.createFromPath(
+        join(app.getAppPath(), 'assets', 'appIcon.png')
+      );
+      if (!fallbackIcon.isEmpty()) {
+        icon = fallbackIcon;
+      }
+    }
+
     this.mainWindowState = windowStateKeeper({
       defaultWidth: 1000,
       defaultHeight: 800,
@@ -180,14 +192,14 @@ export class ElectronCapacitorApp {
 
     // If the splashscreen is enabled, show it first while the main window loads then switch it out for the main window, or just load the main window from the start.
     if (this.CapacitorFileConfig.electron?.splashScreenEnabled) {
+      const splashImagePath = join(
+        app.getAppPath(),
+        'assets',
+        this.CapacitorFileConfig.electron?.splashScreenImageName ?? 'splash.png'
+      );
+
       this.SplashScreen = new CapacitorSplashScreen({
-        imageFilePath: join(
-          app.getAppPath(),
-          'app',
-          'assets',
-          'images',
-          this.CapacitorFileConfig.electron?.splashScreenImageName ?? 'splash.png'
-        ),
+        imageFilePath: splashImagePath,
         windowWidth: 400,
         windowHeight: 400,
       });
