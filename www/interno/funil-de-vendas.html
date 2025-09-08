@@ -34,6 +34,37 @@
         </div>
     </div>
 </div>
+<div class="modal" id="modal_editar" is="dmx-bs5-modal" tabindex="-1" nocloseonclick="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Editar funil</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" dmx-on:click="form_criar.reset()"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form_criar1" is="dmx-serverconnect-form" method="post" action="http://localhost:3000/api/criar-funil" site="backendMarte" dmx-on:error="notificacoes.danger('Ocorreu um erro: '+lastError.status+lastError.message+lastError.response+'. Entre em contato com o suporte.')" dmx-on:success="listar_funil.load({id_empresa_funil: usuario.data.query[0].empresa_selecionada});form_criar.reset();modal_criar.hide();notificacoes.success('Funil cadastrado com sucesso!')">
+                    <div class="form-group mb-3"> <label for="nome_funil1" class="form-label">Nome do funil</label>
+                        <input type="text" class="form-control" id="nome_funil1" name="nome_funil" aria-describedby="input1_help" required="" data-msg-required="Este é um campo obrigatório!">
+                        <input type="hidden" class="form-control" id="id_empresa1" name="id_empresa" aria-describedby="input1_help" dmx-bind:value="usuario.data.query[0].empresa_selecionada">
+                        <input type="hidden" class="form-control" id="id_criado_por1" name="id_criado_por" aria-describedby="input1_help" dmx-bind:value="usuario.data.query[0].id_usuarios">
+                    </div>
+                    <div class="form-group mb-3"> <label for="input2" class="form-label">Descrição</label>
+                        <textarea id="descricao1" class="form-control" style="min-height:120px" name="descricao"></textarea>
+                    </div>
+                    <div class="form-group mb-3"> <label for="input2" class="form-label">Time atrelado</label>
+                        <select id="time1" class="form-select" dmx-bind:options="listar_time.data.query_times" optiontext="nome_time" optionvalue="id_times" name="time" required="" data-msg-required="Este é um campo obrigatório!">
+                            <option selected="" value="">Escolha um time</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" dmx-on:click="form_criar.reset()">Cancelar</button>
+                <button type="button" class="btn btn-primary" dmx-on:click="form_criar.submit()">Cadastrar</button>
+            </div>
+        </div>
+    </div>
+</div>
 <header class="container-fluid header-azul-escuro align-self-center">
     <div class="container-fluid pt-5">
         <div class="row align-items-start">
