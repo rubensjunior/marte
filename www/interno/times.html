@@ -142,7 +142,7 @@
 <main class="px-4">
     <div class="container-fluid bg-white rounded-4 p-4 container-minimo shadow">
         <div class="row" is="dmx-repeat" id="repeat_cards_times" dmx-bind:repeat="listar_times.data.query_times" key="id_times">
-            <div class="col-3">
+            <div class="col-4">
                 <div class="card card-gradiente border border-0">
                     <div class="card-header card-transparente border border-0">
                         <h3 class="text-white">{{nome_time}}</h3>
@@ -151,7 +151,7 @@
                         <p class="card-text text-white">{{descricao_time}}. <b>Responsável:</b> {{nome_tratamento}}.</p>
                     </div>
                     <div class="card-footer card-transparente border border-0 gap-3 pb-3">
-                        <button id="btn1" class="btn btn-secondary me-3" data-bs-toggle="modal" data-bs-target="#modal_membro" dmx-on:click="data_time.select(id_times)">Adicionar membro</button>
+                        <button id="btn1" class="btn btn-secondary me-2" data-bs-toggle="modal" data-bs-target="#modal_membro" dmx-on:click="data_time.select(id_times);listar_membros.load({id_time: id_times})">Adicionar membro</button>
                         <button id="btn3" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modal_editar" dmx-on:click="data_time.select(id_times)">Editar</button>
                     </div>
 
