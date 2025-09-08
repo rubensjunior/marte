@@ -1,8 +1,10 @@
 <!-- Wappler include head-page="backoffice.html" is="dmx-app" id="funildevendas" appConnect="local" bootstrap5="local" capacitor="local" components="{dmxBootstrap5Modal:{},dmxValidator:{},dmxDataTraversal:{},dmxStateManagement:{}}" -->
+
 <dmx-query-manager id="board"></dmx-query-manager>
 
 <dmx-serverconnect id="listar_funil" url="http://localhost:3000/api/listar_funil" site="backendMarte" dmx-param:id_empresa_funil="usuario.data.query[0].empresa_selecionada"></dmx-serverconnect>
 <dmx-serverconnect id="listar_time" url="http://localhost:3000/api/listar-times" site="backendMarte" dmx-param:id_empresa="usuario.data.query[0].empresa_selecionada"></dmx-serverconnect>
+<dmx-data-detail id="data_funil"></dmx-data-detail>
 <div class="modal" id="modal_criar" is="dmx-bs5-modal" tabindex="-1" nocloseonclick="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -86,7 +88,8 @@
                         <h3 class="card-title">{{nome_board}}</h3>
                         <p class="card-text">{{descricao_board}}</p>
                         <p class="card-text"><b>Time:</b> {{nome_time}}</p>
-                        <a href="#" class="btn btn-warning">Acessar funil</a>
+                        <a href="#" class="btn btn-warning me-2">Acessar funil</a>
+                        <a href="#" class="btn btn-warning">Editar</a>
                     </div>
                 </div>
             </div>
