@@ -406,6 +406,133 @@ dmx.config({
         "type": "number",
         "name": "id"
       }
+    ],
+    "data_funil": {
+      "meta": [
+        {
+          "type": "text",
+          "name": "id_board"
+        },
+        {
+          "type": "text",
+          "name": "nome_board"
+        },
+        {
+          "type": "text",
+          "name": "tipo_board"
+        },
+        {
+          "type": "text",
+          "name": "descricao_board"
+        },
+        {
+          "type": "number",
+          "name": "time"
+        },
+        {
+          "type": "number",
+          "name": "empresa_board"
+        },
+        {
+          "type": "text",
+          "name": "status_board"
+        },
+        {
+          "type": "text",
+          "name": "nome_time"
+        },
+        {
+          "type": "text",
+          "name": "descricao_time"
+        },
+        {
+          "type": "number",
+          "name": "responsavel"
+        },
+        {
+          "name": "lists",
+          "type": "array",
+          "sub": [
+            {
+              "type": "text",
+              "name": "id_board_lists"
+            },
+            {
+              "type": "datetime",
+              "name": "created_at_board_lists"
+            },
+            {
+              "type": "number",
+              "name": "board"
+            },
+            {
+              "type": "text",
+              "name": "status_list"
+            },
+            {
+              "type": "text",
+              "name": "tpo_list"
+            },
+            {
+              "type": "text",
+              "name": "nome_list"
+            },
+            {
+              "type": "number",
+              "name": "empresa_list"
+            }
+          ]
+        },
+        {
+          "name": "times_membros",
+          "type": "array",
+          "sub": [
+            {
+              "type": "text",
+              "name": "id_times_membros"
+            },
+            {
+              "type": "number",
+              "name": "membro_time"
+            },
+            {
+              "type": "number",
+              "name": "board_time"
+            },
+            {
+              "type": "number",
+              "name": "empresa_membro"
+            },
+            {
+              "type": "number",
+              "name": "time"
+            },
+            {
+              "type": "text",
+              "name": "nome_tratamento"
+            }
+          ]
+        }
+      ],
+      "outputType": "array"
+    },
+    "datastore_funil": [
+      {
+        "type": "text",
+        "name": "id_funil"
+      }
+    ],
+    "cookies": [
+      {
+        "type": "number",
+        "name": "id_funil"
+      }
+    ],
+    "id_funil_selecionado": [
+      {
+        "type": "text",
+        "name": "id"
+      }
     ]
   },
   "boardfunil": {
@@ -420,6 +547,93 @@ dmx.config({
         "type": "number",
         "name": "id"
       }
-    ]
+    ],
+    "datastore_funil": [
+      {
+        "type": "text",
+        "name": "id_funil"
+      }
+    ],
+    "cookies": [
+      {
+        "type": "text",
+        "name": "id_funil"
+      }
+    ],
+    "repeat_listas": {
+      "meta": [
+        {
+          "type": "text",
+          "name": "id_board_lists"
+        },
+        {
+          "type": "number",
+          "name": "board"
+        },
+        {
+          "type": "text",
+          "name": "status_list"
+        },
+        {
+          "type": "text",
+          "name": "tpo_list"
+        },
+        {
+          "type": "text",
+          "name": "nome_list"
+        },
+        {
+          "type": "number",
+          "name": "empresa_list"
+        },
+        {
+          "name": "board_cards",
+          "type": "array",
+          "sub": [
+            {
+              "type": "text",
+              "name": "id_card"
+            },
+            {
+              "type": "text",
+              "name": "status_card"
+            },
+            {
+              "type": "number",
+              "name": "board_list"
+            },
+            {
+              "type": "number",
+              "name": "empresa_card"
+            },
+            {
+              "type": "number",
+              "name": "criado_por"
+            },
+            {
+              "type": "number",
+              "name": "resposavel_card"
+            },
+            {
+              "type": "text",
+              "name": "nome_lead"
+            },
+            {
+              "type": "text",
+              "name": "whats_lead"
+            },
+            {
+              "type": "text",
+              "name": "email_lead"
+            },
+            {
+              "type": "number",
+              "name": "curso_lead"
+            }
+          ]
+        }
+      ],
+      "outputType": "array"
+    }
   }
 });

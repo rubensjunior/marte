@@ -1,26 +1,69 @@
-<!-- Wappler include head-page="backoffice.html" is="dmx-app" id="boardfunil" appConnect="local" bootstrap5="local" capacitor="local" fontawesome_5="local" components="{dmxStateManagement:{}}" -->
-<dmx-query-manager id="board"></dmx-query-manager>
-<div class="container-fluid p-5">
-    <div class="row bg-white px-3 pt-3 border rounded-3 border-light-subtle">
-        <div class="col align-self-center">
-            <div class="d-flex justify-content-between align-items-center pb-3 pt-1">
-                <div class="d-flex flex-column gap-2 align-items-start">
-                    <h6 class="m-0 badge text-bg-secondary bg-warning">Fancy display heading</h6>
-                    <h5 class="m-0">Fancy display heading</h5>
-                    <p class="m-0">A nice paragraph</p>
-                </div>
-                <div class="d-flex flex-column align-items-end">
-                    <button id="btn1" class="btn btn-primary">Adicionar lista</button>
-                </div>
+<!-- Wappler include head-page="backoffice.html" is="dmx-app" id="boardfunil" appConnect="local" bootstrap5="local" capacitor="local" fontawesome_5="local" components="{dmxStateManagement:{},dmxDataTraversal:{},dmxDatastore:{},dmxBootstrap5Modal:{}}" -->
+<div class="modal" id="modal_criar" is="dmx-bs5-modal" tabindex="-1">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Criar etapa</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-            <div class="d-flex gap-4 py-2 border-top border-light-subtle">
-                <button id="btn2" class="btn px-0">Kunbun</button>
-                <button id="btn3" class="btn px-0">Lista</button>
+            <div class="modal-body">
             </div>
-
-
-
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary">Cadastrar</button>
+            </div>
         </div>
-
     </div>
 </div>
+
+<dmx-serverconnect id="funil_selecionado" url="http://localhost:3000/api/listar-funil-selecionado" site="backendMarte" dmx-param:funil="id_funil_selecionado.value"></dmx-serverconnect>
+<header class="container-fluid header-azul-escuro align-self-center">
+    <div class="container-fluid pt-5">
+        <div class="row align-items-start">
+            <div class="col align-self-center">
+                <h3 class="m-0 text-white">Scrumboard - Funil de vendas</h3>
+            </div>
+            <div class="col align-self-center text-end">
+                <div class="d-flex justify-content-end gap-3"><button id="btn1" class="btn btn-warning" dmx-on:click="navegacao.back()">Votar</button></div>
+
+
+            </div>
+        </div>
+    </div>
+</header>
+<main class="px-4">
+    <div class="container-fluid bg-white rounded-4 p-4 container-minimo shadow">
+        <div class="row bg-white px-3 pt-3 border rounded-3 border-light-subtle mb-3">
+            <div class="col align-self-center">
+                <div class="d-flex justify-content-between align-items-center pb-3 pt-1">
+                    <div class="d-flex flex-column gap-2 align-items-start">
+                        <h6 class="m-0 badge text-bg-secondary bg-warning">{{view1.funil_selecionado.data.query_board.nome_time}}&nbsp;&nbsp;</h6>
+                        <h2 class="m-0">{{view1.funil_selecionado.data.query_board.nome_board}}</h2>
+                        <p class="m-0">{{view1.funil_selecionado.data.query_board.descricao_board}}</p>
+                    </div>
+                    <div class="d-flex flex-column align-items-end">
+                        <button id="btn1" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_criar">Adicionar lista</button>
+                    </div>
+                </div>
+                <div class="d-flex gap-4 py-2 border-top border-light-subtle">
+                    <button id="btn2" class="btn px-0">Kunbun</button>
+                    <button id="btn3" class="btn px-0">Lista</button>
+                </div>
+
+
+
+            </div>
+
+        </div>
+        <div class="row mb-3">
+            <div class="col">
+                <h5 class="m-0">Etapas do funil</h5>
+            </div>
+        </div>
+        <div class="row overflow-x-auto" is="dmx-repeat" id="repeat_listas" dmx-bind:repeat="funil_selecionado.data.query_board.lists" key="id_board_lists">
+            <div class="col-4">
+                <h5>{{nome_list}}</h5>
+            </div>
+        </div>
+    </div>
+</main>

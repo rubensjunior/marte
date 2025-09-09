@@ -1,10 +1,9 @@
-<!-- Wappler include head-page="backoffice.html" is="dmx-app" id="funildevendas" appConnect="local" bootstrap5="local" capacitor="local" components="{dmxBootstrap5Modal:{},dmxValidator:{},dmxDataTraversal:{},dmxStateManagement:{}}" -->
+<!-- Wappler include head-page="backoffice.html" is="dmx-app" id="funildevendas" appConnect="local" bootstrap5="local" capacitor="local" components="{dmxBootstrap5Modal:{},dmxValidator:{},dmxDataTraversal:{},dmxStateManagement:{},dmxFormatter:{},dmxDatastore:{}}" -->
 
-<dmx-query-manager id="board"></dmx-query-manager>
 
 <dmx-serverconnect id="listar_funil" url="http://localhost:3000/api/listar_funil" site="backendMarte" dmx-param:id_empresa_funil="usuario.data.query[0].empresa_selecionada"></dmx-serverconnect>
 <dmx-serverconnect id="listar_time" url="http://localhost:3000/api/listar-times" site="backendMarte" dmx-param:id_empresa="usuario.data.query[0].empresa_selecionada"></dmx-serverconnect>
-<dmx-data-detail id="data_funil"></dmx-data-detail>
+<dmx-data-detail id="data_funil" dmx-bind:data="listar_funil.data.query_funil" key="id_board"></dmx-data-detail>
 <div class="modal" id="modal_criar" is="dmx-bs5-modal" tabindex="-1" nocloseonclick="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -41,28 +40,33 @@
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Editar funil</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" dmx-on:click="form_criar.reset()"></button>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" dmx-on:click="form_criar.reset();data_funil.select(0)"></button>
             </div>
             <div class="modal-body">
-                <form id="form_criar1" is="dmx-serverconnect-form" method="post" action="http://localhost:3000/api/criar-funil" site="backendMarte" dmx-on:error="notificacoes.danger('Ocorreu um erro: '+lastError.status+lastError.message+lastError.response+'. Entre em contato com o suporte.')" dmx-on:success="listar_funil.load({id_empresa_funil: usuario.data.query[0].empresa_selecionada});form_criar.reset();modal_criar.hide();notificacoes.success('Funil cadastrado com sucesso!')">
-                    <div class="form-group mb-3"> <label for="nome_funil1" class="form-label">Nome do funil</label>
-                        <input type="text" class="form-control" id="nome_funil1" name="nome_funil" aria-describedby="input1_help" required="" data-msg-required="Este é um campo obrigatório!">
-                        <input type="hidden" class="form-control" id="id_empresa1" name="id_empresa" aria-describedby="input1_help" dmx-bind:value="usuario.data.query[0].empresa_selecionada">
-                        <input type="hidden" class="form-control" id="id_criado_por1" name="id_criado_por" aria-describedby="input1_help" dmx-bind:value="usuario.data.query[0].id_usuarios">
+                <form method="post" action="http://localhost:3000/api/atualizar-funil" site="backendMarte" is="dmx-serverconnect-form" id="form_editar" dmx-on:error="notificacoes.danger('Ocorreu um erro: '+lastError.status+lastError.message+lastError.response+'. Entre em contato com o suporte.')" dmx-on:success="listar_funil.load({id_empresa_funil: usuario.data.query[0].empresa_selecionada});data_funil.select(0);form_editar.reset();modal_editar.hide();notificacoes.success('Funil atualizado com sucesso!')">
+                    <div class="form-group mb-3"> <label for="edit_nome_funil" class="form-label">Nome do funil</label>
+                        <input type="text" class="form-control" id="edit_nome_funil" name="edit_nome_funil" aria-describedby="input1_help" required="" data-msg-required="Este é um campo obrigatório!" dmx-bind:value="data_funil.data.nome_board">
+                        <input type="hidden" class="form-control" id="edit_id_board" name="edit_id_board" aria-describedby="input1_help" dmx-bind:value="data_funil.data.id_board">
                     </div>
                     <div class="form-group mb-3"> <label for="input2" class="form-label">Descrição</label>
-                        <textarea id="descricao1" class="form-control" style="min-height:120px" name="descricao"></textarea>
+                        <textarea id="edit_descricao" class="form-control" style="min-height:120px" name="edit_descricao" dmx-bind:value="data_funil.data.descricao_board"></textarea>
                     </div>
                     <div class="form-group mb-3"> <label for="input2" class="form-label">Time atrelado</label>
-                        <select id="time1" class="form-select" dmx-bind:options="listar_time.data.query_times" optiontext="nome_time" optionvalue="id_times" name="time" required="" data-msg-required="Este é um campo obrigatório!">
+                        <select id="edit_time" class="form-select" dmx-bind:options="listar_time.data.query_times" optiontext="nome_time" optionvalue="id_times" name="edit_time" required="" data-msg-required="Este é um campo obrigatório!" dmx-bind:value="data_funil.data.time">
                             <option selected="" value="">Escolha um time</option>
+                        </select>
+                    </div>
+                    <div class="form-group mb-3"> <label for="input2" class="form-label">Status</label>
+                        <select id="edit_status_board" class="form-select" dmx-bind:options="​" optiontext="​" optionvalue="​" name="edit_status_board" required="" data-msg-required="Este é um campo obrigatório!" dmx-bind:value="data_funil.data.status_board">
+                            <option value="Ativo">Ativo</option>
+                            <option value="Inativo">Inativo</option>
                         </select>
                     </div>
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" dmx-on:click="form_criar.reset()">Cancelar</button>
-                <button type="button" class="btn btn-primary" dmx-on:click="form_criar.submit()">Cadastrar</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" dmx-on:click="form_criar.reset();data_funil.select(0)">Cancelar</button>
+                <button type="button" class="btn btn-primary" dmx-on:click="form_editar.submit()">Atualizar</button>
             </div>
         </div>
     </div>
@@ -84,12 +88,13 @@
         <div class="row" is="dmx-repeat" id="repeat_funil" dmx-bind:repeat="listar_funil.data.query_funil" key="id_board">
             <div class="col-4 p-3">
                 <div class="card border-warning">
-                    <div class="card-body">
+                    <div class="card-body" dmx-class:bg-body-secondary="status_board=='Inativo'">
                         <h3 class="card-title">{{nome_board}}</h3>
                         <p class="card-text">{{descricao_board}}</p>
                         <p class="card-text"><b>Time:</b> {{nome_time}}</p>
-                        <a href="#" class="btn btn-warning me-2">Acessar funil</a>
-                        <a href="#" class="btn btn-warning">Editar</a>
+                        <p class="card-text" dmx-show="status_board=='Inativo'"><b>Status:</b>&nbsp;{{status_board}}</p>
+                        <a class="btn btn-warning me-2" dmx-on:click="id_funil_selecionado.setValue(id_board)" internal="true" href="/in/security/board-funil">Acessar funil</a>
+                        <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal_editar" dmx-on:click="data_funil.select(id_board)">Editar</a>
                     </div>
                 </div>
             </div>
