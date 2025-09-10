@@ -178,6 +178,213 @@ body#index [is="dmx-view"] {
     cursor: pointer;
 }
 
+/* ========== SCRUM BOARD STYLES ========== */
+/* Container principal do scrum board com scroll horizontal */
+#repeat_listas {
+    display: flex !important;
+    flex-wrap: nowrap !important;
+    overflow-x: auto !important;
+    overflow-y: hidden !important;
+    gap: 1rem !important;
+    padding: 1rem 0 !important;
+    min-height: 600px !important;
+    width: 100% !important;
+    /* Cursor para indicar área clicável */
+    cursor: grab !important;
+    /* Evitar seleção de texto durante o drag */
+    user-select: none !important;
+    -webkit-user-select: none !important;
+    -moz-user-select: none !important;
+    -ms-user-select: none !important;
+}
+
+/* Cursor durante o drag */
+#repeat_listas.dragging {
+    cursor: grabbing !important;
+}
+
+/* Cada coluna do scrum board */
+#repeat_listas .scrum-column {
+    flex: 0 0 auto !important;
+    min-width: 340px !important;
+    max-width: 380px !important;
+    width: 360px !important;
+    background-color: #f8f9fa !important;
+    border-radius: 8px !important;
+    padding: 1rem !important;
+    margin: 0 !important;
+    border: 1px solid #e9ecef !important;
+    height: fit-content !important;
+    /* Permitir seleção de texto dentro das colunas */
+    user-select: text !important;
+    -webkit-user-select: text !important;
+    -moz-user-select: text !important;
+    -ms-user-select: text !important;
+}
+
+/* Header da coluna - contém título e botão */
+#repeat_listas .column-header {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+    margin-bottom: 1rem !important;
+}
+
+/* Título de cada coluna - simples e alinhado à esquerda */
+#repeat_listas .column-title {
+    font-weight: 600 !important;
+    color: #495057 !important;
+    text-align: left !important;
+    font-size: 1rem !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: none !important;
+    border: none !important;
+}
+
+/* Botão de adicionar card */
+#repeat_listas .add-card-btn {
+    width: 100% !important;
+    border-color: #1b1464 !important;
+    color: #1b1464 !important;
+    font-size: 0.875rem !important;
+    font-weight: 500 !important;
+    padding: 0.5rem 0.75rem !important;
+    border-radius: 6px !important;
+    transition: all 0.2s ease !important;
+}
+
+#repeat_listas .add-card-btn:hover {
+    background-color: #1b1464 !important;
+    border-color: #1b1464 !important;
+    color: #ffffff !important;
+}
+
+#repeat_listas .add-card-btn:focus {
+    box-shadow: 0 0 0 0.25rem rgba(27, 20, 100, 0.25) !important;
+}
+
+/* Cards dentro de cada coluna - com gradiente azul da direita para esquerda */
+#repeat_listas .scrum-column .card {
+    border: none !important;
+    border-radius: 8px !important;
+    margin-bottom: 0.75rem !important;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.2s ease !important;
+    
+    /* Gradiente azul do projeto - da direita para esquerda */
+    background: #1b1464 !important;
+    background: -webkit-gradient(linear, right top, left top, from(#1b1464), to(#140f4b)) !important;
+    background: linear-gradient(to left, #1b1464 0%, #140f4b 100%) !important;
+    color: #ffffff !important;
+}
+
+#repeat_listas .scrum-column .card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    transform: translateY(-2px) !important;
+}
+
+/* Conteúdo dos cards com texto branco */
+#repeat_listas .scrum-column .card .card-body {
+    padding: 1rem !important;
+}
+
+#repeat_listas .scrum-column .card .card-title {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    margin-bottom: 0.75rem !important;
+    font-size: 1.1rem !important;
+}
+
+#repeat_listas .scrum-column .card .card-text {
+    color: rgba(255, 255, 255, 0.9) !important;
+    font-size: 0.9rem !important;
+    line-height: 1.4 !important;
+    margin-bottom: 1rem !important;
+}
+
+/* Botões dentro dos cards */
+#repeat_listas .scrum-column .card .btn-primary,
+#repeat_listas .scrum-column .card .btn-warning {
+    background-color: rgba(255, 255, 255, 0.2) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
+    color: #ffffff !important;
+    font-weight: 500 !important;
+    font-size: 0.875rem !important;
+}
+
+#repeat_listas .scrum-column .card .btn-primary:hover,
+#repeat_listas .scrum-column .card .btn-warning:hover {
+    background-color: rgba(255, 255, 255, 0.3) !important;
+    border-color: rgba(255, 255, 255, 0.4) !important;
+    color: #ffffff !important;
+}
+
+/* Estilização da scrollbar horizontal para o scrum board */
+#repeat_listas::-webkit-scrollbar {
+    height: 8px !important;
+    background: #f8f9fa !important;
+    border-radius: 4px !important;
+}
+
+#repeat_listas::-webkit-scrollbar-thumb {
+    background-color: #6c757d !important;
+    border-radius: 4px !important;
+}
+
+#repeat_listas::-webkit-scrollbar-thumb:hover {
+    background-color: #495057 !important;
+}
+
+/* Firefox scrollbar para o scrum board */
+#repeat_listas {
+    scrollbar-width: thin !important;
+    scrollbar-color: #6c757d #f8f9fa !important;
+}
+
+/* Responsividade do scrum board */
+@media (max-width: 768px) {
+    #repeat_listas .scrum-column {
+        min-width: 310px !important;
+        width: 330px !important;
+        max-width: 340px !important;
+    }
+    
+    #repeat_listas .add-card-btn {
+        font-size: 0.8rem !important;
+        padding: 0.4rem 0.6rem !important;
+    }
+}
+
+@media (max-width: 576px) {
+    #repeat_listas {
+        padding: 0.5rem 0 !important;
+        gap: 0.75rem !important;
+    }
+    
+    #repeat_listas .scrum-column {
+        min-width: 280px !important;
+        width: 300px !important;
+        max-width: 310px !important;
+        padding: 0.75rem !important;
+    }
+    
+    #repeat_listas .column-title {
+        font-size: 0.9rem !important;
+    }
+    
+    #repeat_listas .add-card-btn {
+        font-size: 0.75rem !important;
+        padding: 0.375rem 0.5rem !important;
+    }
+    
+    #repeat_listas .column-header {
+        gap: 0.5rem !important;
+        margin-bottom: 0.75rem !important;
+    }
+}
+/* ========== END SCRUM BOARD STYLES ========== */
+
 #containerform {
     -webkit-box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05), 
                 0 4px 15px rgba(0, 0, 0, 0.05);
