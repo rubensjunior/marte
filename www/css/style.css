@@ -203,12 +203,12 @@ body#index [is="dmx-view"] {
     cursor: grabbing !important;
 }
 
-/* Cada coluna do scrum board */
+/* Cada coluna do scrum board - AUMENTADA EM 40PX */
 #repeat_listas .scrum-column {
     flex: 0 0 auto !important;
-    min-width: 340px !important;
-    max-width: 380px !important;
-    width: 360px !important;
+    min-width: 380px !important;  /* Era 340px, agora 380px */
+    max-width: 420px !important;  /* Era 380px, agora 420px */
+    width: 400px !important;      /* Era 360px, agora 400px */
     background-color: #f8f9fa !important;
     border-radius: 8px !important;
     padding: 1rem !important;
@@ -264,7 +264,7 @@ body#index [is="dmx-view"] {
     box-shadow: 0 0 0 0.25rem rgba(27, 20, 100, 0.25) !important;
 }
 
-/* Cards dentro de cada coluna - com gradiente azul da direita para esquerda */
+/* Cards dentro de cada coluna - GRADIENTE AZUL DA DIREITA PARA ESQUERDA */
 #repeat_listas .scrum-column .card {
     border: none !important;
     border-radius: 8px !important;
@@ -272,7 +272,7 @@ body#index [is="dmx-view"] {
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
     transition: all 0.2s ease !important;
     
-    /* Gradiente azul do projeto - da direita para esquerda */
+    /* Gradiente azul do projeto - da direita para esquerda (cores do bg-gradiente) */
     background: #1b1464 !important;
     background: -webkit-gradient(linear, right top, left top, from(#1b1464), to(#140f4b)) !important;
     background: linear-gradient(to left, #1b1464 0%, #140f4b 100%) !important;
@@ -303,7 +303,7 @@ body#index [is="dmx-view"] {
     margin-bottom: 1rem !important;
 }
 
-/* Botões dentro dos cards */
+/* Botões dentro dos cards - ajustados para gradiente azul */
 #repeat_listas .scrum-column .card .btn-primary,
 #repeat_listas .scrum-column .card .btn-warning {
     background-color: rgba(255, 255, 255, 0.2) !important;
@@ -342,12 +342,12 @@ body#index [is="dmx-view"] {
     scrollbar-color: #6c757d #f8f9fa !important;
 }
 
-/* Responsividade do scrum board */
+/* Responsividade do scrum board - ATUALIZADA PARA NOVA LARGURA */
 @media (max-width: 768px) {
     #repeat_listas .scrum-column {
-        min-width: 310px !important;
-        width: 330px !important;
-        max-width: 340px !important;
+        min-width: 350px !important;  /* Era 310px, agora 350px */
+        width: 370px !important;      /* Era 330px, agora 370px */
+        max-width: 380px !important;  /* Era 340px, agora 380px */
     }
     
     #repeat_listas .add-card-btn {
@@ -363,9 +363,9 @@ body#index [is="dmx-view"] {
     }
     
     #repeat_listas .scrum-column {
-        min-width: 280px !important;
-        width: 300px !important;
-        max-width: 310px !important;
+        min-width: 320px !important;  /* Era 280px, agora 320px */
+        width: 340px !important;      /* Era 300px, agora 340px */
+        max-width: 350px !important;  /* Era 310px, agora 350px */
         padding: 0.75rem !important;
     }
     

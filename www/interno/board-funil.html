@@ -88,80 +88,91 @@
 </main>
 
 <script>
-    // Implementação do drag-to-scroll horizontal para o scrum board (como no Trello)
-document.addEventListener('DOMContentLoaded', function() {
+    // Implementação do drag-to-scroll horizontal para o scrum board (como no Trello) - VERSÃO CORRIGIDA
+function initScrumBoardDragScroll() {
     const scrumBoard = document.getElementById('repeat_listas');
     
-    if (!scrumBoard) return;
+    if (!scrumBoard) {
+        console.log('Elemento repeat_listas não encontrado');
+        return;
+    }
+    
+    console.log('Inicializando drag-to-scroll no elemento:', scrumBoard);
     
     let isDown = false;
     let startX;
     let scrollLeft;
     let moved = false;
     
-    // Função para prevenir cliques nos botões durante o drag
-    function preventClick(e) {
-        if (moved) {
-            e.preventDefault();
-            e.stopPropagation();
-        }
-    }
-    
     // Mouse events
     scrumBoard.addEventListener('mousedown', (e) => {
-        // Só iniciar drag se clicar fora dos elementos interativos
-        if (e.target.closest('button, a, input, select, textarea, .card')) {
+        console.log('Mouse down detectado', e.target);
+        
+        // Permitir drag apenas em áreas vazias (não em botões, cards, etc.)
+        if (e.target.closest('button, a, input, select, textarea')) {
+            console.log('Clique em elemento interativo, ignorando');
             return;
         }
         
+        // Permitir drag mesmo nos cards, mas não nos botões dentro deles
+        if (e.target.closest('button')) {
+            console.log('Clique em botão, ignorando');
+            return;
+        }
+        
+        console.log('Iniciando drag');
         isDown = true;
         moved = false;
         scrumBoard.classList.add('dragging');
-        startX = e.pageX - scrumBoard.offsetLeft;
+        startX = e.pageX;
         scrollLeft = scrumBoard.scrollLeft;
         
         // Prevenir seleção de texto
         e.preventDefault();
     });
     
-    scrumBoard.addEventListener('mouseleave', () => {
+    // Usar document para capturar eventos mesmo quando sair do elemento
+    document.addEventListener('mouseleave', () => {
         isDown = false;
         scrumBoard.classList.remove('dragging');
     });
     
-    scrumBoard.addEventListener('mouseup', (e) => {
+    document.addEventListener('mouseup', (e) => {
         isDown = false;
         scrumBoard.classList.remove('dragging');
-        
-        // Adicionar listener temporário para prevenir cliques após drag
-        if (moved) {
-            setTimeout(() => {
-                moved = false;
-            }, 10);
-        }
+        console.log('Mouse up, moved:', moved);
     });
     
-    scrumBoard.addEventListener('mousemove', (e) => {
+    document.addEventListener('mousemove', (e) => {
         if (!isDown) return;
         
-        e.preventDefault();
+        const x = e.pageX;
+        const walk = (x - startX) * 1.5; // Velocidade do scroll
+        const newScrollLeft = scrollLeft - walk;
+        
+        scrumBoard.scrollLeft = newScrollLeft;
         moved = true;
         
-        const x = e.pageX - scrumBoard.offsetLeft;
-        const walk = (x - startX) * 2; // Multiplicador para velocidade do scroll
-        scrumBoard.scrollLeft = scrollLeft - walk;
+        console.log('Movendo scroll:', {
+            startX: startX,
+            currentX: x,
+            walk: walk,
+            newScrollLeft: newScrollLeft
+        });
+        
+        e.preventDefault();
     });
     
     // Touch events para dispositivos móveis
     scrumBoard.addEventListener('touchstart', (e) => {
-        if (e.target.closest('button, a, input, select, textarea, .card')) {
+        if (e.target.closest('button, a, input, select, textarea')) {
             return;
         }
         
         isDown = true;
         moved = false;
         const touch = e.touches[0];
-        startX = touch.pageX - scrumBoard.offsetLeft;
+        startX = touch.pageX;
         scrollLeft = scrumBoard.scrollLeft;
     }, { passive: true });
     
@@ -170,23 +181,26 @@ document.addEventListener('DOMContentLoaded', function() {
         
         moved = true;
         const touch = e.touches[0];
-        const x = touch.pageX - scrumBoard.offsetLeft;
-        const walk = (x - startX) * 2;
+        const x = touch.pageX;
+        const walk = (x - startX) * 1.5;
         scrumBoard.scrollLeft = scrollLeft - walk;
     }, { passive: true });
     
     scrumBoard.addEventListener('touchend', () => {
         isDown = false;
         scrumBoard.classList.remove('dragging');
-        
-        if (moved) {
-            setTimeout(() => {
-                moved = false;
-            }, 10);
-        }
     }, { passive: true });
     
-    // Prevenir cliques em elementos após drag
-    scrumBoard.addEventListener('click', preventClick, true);
-});
+    console.log('Drag-to-scroll inicializado com sucesso');
+}
+
+// Inicializar quando DOM estiver pronto
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initScrumBoardDragScroll);
+} else {
+    initScrumBoardDragScroll();
+}
+
+// Também tentar inicializar após um pequeno delay caso o elemento seja criado dinamicamente
+setTimeout(initScrumBoardDragScroll, 1000);
 </script>
