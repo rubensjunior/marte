@@ -45,7 +45,13 @@ dmx.config({
           }
         }
       ]
-    }
+    },
+    "sessionStorage": [
+      {
+        "type": "text",
+        "name": "id_funil"
+      }
+    ]
   },
   "empresa": {
     "data_empresa": {
@@ -631,6 +637,126 @@ dmx.config({
               "name": "curso_lead"
             }
           ]
+        }
+      ],
+      "outputType": "array"
+    },
+    "data_lista_funil": {
+      "meta": [
+        {
+          "type": "text",
+          "name": "id_board_lists"
+        },
+        {
+          "type": "number",
+          "name": "board"
+        },
+        {
+          "type": "text",
+          "name": "status_list"
+        },
+        {
+          "type": "text",
+          "name": "tpo_list"
+        },
+        {
+          "type": "text",
+          "name": "nome_list"
+        },
+        {
+          "type": "number",
+          "name": "empresa_list"
+        },
+        {
+          "name": "board_cards",
+          "type": "array",
+          "sub": [
+            {
+              "type": "text",
+              "name": "id_card"
+            },
+            {
+              "type": "text",
+              "name": "status_card"
+            },
+            {
+              "type": "number",
+              "name": "board_list"
+            },
+            {
+              "type": "number",
+              "name": "empresa_card"
+            },
+            {
+              "type": "number",
+              "name": "criado_por"
+            },
+            {
+              "type": "number",
+              "name": "resposavel_card"
+            },
+            {
+              "type": "text",
+              "name": "nome_lead"
+            },
+            {
+              "type": "text",
+              "name": "whats_lead"
+            },
+            {
+              "type": "text",
+              "name": "email_lead"
+            },
+            {
+              "type": "number",
+              "name": "curso_lead"
+            }
+          ]
+        }
+      ],
+      "outputType": "array"
+    },
+    "data_card": {
+      "meta": [
+        {
+          "type": "text",
+          "name": "id_card"
+        },
+        {
+          "type": "text",
+          "name": "status_card"
+        },
+        {
+          "type": "number",
+          "name": "board_list"
+        },
+        {
+          "type": "number",
+          "name": "empresa_card"
+        },
+        {
+          "type": "number",
+          "name": "criado_por"
+        },
+        {
+          "type": "number",
+          "name": "resposavel_card"
+        },
+        {
+          "type": "text",
+          "name": "nome_lead"
+        },
+        {
+          "type": "text",
+          "name": "whats_lead"
+        },
+        {
+          "type": "text",
+          "name": "email_lead"
+        },
+        {
+          "type": "number",
+          "name": "curso_lead"
         }
       ],
       "outputType": "array"

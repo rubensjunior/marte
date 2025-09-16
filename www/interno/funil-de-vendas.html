@@ -93,7 +93,7 @@
                         <p class="card-text">{{descricao_board}}</p>
                         <p class="card-text"><b>Time:</b> {{nome_time}}</p>
                         <p class="card-text" dmx-show="status_board=='Inativo'"><b>Status:</b>&nbsp;{{status_board}}</p>
-                        <a class="btn btn-warning me-2" dmx-on:click="id_funil_selecionado.setValue(id_board)" internal="true" href="/in/security/board-funil">Acessar funil</a>
+                        <a class="btn btn-warning me-2" dmx-on:click="id_funil_selecionado.setValue(id_board);funil.set('id_funil',id_board)" internal="true" href="/in/security/board-funil">Acessar funil</a>
                         <a class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#modal_editar" dmx-on:click="data_funil.select(id_board)">Editar</a>
                     </div>
                 </div>

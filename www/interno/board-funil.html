@@ -1,6 +1,10 @@
 <!-- Wappler include head-page="backoffice.html" is="dmx-app" id="boardfunil" appConnect="local" bootstrap5="local" capacitor="local" fontawesome_5="local" components="{dmxStateManagement:{},dmxDataTraversal:{},dmxDatastore:{},dmxBootstrap5Modal:{}}" -->
-<div class="modal" id="modal_criar" is="dmx-bs5-modal" tabindex="-1">
-    <div class="modal-dialog" role="document">
+
+
+
+
+<div class="modal" id="modal_criar" is="dmx-bs5-modal" tabindex="-1" nocloseonclick="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Criar etapa</h5>
@@ -22,8 +26,63 @@
         </div>
     </div>
 </div>
+<div class="modal" id="modal_editar" is="dmx-bs5-modal" tabindex="-1" nocloseonclick="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Editar etapa</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" dmx-on:click="form_editar.reset();data_lista_funil.select(0)"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form_editar" is="dmx-serverconnect-form" method="post" action="http://localhost:3000/api/atualizar-funil-lista" site="backendMarte" dmx-on:error="notificacoes.danger('Ocorreu um erro: '+lastError.status+lastError.message+lastError.response+'. Entre em contato com o suporte.')" dmx-on:success="funil_selecionado.load({funil: funil.data.id_funil});data_lista_funil.select(0);form_editar.reset();modal_editar.hide();notificacoes.success('Lista atualizada com sucesso!')">
 
-<dmx-serverconnect id="funil_selecionado" url="http://localhost:3000/api/listar-funil-selecionado" site="backendMarte" dmx-param:funil="id_funil_selecionado.value"></dmx-serverconnect>
+                    <div class="form-group mb-3"> <label for="editar_nome_list" class="form-label">Nome da etapa</label>
+                        <input id="id_lista" name="id_lista" type="hidden" class="form-control" dmx-bind:value="data_lista_funil.data.id_board_lists"><input type="text" class="form-control" id="editar_nome_list" name="editar_nome_list" aria-describedby="input1_help" dmx-bind:value="data_lista_funil.data.nome_list">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" dmx-on:click="form_editar.reset();data_lista_funil.select(0)">Cancelar</button>
+                <button type="button" class="btn btn-primary" dmx-on:click="form_editar.submit()">Atualizar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal" id="modal_criar_card" is="dmx-bs5-modal" tabindex="-1" nocloseonclick="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Novo lead</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" dmx-on:click="data_lista_funil.select(0);form_criar_lead.reset()"></button>
+            </div>
+            <div class="modal-body">
+                <form id="form_criar_lead">
+                    <input id="id_lista" name="id_lista" type="text" class="form-control" dmx-bind:value="data_lista_funil.data.id_board_lists">
+                    <div class="form-group mb-3"> <label for="nome" class="form-label">Nome do lead</label>
+                        <input type="text" class="form-control" id="nome" name="nome" aria-describedby="input1_help">
+                    </div>
+                    <div class="form-group mb-3"> <label for="whatsapp" class="form-label">Whatsapp</label>
+                        <input type="text" class="form-control" id="whatsapp" name="whatsapp" aria-describedby="input1_help1" placeholder="(11) 99999-9999">
+                    </div>
+                    <div class="form-group mb-3"> <label for="email" class="form-label">E-mail</label>
+                        <input type="email" class="form-control" id="email" name="email" aria-describedby="input1_help3">
+                    </div>
+                    <div class="form-group mb-3"> <label for="input3" class="form-label">Curso</label>
+                        <select id="cursos" class="form-select" name="cursos" dmx-bind:options="lista_cursos.data.query" optiontext="nome_curso" optionvalue="id_curso">
+                            <option selected="" value="">Selecione um curso</option>
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" dmx-on:click="data_lista_funil.select(0);form_criar_lead.reset()">Cancelar</button>
+                <button type="button" class="btn btn-primary" dmx-on:click="form_criar_lead.submit()">Cadastrar</button>
+            </div>
+        </div>
+    </div>
+</div><dmx-serverconnect id="lista_cursos" url="http://localhost:3000/api/listar-cursos" site="backendMarte"></dmx-serverconnect><dmx-serverconnect id="funil_selecionado" url="http://localhost:3000/api/listar-funil-selecionado" site="backendMarte" dmx-param:funil="funil.data.id_funil"></dmx-serverconnect>
+<dmx-data-detail id="data_card" dmx-bind:data="funil_selecionado.data.query_board.lists[0].board_cards" key="id_card"></dmx-data-detail><dmx-data-detail id="data_lista_funil" dmx-bind:data="funil_selecionado.data.query_board.lists" key="id_board_lists"></dmx-data-detail>
 <header class="container-fluid header-azul-escuro align-self-center">
     <div class="container-fluid pt-5">
         <div class="row align-items-start">
@@ -59,6 +118,7 @@
 
 
 
+
             </div>
 
         </div>
@@ -70,8 +130,11 @@
         <div is="dmx-repeat" id="repeat_listas" dmx-bind:repeat="funil_selecionado.data.query_board.lists" key="id_board_lists">
             <div class="scrum-column">
                 <div class="column-header">
-                    <h6 class="column-title">{{nome_list}}</h6>
-                    <button class="btn btn-sm btn-outline-primary add-card-btn" type="button">
+                    <div class="d-flex justify-content-between mb-3">
+                        <h6 class="column-title">{{nome_list}}</h6><i class="far fa-edit curso-ponteiro" dmx-on:click="data_lista_funil.select(id_board_lists);modal_editar.show()"></i>
+                    </div>
+
+                    <button class="btn btn-sm btn-outline-primary add-card-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal_criar_card" dmx-on:click="data_lista_funil.select(id_board_lists)">
                         <i class="fas fa-plus"></i> Adicionar card
                     </button>
                 </div>
@@ -203,4 +266,61 @@ if (document.readyState === 'loading') {
 
 // Também tentar inicializar após um pequeno delay caso o elemento seja criado dinamicamente
 setTimeout(initScrumBoardDragScroll, 1000);
+
+// Máscara para WhatsApp seguindo padrão brasileiro (11) 99999-9999
+function initWhatsAppMask() {
+    const whatsappInput = document.getElementById('whatsapp');
+    
+    if (!whatsappInput) {
+        console.log('Input WhatsApp não encontrado');
+        return;
+    }
+    
+    console.log('Inicializando máscara do WhatsApp');
+    
+    // Função para aplicar a máscara
+    function applyMask(value) {
+        // Remove tudo que não é número
+        value = value.replace(/\D/g, '');
+        
+        // Limita a 11 dígitos (2 DDD + 9 número)
+        value = value.substring(0, 11);
+        
+        // Aplica a máscara progressivamente
+        if (value.length >= 2) {
+            value = value.replace(/^(\d{2})/, '($1) ');
+        }
+        if (value.length >= 10) {
+            value = value.replace(/^(\(\d{2}\) \d{5})(\d)/, '$1-$2');
+        }
+        
+        return value;
+    }
+    
+    // Event listener para input
+    whatsappInput.addEventListener('input', function(e) {
+        const cursorPosition = e.target.selectionStart;
+        const oldValue = e.target.value;
+        const newValue = applyMask(e.target.value);
+        
+        e.target.value = newValue;
+        
+        // Ajustar posição do cursor
+        if (newValue.length < oldValue.length) {
+            e.target.setSelectionRange(cursorPosition, cursorPosition);
+        }
+    });
+    
+    console.log('Máscara do WhatsApp inicializada com sucesso');
+}
+
+// Inicializar máscara quando DOM estiver pronto
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initWhatsAppMask);
+} else {
+    initWhatsAppMask();
+}
+
+// Também tentar inicializar após um pequeno delay caso o elemento seja criado dinamicamente
+setTimeout(initWhatsAppMask, 500);
 </script>
