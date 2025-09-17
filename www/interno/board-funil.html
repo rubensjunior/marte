@@ -3,6 +3,10 @@
 
 
 
+
+
+
+
 <div class="modal" id="modal_criar" is="dmx-bs5-modal" tabindex="-1" nocloseonclick="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
@@ -14,7 +18,7 @@
                 <form id="form_criar" is="dmx-serverconnect-form" method="post" action="http://localhost:3000/api/criar-lista-funil" site="backendMarte" dmx-on:error="notificacoes.danger('Ocorreu um erro: '+lastError.status+lastError.message+lastError.response+'. Entre em contato com o suporte.')" dmx-on:success="funil_selecionado.load({funil: id_funil_selecionado.value});form_criar.reset();modal_criar.hide();notificacoes.success('Etapa adicionada com sucesso!')">
                     <div class="form-group mb-3"> <label for="nome_list" class="form-label">Nome da etapa</label>
                         <input type="text" class="form-control" id="nome_list" name="nome_list" aria-describedby="input1_help">
-                        <input type="hidden" class="form-control" id="board" name="board" aria-describedby="input1_help" placeholder="Enter some text" dmx-bind:value="id_funil_selecionado.value">
+                        <input type="hidden" class="form-control" id="board" name="board" aria-describedby="input1_help" placeholder="Enter some text" dmx-bind:value="funil.data.id_funil">
                         <input type="hidden" class="form-control" id="empresa_list" name="empresa_list" aria-describedby="input1_help" placeholder="Enter some text" dmx-bind:value="usuario.data.query[0].empresa_selecionada">
                     </div>
                 </form>
@@ -57,8 +61,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" dmx-on:click="data_lista_funil.select(0);form_criar_lead.reset()"></button>
             </div>
             <div class="modal-body">
-                <form id="form_criar_lead">
-                    <input id="id_lista" name="id_lista" type="text" class="form-control" dmx-bind:value="data_lista_funil.data.id_board_lists">
+                <form id="form_criar_lead" is="dmx-serverconnect-form" method="post" action="http://localhost:3000/api/criar-card-leads" site="backendMarte" dmx-on:error="notificacoes.danger('Ocorreu um erro: '+lastError.status+lastError.message+lastError.response+'. Entre em contato com o suporte.')" dmx-on:success="funil_selecionado.load({funil: funil.data.id_funil});data_card.select(0);data_lista_funil.select(0);form_criar_lead.reset();modal_criar_card.hide();notificacoes.success('Lead adicionado com sucesso!')">
+                    <input id="id_lista" name="id_lista" type="hidden" class="form-control" dmx-bind:value="data_lista_funil.data.id_board_lists">
+                    <input id="criado_por" name="criado_por" type="hidden" class="form-control" dmx-bind:value="usuario.data.query[0].id_usuarios">
+                    <input id="resposavel_card" name="resposavel_card" type="hidden" class="form-control" dmx-bind:value="usuario.data.query[0].id_usuarios">
+                    <input id="empresa_card" name="empresa_card" type="hidden" class="form-control" dmx-bind:value="usuario.data.query[0].empresa_selecionada">
                     <div class="form-group mb-3"> <label for="nome" class="form-label">Nome do lead</label>
                         <input type="text" class="form-control" id="nome" name="nome" aria-describedby="input1_help">
                     </div>
@@ -81,8 +88,8 @@
             </div>
         </div>
     </div>
-</div><dmx-serverconnect id="lista_cursos" url="http://localhost:3000/api/listar-cursos" site="backendMarte"></dmx-serverconnect><dmx-serverconnect id="funil_selecionado" url="http://localhost:3000/api/listar-funil-selecionado" site="backendMarte" dmx-param:funil="funil.data.id_funil"></dmx-serverconnect>
-<dmx-data-detail id="data_card" dmx-bind:data="funil_selecionado.data.query_board.lists[0].board_cards" key="id_card"></dmx-data-detail><dmx-data-detail id="data_lista_funil" dmx-bind:data="funil_selecionado.data.query_board.lists" key="id_board_lists"></dmx-data-detail>
+</div><dmx-serverconnect id="card_fila" noload="true" url="http://localhost:3000/api/modificar-fila-card" site="backendMarte"></dmx-serverconnect><dmx-serverconnect id="lista_cursos" url="http://localhost:3000/api/listar-cursos" site="backendMarte"></dmx-serverconnect><dmx-serverconnect id="funil_selecionado" url="http://localhost:3000/api/listar-funil-selecionado" site="backendMarte" dmx-param:funil="funil.data.id_funil"></dmx-serverconnect>
+<dmx-data-detail id="data_card" dmx-bind:data="funil_selecionado.data.query_board.lists[0].board_cards" key="id_card"></dmx-data-detail><dmx-data-detail id="data_lista_funil" dmx-bind:data="funil_selecionado.data.repeat_lista[0].query_listas" key="id_board_lists"></dmx-data-detail>
 <header class="container-fluid header-azul-escuro align-self-center">
     <div class="container-fluid pt-5">
         <div class="row align-items-start">
@@ -103,9 +110,9 @@
             <div class="col align-self-center">
                 <div class="d-flex justify-content-between align-items-center pb-3 pt-1">
                     <div class="d-flex flex-column gap-2 align-items-start">
-                        <h6 class="m-0 badge text-bg-secondary bg-warning">{{view1.funil_selecionado.data.query_board.nome_time}}&nbsp;&nbsp;</h6>
-                        <h2 class="m-0">{{view1.funil_selecionado.data.query_board.nome_board}}</h2>
-                        <p class="m-0">{{view1.funil_selecionado.data.query_board.descricao_board}}</p>
+                        <h6 class="m-0 badge text-bg-secondary bg-warning">{{view1.funil_selecionado.data.query_boards[0].nome_time}}</h6>
+                        <h2 class="m-0">{{view1.funil_selecionado.data.query_boards[0].nome_board}}</h2>
+                        <p class="m-0">{{view1.funil_selecionado.data.query_boards[0].descricao_board}}</p>
                     </div>
                     <div class="d-flex flex-column align-items-end">
                         <button id="btn1" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal_criar">Adicionar lista</button>
@@ -122,27 +129,35 @@
             </div>
 
         </div>
-        <div class="row my-4">
-            <div class="col">
-                <h5 class="m-0">Etapas do funil</h5>
-            </div>
-        </div>
-        <div is="dmx-repeat" id="repeat_listas" dmx-bind:repeat="funil_selecionado.data.query_board.lists" key="id_board_lists">
+        <div is="dmx-repeat" id="repeat_listas" dmx-bind:repeat="funil_selecionado.data.repeat_lista[0].query_listas" key="id_board_lists">
             <div class="scrum-column">
                 <div class="column-header">
                     <div class="d-flex justify-content-between mb-3">
                         <h6 class="column-title">{{nome_list}}</h6><i class="far fa-edit curso-ponteiro" dmx-on:click="data_lista_funil.select(id_board_lists);modal_editar.show()"></i>
                     </div>
 
+
                     <button class="btn btn-sm btn-outline-primary add-card-btn" type="button" data-bs-toggle="modal" data-bs-target="#modal_criar_card" dmx-on:click="data_lista_funil.select(id_board_lists)">
                         <i class="fas fa-plus"></i> Adicionar card
                     </button>
                 </div>
-                <div class="card">
-                    <div class="card-body">
-                        <h4 class="card-title">Card title</h4>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-warning">Go somewhere</a>
+                <dmx-data-view id="data_filtro_card" dmx-bind:data="funil_selecionado.data.query_board.lists[0].board_cards" filter="board_list==id_board_lists"></dmx-data-view>
+                <div class="d-flex justify-content-between mb-3 flex-column gap-3" is="dmx-repeat" id="repeat_cards" dmx-bind:repeat="board_cards" key="id_card">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h4 class="card-title">{{nome_lead}}</h4>
+                            <p class="card-text">Curso: {{nome_curso}}</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex align-items-center">
+
+                                    <a class="btn btn-warning">Detalhes</a>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-end"><input id="card" name="card" type="hidden" dmx-bind:value="id_card"><select id="funil" class="form-select form-select-sm" name="funil" dmx-bind:options="funil_selecionado.data.repeat_lista[0].query_listas" optiontext="nome_list" optionvalue="id_board_lists" dmx-on:changed="card_fila.load({card: card.value, funil: selectedValue});funil_selecionado.load({funil: funil.data.id_funil})">
+                                        <option selected="" value="">Mudar status</option>
+                                    </select></div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

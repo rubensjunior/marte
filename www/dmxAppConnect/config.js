@@ -635,6 +635,30 @@ dmx.config({
             {
               "type": "number",
               "name": "curso_lead"
+            },
+            {
+              "type": "text",
+              "name": "nome_curso"
+            },
+            {
+              "type": "text",
+              "name": "tipo_curso"
+            },
+            {
+              "type": "text",
+              "name": "modalidade"
+            },
+            {
+              "type": "text",
+              "name": "grau"
+            },
+            {
+              "type": "text",
+              "name": "area_atuaca"
+            },
+            {
+              "type": "text",
+              "name": "duracao"
             }
           ]
         }
@@ -643,6 +667,18 @@ dmx.config({
     },
     "data_lista_funil": {
       "meta": [
+        {
+          "name": "$index",
+          "type": "number"
+        },
+        {
+          "name": "$key",
+          "type": "text"
+        },
+        {
+          "name": "$value",
+          "type": "object"
+        },
         {
           "type": "text",
           "name": "id_board_lists"
@@ -710,6 +746,30 @@ dmx.config({
             {
               "type": "number",
               "name": "curso_lead"
+            },
+            {
+              "type": "text",
+              "name": "nome_curso"
+            },
+            {
+              "type": "text",
+              "name": "tipo_curso"
+            },
+            {
+              "type": "text",
+              "name": "modalidade"
+            },
+            {
+              "type": "text",
+              "name": "grau"
+            },
+            {
+              "type": "text",
+              "name": "area_atuaca"
+            },
+            {
+              "type": "text",
+              "name": "duracao"
             }
           ]
         }
@@ -757,6 +817,213 @@ dmx.config({
         {
           "type": "number",
           "name": "curso_lead"
+        }
+      ],
+      "outputType": "array"
+    },
+    "repeat_cards": {
+      "meta": [
+        {
+          "type": "text",
+          "name": "id_card"
+        },
+        {
+          "type": "text",
+          "name": "status_card"
+        },
+        {
+          "type": "number",
+          "name": "board_list"
+        },
+        {
+          "type": "number",
+          "name": "empresa_card"
+        },
+        {
+          "type": "number",
+          "name": "criado_por"
+        },
+        {
+          "type": "number",
+          "name": "resposavel_card"
+        },
+        {
+          "type": "text",
+          "name": "nome_lead"
+        },
+        {
+          "type": "text",
+          "name": "whats_lead"
+        },
+        {
+          "type": "text",
+          "name": "email_lead"
+        },
+        {
+          "type": "number",
+          "name": "curso_lead"
+        },
+        {
+          "type": "text",
+          "name": "nome_curso"
+        },
+        {
+          "type": "text",
+          "name": "tipo_curso"
+        },
+        {
+          "type": "text",
+          "name": "modalidade"
+        },
+        {
+          "type": "text",
+          "name": "grau"
+        },
+        {
+          "type": "text",
+          "name": "area_atuaca"
+        },
+        {
+          "type": "text",
+          "name": "duracao"
+        }
+      ],
+      "outputType": "array"
+    },
+    "data_filtr0_card": {
+      "meta": [
+        {
+          "type": "text",
+          "name": "id_card"
+        },
+        {
+          "type": "text",
+          "name": "status_card"
+        },
+        {
+          "type": "number",
+          "name": "board_list"
+        },
+        {
+          "type": "number",
+          "name": "empresa_card"
+        },
+        {
+          "type": "number",
+          "name": "criado_por"
+        },
+        {
+          "type": "number",
+          "name": "resposavel_card"
+        },
+        {
+          "type": "text",
+          "name": "nome_lead"
+        },
+        {
+          "type": "text",
+          "name": "whats_lead"
+        },
+        {
+          "type": "text",
+          "name": "email_lead"
+        },
+        {
+          "type": "number",
+          "name": "curso_lead"
+        },
+        {
+          "type": "text",
+          "name": "nome_curso"
+        },
+        {
+          "type": "text",
+          "name": "tipo_curso"
+        },
+        {
+          "type": "text",
+          "name": "modalidade"
+        },
+        {
+          "type": "text",
+          "name": "grau"
+        },
+        {
+          "type": "text",
+          "name": "area_atuaca"
+        },
+        {
+          "type": "text",
+          "name": "duracao"
+        }
+      ],
+      "outputType": "array"
+    },
+    "data_filtro_card": {
+      "meta": [
+        {
+          "type": "text",
+          "name": "id_card"
+        },
+        {
+          "type": "text",
+          "name": "status_card"
+        },
+        {
+          "type": "number",
+          "name": "board_list"
+        },
+        {
+          "type": "number",
+          "name": "empresa_card"
+        },
+        {
+          "type": "number",
+          "name": "criado_por"
+        },
+        {
+          "type": "number",
+          "name": "resposavel_card"
+        },
+        {
+          "type": "text",
+          "name": "nome_lead"
+        },
+        {
+          "type": "text",
+          "name": "whats_lead"
+        },
+        {
+          "type": "text",
+          "name": "email_lead"
+        },
+        {
+          "type": "number",
+          "name": "curso_lead"
+        },
+        {
+          "type": "text",
+          "name": "nome_curso"
+        },
+        {
+          "type": "text",
+          "name": "tipo_curso"
+        },
+        {
+          "type": "text",
+          "name": "modalidade"
+        },
+        {
+          "type": "text",
+          "name": "grau"
+        },
+        {
+          "type": "text",
+          "name": "area_atuaca"
+        },
+        {
+          "type": "text",
+          "name": "duracao"
         }
       ],
       "outputType": "array"
