@@ -61,11 +61,11 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" dmx-on:click="data_lista_funil.select(0);form_criar_lead.reset()"></button>
             </div>
             <div class="modal-body">
-                <form id="form_criar_lead" is="dmx-serverconnect-form" method="post" action="http://localhost:3000/api/criar-card-leads" site="backendMarte" dmx-on:error="notificacoes.danger('Ocorreu um erro: '+lastError.status+lastError.message+lastError.response+'. Entre em contato com o suporte.')" dmx-on:success="funil_selecionado.load({funil: funil.data.id_funil});data_card.select(0);data_lista_funil.select(0);form_criar_lead.reset();modal_criar_card.hide();notificacoes.success('Lead adicionado com sucesso!')">
-                    <input id="id_lista" name="id_lista" type="hidden" class="form-control" dmx-bind:value="data_lista_funil.data.id_board_lists">
-                    <input id="criado_por" name="criado_por" type="hidden" class="form-control" dmx-bind:value="usuario.data.query[0].id_usuarios">
-                    <input id="resposavel_card" name="resposavel_card" type="hidden" class="form-control" dmx-bind:value="usuario.data.query[0].id_usuarios">
-                    <input id="empresa_card" name="empresa_card" type="hidden" class="form-control" dmx-bind:value="usuario.data.query[0].empresa_selecionada">
+                <form id="form_criar_lead" is="dmx-serverconnect-form" method="post" action="http://localhost:3000/api/criar-card-lead" site="backendMarte" dmx-on:error="notificacoes.danger('Ocorreu um erro: '+lastError.status+lastError.message+lastError.response+'. Entre em contato com o suporte.')" dmx-on:success="funil_selecionado.load({funil: funil.data.id_funil});data_card.select(0);data_lista_funil.select(0);form_criar_lead.reset();modal_criar_card.hide();notificacoes.success('Lead adicionado com sucesso!')">
+                    <input id="id_lista" name="id_lista" class="form-control" dmx-bind:value="data_lista_funil.data.id_board_lists" type="hidden">
+                    <input id="criado_por" name="criado_por" class="form-control" dmx-bind:value="usuario.data.query[0].id_usuarios" type="hidden">
+                    <input id="resposavel_card" name="resposavel_card" class="form-control" dmx-bind:value="usuario.data.query[0].id_usuarios" type="hidden">
+                    <input id="empresa_card" name="empresa_card" class="form-control" dmx-bind:value="usuario.data.query[0].empresa_selecionada" type="hidden">
                     <div class="form-group mb-3"> <label for="nome" class="form-label">Nome do lead</label>
                         <input type="text" class="form-control" id="nome" name="nome" aria-describedby="input1_help">
                     </div>
@@ -76,7 +76,7 @@
                         <input type="email" class="form-control" id="email" name="email" aria-describedby="input1_help3">
                     </div>
                     <div class="form-group mb-3"> <label for="input3" class="form-label">Curso</label>
-                        <select id="cursos" class="form-select" name="cursos" dmx-bind:options="lista_cursos.data.query" optiontext="nome_curso" optionvalue="id_curso">
+                        <select id="curso" class="form-select" name="curso" dmx-bind:options="lista_cursos.data.query" optiontext="nome_curso" optionvalue="id_curso">
                             <option selected="" value="">Selecione um curso</option>
                         </select>
                     </div>
@@ -146,8 +146,13 @@
                     <div class="card">
                         <div class="card-body">
 
-                            <h4 class="card-title">{{nome_lead}}</h4>
-                            <p class="card-text">Curso: {{nome_curso}}</p>
+                            <h4 class="card-title">{{nome_lead}} - {{whats_lead}}</h4>
+
+                            <div class="d-flex flex-column gap-1 mb-3">
+                                <p class="m-0 card-lead-texto"><b>Curso:</b> {{nome_curso}}</p>
+                                <p class="m-0 card-lead-texto"><b>Modalidade:</b> {{modalidade}}</p>
+                                <p class="m-0 card-lead-texto"><b>Duração:</b> {{duracao}}</p>
+                            </div>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="d-flex align-items-center">
 
